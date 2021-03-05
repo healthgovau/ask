@@ -28,6 +28,21 @@ jobs:
         run: |
           echo "::set-output name=dir::$(composer config cache-files-dir)"
       -
+        name: Run Composer
+        run: composer install
+      -
+        name: Check Drupal coding standards
+        run: composer code-check
+  build:
+    needs: coding-standards
+    runs-on: ubuntu-latest
+    env:
+      THEME_PATH: 'themes/health'
+    steps:
+      -
+        name: Checkout codebase
+        uses: actions/checkout@v2
+      -
         name: Cache Composer dependencies
         uses: actions/cache@v2
         with:
@@ -59,21 +74,6 @@ jobs:
           context: .
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-      -
-        name: Run Composer
-        run: composer install
-      -
-        name: Check Drupal coding standards
-        run: composer code-check
-  build:
-    needs: coding-standards
-    runs-on: ubuntu-latest
-    env:
-      THEME_PATH: 'themes/health'
-    steps:
-      -
-        name: Checkout codebase
-        uses: actions/checkout@v2
       -
         name: Set Node.js version
         uses: actions/setup-node@v1
