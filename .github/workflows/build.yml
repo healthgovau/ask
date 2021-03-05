@@ -46,6 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       THEME_PATH: 'themes/health'
+      CLI_IMAGE: 0
     steps:
       -
         name: Checkout codebase
@@ -113,6 +114,10 @@ jobs:
       -
         name: Start Pygmy
         run: sudo pygmy up
+      -
+        name: Create env variables
+        run: |
+          export
       -
         name: Set up Docker Buildx
         id: buildx
