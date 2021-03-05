@@ -115,10 +115,6 @@ jobs:
         name: Start Pygmy
         run: sudo pygmy up
       -
-        name: Create env variables
-        run: |
-          export
-      -
         name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@master
