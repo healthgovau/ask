@@ -68,7 +68,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-       -
+      -
         name: Build
         uses: docker/build-push-action@v2
         with:
@@ -80,7 +80,7 @@ jobs:
           context: .
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-       -
+      -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
       -
