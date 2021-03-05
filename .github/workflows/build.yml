@@ -144,22 +144,22 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
         env:
-          CLI_IMAGE: "0"
+          CLI_IMAGE: "govcms/govcms-ci"
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
         env:
-          CLI_IMAGE: "0"
+          CLI_IMAGE: "govcms/govcms-ci"
       -
         name: Build project
         run: docker-compose up -d
         env:
-          CLI_IMAGE: "0"
+          CLI_IMAGE: "govcms/govcms-ci"
       -
         name: Check status of containers
         run: docker-compose ps
         env:
-          CLI_IMAGE: "0"
+          CLI_IMAGE: "govcms/govcms-ci"
       -
         name: Wait for 10secs to ensure database container is ready
         uses: jakejarvis/wait-action@master
