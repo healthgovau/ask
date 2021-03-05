@@ -139,7 +139,7 @@ jobs:
           load: true
           tags: valentijn/app:latest
           builder: ${{ steps.buildx.outputs.name }}
-          file: ./.docker/Dockerfile
+          file: ./.docker/Dockerfile.nginx-drupal
           context: .
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
