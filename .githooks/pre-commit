@@ -28,10 +28,10 @@ then
     if [ $drupalfailed != 0 ]
     then
         echo "PHPCS failed, errors found not fixable automatically, git commit denied!"
-        commitfailed=$drupalfailed
+        exit 1
     fi
 fi
 
 #### End of Code Sniffer
 
-exit $commitfailed
+exit 0

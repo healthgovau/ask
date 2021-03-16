@@ -60,7 +60,7 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "cat .githooks/pre-commit >> .git/hooks/pre-commit && chmod a+x .git/hooks/pre-commit"
+            "cat .githooks/pre-commit > .git/hooks/pre-commit && chmod a+x .git/hooks/pre-commit"
         ],
         "post-package-install": [
             "Health\\Helper::postPackageInstall",
@@ -81,7 +81,7 @@
                 "type:health-theme",
                 "type:drupal-theme"
             ],
-            "themes/health/apps/{$name}/": [
+            "temp/apps/{$name}/": [
                 "type:health-app-default",
                 "type:health-app-react",
                 "type:health-app-angular"
