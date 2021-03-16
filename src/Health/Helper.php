@@ -77,10 +77,14 @@ class Helper {
   protected function executeCommand(string $command, string $success_message = '[DONE]') {
     exec($command, $output, $exit_code);
     if ($exit_code == 0) {
-      $this->consoleIO->write($success_message);
+      $this
+        ->consoleIO
+        ->write($success_message);
     }
     else {
-      $this->consoleIO->writeError("[WARNING] Something went wrong whilst running `$command`. Exit code: $exit_code");
+      $this
+        ->consoleIO
+        ->writeError("[WARNING] Something went wrong whilst running `$command`. Exit code: $exit_code");
     }
   }
 
@@ -91,7 +95,9 @@ class Helper {
    *   Instance of PackageEvent class.
    */
   public static function postPackageInstall(PackageEvent $packageEvent) {
-    $package = $packageEvent->getOperation()->getPackage();
+    $package = $packageEvent
+      ->getOperation()
+      ->getPackage();
     $packageTypes = [
       'health-theme',
     ];
@@ -113,7 +119,9 @@ class Helper {
       '.git',
       '.gitignore',
     ];
-    $this->consoleIO->write("\nChecking if installed package is a Git repository... ");
+    $this
+      ->consoleIO
+      ->write("\nChecking if installed package is a Git repository... ");
     foreach ($git_related_files_folders as $file) {
       $git_file_path = $this->packagePath . $file;
       if (file_exists($git_file_path)) {
@@ -121,7 +129,9 @@ class Helper {
         $this->executeCommand($command, "Removing " . $git_file_path);
       }
     }
-    $this->consoleIO->write("[DONE]\n");
+    $this
+      ->consoleIO
+      ->write("[DONE]\n");
   }
 
 }

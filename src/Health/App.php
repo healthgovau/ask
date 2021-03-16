@@ -4,7 +4,6 @@ namespace Health;
 
 use Composer\Installer\PackageEvent;
 use Composer\Package\CompletePackage;
-use DOMDocument;
 
 /**
  * Utility for integration Health apps into the Health website theme.
@@ -30,7 +29,7 @@ class App {
   protected $packageEvent;
 
   /**
-   * Package name
+   * Package name.
    *
    * @var string
    */
@@ -58,6 +57,13 @@ class App {
   protected $consoleIO;
 
   /**
+   * Name of theme in which app should be added to.
+   *
+   * @var string
+   */
+  protected $destinationTheme;
+
+  /**
    * Defines if the app should be a production or development build.
    *
    * @var bool
@@ -72,6 +78,13 @@ class App {
   protected $removeCss;
 
   /**
+   * The maching name of the theme in which to install the app.
+   *
+   * @var string
+   */
+  protected $targetTheme = '';
+
+  /**
    * Constructor.
    */
   public function __construct(PackageEvent $packageEvent) {
@@ -81,7 +94,12 @@ class App {
     $package = $packageEvent->getOperation()->getPackage();
     $installationManager = $packageEvent->getComposer()->getInstallationManager();
     $relativeAppPath = $installationManager->getInstallPath($package);
-    $projectPath = dirname($this->packageEvent->getComposer()->getConfig()->get('vendor-dir'));
+    $vendorDirectory = $this
+      ->packageEvent
+      ->getComposer()
+      ->getConfig()
+      ->get('vendor-dir');
+    $projectPath = dirname($vendorDirectory);
     $this->appPath = $projectPath . '/' . $relativeAppPath;
 
     // Set app type.
@@ -107,10 +125,14 @@ class App {
   protected function executeCommand(string $command, string $success_message = '[DONE]') {
     exec($command, $output, $exit_code);
     if ($exit_code == 0) {
-      $this->consoleIO->write($success_message);
+      $this
+        ->consoleIO
+        ->write($success_message);
     }
     else {
-      $this->consoleIO->writeError("[WARNING] Something went wrong whilst running `$command`. Exit code: $exit_code");
+      $this
+        ->consoleIO
+        ->writeError("[WARNING] Something went wrong whilst running `$command`. Exit code: $exit_code");
     }
   }
 
@@ -124,7 +146,9 @@ class App {
       '.git',
       '.gitignore',
     ];
-    $this->consoleIO->write("Checking if project uses Git... ");
+    $this
+      ->consoleIO
+      ->write("Checking if project uses Git... ");
     foreach ($git_related_files_folders as $file) {
       $git_file_path = $this->appPath . $file;
       if (file_exists($git_file_path)) {
@@ -132,7 +156,9 @@ class App {
         $this->executeCommand($command, "Removing " . $git_file_path);
       }
     }
-    $this->consoleIO->write("[DONE]");
+    $this
+      ->consoleIO
+      ->write("[DONE]");
   }
 
   /**
@@ -175,8 +201,12 @@ class App {
    * @access protected
    */
   protected function processApp() {
+    // Confirm which theme the app should be added to.
+    // $temp = scandir();
     // Confirm if app is a production or development build.
-    $isProductionBuild = $this->consoleIO->askConfirmation("Is this a production build? (Y, n): ", TRUE);
+    $isProductionBuild = $this
+      ->consoleIO
+      ->askConfirmation("Is this a production build? (Y, n): ", TRUE);
     $this->isProductionBuild = (empty($isProductionBuild)) ? FALSE : TRUE;
 
     // Check if recognised app and process according to type.
@@ -199,7 +229,9 @@ class App {
     $this->postIntegrationCleanup();
 
     // Display the location of the newly installed app.
-    $this->consoleIO->write("App has been installed in following location: $this->appPath");
+    $this
+      ->consoleIO
+      ->write("App has been installed in following location: $this->appPath");
   }
 
   /**
@@ -209,19 +241,30 @@ class App {
     // @todo Add processing specific to Angular based apps.
   }
 
+  /**
+   * Post install/update processing for default apps.
+   */
   protected function processDefaultApp() {
     // Install dependencies.
-    $this->consoleIO->write("Checking for NPM dependencies... ");
+    $this
+      ->consoleIO
+      ->write("Checking for NPM dependencies... ");
 
     if (file_exists($this->appPath . 'package.json')) {
-      $installNpmDependencies = $this->consoleIO->askConfirmation("A package.json file has been detected. Would you like to install any NPM dependencies? (Y, n): ", TRUE);
+      $installNpmDependencies = $this
+        ->consoleIO
+        ->askConfirmation("A package.json file has been detected. Would you like to install any NPM dependencies? (Y, n): ", TRUE);
       if ($installNpmDependencies) {
-        $this->consoleIO->write("Installing dependencies... ");
+        $this
+          ->consoleIO
+          ->write("Installing dependencies... ");
         $command = 'cd ' . escapeshellcmd($this->appPath) . ' && npm install';
         $this->executeCommand($command);
       }
       else {
-        $this->consoleIO->write("Skipping installation of any NPM dependencies.");
+        $this
+          ->consoleIO
+          ->write("Skipping installation of any NPM dependencies.");
       }
     }
   }
@@ -230,7 +273,9 @@ class App {
    * Post install/update processing for Angular apps.
    */
   protected function processReactApp() {
-    $removeCss = $this->consoleIO->askConfirmation("Remove static CSS links from project? (y, N): ", FALSE);
+    $removeCss = $this
+      ->consoleIO
+      ->askConfirmation("Remove static CSS links from project? (y, N): ", FALSE);
     $this->removeCss = (empty($removeCss)) ? FALSE : TRUE;
 
     // Add relevant environment variables.
@@ -238,13 +283,17 @@ class App {
 
     // Install dependencies.
     if (file_exists($this->appPath . 'package.json')) {
-      $this->consoleIO->write("Installing dependencies... ");
+      $this
+        ->consoleIO
+        ->write("Installing dependencies... ");
       $command = 'cd ' . escapeshellcmd($this->appPath) . ' && npm install';
       $this->executeCommand($command);
     }
 
     // Build app.
-    $this->consoleIO->write("Building React project... ");
+    $this
+      ->consoleIO
+      ->write("Building React project... ");
     if (file_exists($this->appPath . '.env.local')) {
       $command = 'cd ' . escapeshellcmd($this->appPath) . ' && npm run build';
       $this->executeCommand($command);
@@ -252,12 +301,16 @@ class App {
 
     // Remove source files.
     if ($this->isProductionBuild && file_exists($this->appPath . "src")) {
-      $this->consoleIO->write("Remove React project source files... ", FALSE);
+      $this
+        ->consoleIO
+        ->write("Remove React project source files... ", FALSE);
       $command = 'cd ' . escapeshellcmd($this->appPath) . ' && rm -Rf ./src';
       $this->executeCommand($command);
     }
     else {
-      $this->consoleIO->write("Non-production build. React project source files have been retained.");
+      $this
+        ->consoleIO
+        ->write("Non-production build. React project source files have been retained.");
     }
 
     // Remove static assets.
@@ -271,7 +324,9 @@ class App {
    *   Instance of PackageEvent class.
    */
   public static function postPackageInstall(PackageEvent $event) {
-    $package = $event->getOperation()->getPackage();
+    $package = $event
+      ->getOperation()
+      ->getPackage();
     if (static::isApp($package)) {
       $app = new App($event);
       $app->processApp();
@@ -297,8 +352,10 @@ class App {
           $indexFilePath = $this->appPath . 'build/index.html';
           $static_css_links = [];
           if (file_exists($indexFilePath)) {
-            $this->consoleIO->write('Removing <link> elements form index.html file... ', FALSE);
-            $dom = new DOMDocument();
+            $this
+              ->consoleIO
+              ->write('Removing <link> elements form index.html file... ', FALSE);
+            $dom = new \DOMDocument();
             if (@$dom->loadHTMLFile($indexFilePath)) {
               $links = $dom->getElementsByTagName('link');
               foreach ($links as $link) {
@@ -308,18 +365,26 @@ class App {
                 }
               }
               foreach ($static_css_links as $link) {
-                $link->parentNode->removeChild($link);
+                $link
+                  ->parentNode
+                  ->removeChild($link);
               }
               // Write modified markup back to index.html file.
               if (!empty(file_put_contents($indexFilePath, $dom->saveHTML()))) {
-                $this->consoleIO->write("[DONE]");
+                $this
+                  ->consoleIO
+                  ->write("[DONE]");
               }
               else {
-                $this->consoleIO->write("[FAILED]\nError occurred when trying to write modified markup to index.html file.");
+                $this
+                  ->consoleIO
+                  ->write("[FAILED]\nError occurred when trying to write modified markup to index.html file.");
               }
             }
             else {
-              $this->consoleIO->write("[FAILED]\nError occurred while reading index.html file.");
+              $this
+                ->consoleIO
+                ->write("[FAILED]\nError occurred while reading index.html file.");
             }
           }
         }
@@ -355,7 +420,9 @@ class App {
       }
     }
     catch (Exception $e) {
-      $this->consoleIO->write($e->getMessage());
+      $this
+        ->consoleIO
+        ->write($e->getMessage());
     }
   }
 
