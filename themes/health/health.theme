@@ -2290,6 +2290,10 @@ function health_preprocess_field__paragraph__field_h_title(array &$variables) {
 function health_preprocess_paragraph__para_h_app_or_tool(array &$variables) {
   $paragraph = $variables['paragraph'];
   if ($paragraph instanceof ParagraphInterface) {
+    $active_manager = \Drupal::service('theme.manager');
+    $current_theme = $active_manager
+      ->getActiveTheme()
+      ->getName();
     // Make CSS class for app width available to template.
     $variables['app_width_class'] = '';
     if ($paragraph->hasField('field_h_app_width') && $paragraph->get('field_h_app_width')
@@ -2303,7 +2307,7 @@ function health_preprocess_paragraph__para_h_app_or_tool(array &$variables) {
       ->isEmpty() === FALSE) {
       $path = str_replace('../', '', $paragraph->get('field_h_app_path')->value);
       // Remove any leading or trailing slashes.
-      $location = drupal_get_path('theme', 'health') . '/apps/' . $path;
+      $location = drupal_get_path('theme', $current_theme) . '/apps/' . $path;
       $index_file = $paragraph->get('field_h_app_index_file')->value;
 
       if ($realpath = realpath($location . '/' . $index_file)) {
