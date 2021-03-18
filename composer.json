@@ -66,6 +66,7 @@
             "Health\\Helper::postPackageInstall",
             "Health\\App::postPackageInstall"
         ],
+        "post-package-uninstall": "Health\\App::postPackageUninstall",
         "code-check": "./vendor/bin/phpcs",
         "code-fix": "./vendor/bin/phpcbf"
     },
@@ -81,7 +82,7 @@
                 "type:health-theme",
                 "type:drupal-theme"
             ],
-            "temp/apps/{$name}/": [
+            "apps/{$name}/": [
                 "type:health-app-default",
                 "type:health-app-react",
                 "type:health-app-angular"

@@ -11,6 +11,13 @@ use Composer\Package\CompletePackage;
 class App {
 
   /**
+   * Full path to app registry file.
+   *
+   * @var string
+   */
+  protected $appRegistryFile;
+
+  /**
    * List of support app types.
    *
    * @var array
@@ -34,6 +41,13 @@ class App {
    * @var string
    */
   protected $packageName;
+
+  /**
+   * Path to root of ASK project.
+   *
+   * @var string
+   */
+  protected $projectPath;
 
   /**
    * Path to installed app.
@@ -99,8 +113,10 @@ class App {
       ->getComposer()
       ->getConfig()
       ->get('vendor-dir');
-    $projectPath = dirname($vendorDirectory);
-    $this->appPath = $projectPath . '/' . $relativeAppPath;
+    $this->projectPath = dirname($vendorDirectory);
+    $this->relativeAppPath = $relativeAppPath;
+    $this->appPath = $this->projectPath . '/' . $relativeAppPath;
+    $this->appRegistryFile = $this->projectPath . '/apps/apps.json';
 
     // Set app type.
     $this->appType = $package->getType();
@@ -162,6 +178,37 @@ class App {
   }
 
   /**
+   * Get the content of the app registry file.
+   *
+   * @return array
+   *   Registry of currently installed apps listed in the app registry file.
+   */
+  protected function getAppRegistry() {
+    $data = file_get_contents($this->appRegistryFile);
+
+    return json_decode($data);
+  }
+
+  /**
+   * Write list of installed apps to the app registry file.
+   *
+   * @param array $data
+   *   List of installed apps.
+   */
+  protected function setAppRegistry(array $data) {
+    $success = TRUE;
+    $data = json_encode($data);
+    if (file_put_contents($this->appRegistryFile, $data) === FALSE) {
+      $this
+        ->consoleIO
+        ->write('Error setting app registry.');
+      $success = FALSE;
+    }
+
+    return $success;
+  }
+
+  /**
    * Get list of supported app package types.
    *
    * @return array
@@ -202,11 +249,30 @@ class App {
    */
   protected function processApp() {
     // Confirm which theme the app should be added to.
-    // $temp = scandir();
+    $themePaths = glob($this->projectPath . '/themes/*', GLOB_ONLYDIR);
+    foreach ($themePaths as $index => $path) {
+      $pathParts = explode('/', $path);
+      $name = end($pathParts);
+      $options[++$index] = '[' . $index . '] ' . $name;
+      $themeMapping[$index] = $name;
+    }
+    $text = "Select the number of the theme which the app should be added to:\n\n";
+    $text .= implode("\n", $options);
+    $text .= "\n\n";
+    $response = $this
+      ->consoleIO
+      ->ask($text);
+    while (!array_key_exists($response, $themeMapping)) {
+      $response = $this
+        ->consoleIO
+        ->ask("Not a valid choice.\n\n" . $text);
+    }
+    $this->destinationTheme = $themeMapping[$response];
+
     // Confirm if app is a production or development build.
     $isProductionBuild = $this
       ->consoleIO
-      ->askConfirmation("Is this a production build? (Y, n): ", TRUE);
+      ->askConfirmation("Is this a production build? (Y, n) [default = Y]: ", TRUE);
     $this->isProductionBuild = (empty($isProductionBuild)) ? FALSE : TRUE;
 
     // Check if recognised app and process according to type.
@@ -228,6 +294,58 @@ class App {
     // Generic postintegration cleanup tasks.
     $this->postIntegrationCleanup();
 
+    // Move application directory to destination theme.
+    $sourcePath = rtrim($this->appPath, '/');
+    $themeAppsPath = implode('/', [
+      $this->projectPath,
+      'themes',
+      $this->destinationTheme,
+      'apps',
+    ]);
+    $destinationPath = implode('/', [
+      $themeAppsPath,
+      $this->packageName,
+    ]);
+
+    try {
+      // Add app information to the app registry.
+      $app_registry = $this->getAppRegistry();
+      $app_registry[] = [
+        'app' => $this->packageName,
+        'theme' => $this->destinationTheme,
+      ];
+      $this->setAppRegistry($app_registry);
+
+      // Move app files into destination theme.
+      if (!file_exists($themeAppsPath)) {
+        mkdir($themeAppsPath, 0766, TRUE);
+      }
+      if (rename($sourcePath, $destinationPath) === TRUE) {
+        $this
+          ->consoleIO
+          ->write('Moved app to the ' . $this->destinationTheme . ' theme.');
+      }
+      else {
+        throw new AppIntegrationException('Failed to move app to the ' . $this->destinationTheme . ' theme.');
+      }
+      // Create a stub in the original location. When removing a Composer
+      // package, Composer will check the package exists in the originally
+      // installed location. If this location does not exist then it will not
+      // trigger any package uninstall hooks.
+      if (mkdir($sourcePath) === TRUE) {
+        $stubFile = $sourcePath . '/.gitkeep';
+        file_put_contents($stubFile, '');
+      }
+      else {
+        throw new AppIntegrationException('Failed to create original package stub.');
+      };
+    }
+    catch (AppIntegrationException $e) {
+      $this
+        ->consoleIO
+        ->write($e->getMessage());
+    }
+
     // Display the location of the newly installed app.
     $this
       ->consoleIO
@@ -242,7 +360,7 @@ class App {
   }
 
   /**
-   * Post install/update processing for default apps.
+   * Process default app type.
    */
   protected function processDefaultApp() {
     // Install dependencies.
@@ -253,7 +371,7 @@ class App {
     if (file_exists($this->appPath . 'package.json')) {
       $installNpmDependencies = $this
         ->consoleIO
-        ->askConfirmation("A package.json file has been detected. Would you like to install any NPM dependencies? (Y, n): ", TRUE);
+        ->askConfirmation("A package.json file has been detected. Would you like to install any NPM dependencies? (Y, n): [default = Y]", TRUE);
       if ($installNpmDependencies) {
         $this
           ->consoleIO
@@ -275,7 +393,7 @@ class App {
   protected function processReactApp() {
     $removeCss = $this
       ->consoleIO
-      ->askConfirmation("Remove static CSS links from project? (y, N): ", FALSE);
+      ->askConfirmation("Remove static CSS links from project? (y, N): [default = N]", FALSE);
     $this->removeCss = (empty($removeCss)) ? FALSE : TRUE;
 
     // Add relevant environment variables.
@@ -330,6 +448,19 @@ class App {
     if (static::isApp($package)) {
       $app = new App($event);
       $app->processApp();
+    }
+  }
+
+  /**
+   * Package post uninstall handler.
+   */
+  public static function postPackageUninstall(PackageEvent $event) {
+    $package = $event
+      ->getOperation()
+      ->getPackage();
+    if (static::isApp($package)) {
+      $app = new App($event);
+      $app->remove();
     }
   }
 
@@ -393,6 +524,73 @@ class App {
   }
 
   /**
+   * Remove app from relevant theme.
+   */
+  protected function remove() {
+    $app_registry = $this->getAppRegistry();
+    foreach ($app_registry as $index => $item) {
+      if ($item->app === $this->packageName) {
+        $app_path = implode('/', [
+          $this->projectPath,
+          'themes',
+          $item->theme,
+          'apps',
+          $this->packageName,
+        ]);
+
+        try {
+          // Remove app files from theme.
+          if (file_exists($app_path)) {
+            if ($this->removeDirectory($app_path)) {
+              $this
+                ->consoleIO
+                ->write($this->packageName . ' app files have been successfully removed.');
+            }
+            else {
+              throw new AppIntegrationException('Failed to remove ' . $this->packageName . ' app files.');
+            }
+          }
+
+          // Remove package from app registry.
+          unset($app_registry[$index]);
+        }
+        catch (AppIntegrationException $e) {
+          $this
+            ->consoleIO
+            ->write($e->getMessage());
+        }
+      }
+    }
+    $this->setAppRegistry($app_registry);
+  }
+
+  /**
+   * Remove a directory including all files and sub-directories.
+   *
+   * The code for this function is derived from
+   * https://www.beliefmedia.com.au/php-delete-directory-contents.
+   *
+   * @param string $dir
+   *   Full path to the directory to be removed.
+   *
+   * @return bool
+   *   Whether or not the directory was successfully removed.
+   */
+  protected function removeDirectory($dir) {
+    if (is_dir($dir)) {
+      $objects = scandir($dir);
+      foreach ($objects as $object) {
+        if ($object != '.' && $object != '..') {
+          (filetype($dir . '/' . $object) == 'dir') ? $this->removeDirectory($dir . '/' . $object) : unlink($dir . '/' . $object);
+        }
+      }
+      reset($objects);
+
+      return rmdir($dir) ? TRUE : FALSE;
+    }
+  }
+
+  /**
    * Create environmental variables file for React project.
    */
   protected function setReactEnvironmentalVariables() {
@@ -402,8 +600,8 @@ class App {
 
     if ($this->isProductionBuild) {
       // Set environmental variables for production build.
-      $variables['REACT_APP_PATH'] = '/themes/custom/health/apps/' . $this->packageName . '/build';
-      $variables['PUBLIC_URL'] = '/themes/custom/health/apps/' . $this->packageName . '/build';
+      $variables['REACT_APP_PATH'] = '/themes/custom/' . $this->destinationTheme . '/apps/' . $this->packageName . '/build';
+      $variables['PUBLIC_URL'] = '/themes/custom/' . $this->destinationTheme . '/apps/' . $this->packageName . '/build';
       $variables['REACT_APP_PRODUCTION'] = 1;
     }
     else {
@@ -416,10 +614,10 @@ class App {
     }
     try {
       if (!empty($variables) && !file_put_contents($localEnvFilePath, $output)) {
-        throw new Exception('Error creating .env.local file');
+        throw new AppIntegrationException('Error creating .env.local file');
       }
     }
-    catch (Exception $e) {
+    catch (AppIntegrationException $e) {
       $this
         ->consoleIO
         ->write($e->getMessage());
