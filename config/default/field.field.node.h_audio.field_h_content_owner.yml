@@ -1,0 +1,29 @@
+uuid: a5db77f2-03e4-4056-b855-494d8984d329
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_content_owner
+    - node.type.h_audio
+    - taxonomy.vocabulary.h_content_owner
+id: node.h_audio.field_h_content_owner
+field_name: field_h_content_owner
+entity_type: node
+bundle: h_audio
+label: 'Content owner'
+description: 'Select the entity, branch or division responsible for this information.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      h_content_owner: h_content_owner
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

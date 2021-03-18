@@ -1,0 +1,11 @@
+uuid: ccdef557-47dc-410c-9d89-8a9c6137ba5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.h_audio_type
+id: taxonomy_term.h_audio_type
+target_entity_type_id: taxonomy_term
+target_bundle: h_audio_type
+default_langcode: site_default
+language_alterable: false

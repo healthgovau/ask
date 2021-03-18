@@ -1,0 +1,19 @@
+uuid: 5fbb4436-f493-4842-a652-3ab9f4c38f14
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_summary
+    - node.type.h_audio
+id: node.h_audio.field_h_summary
+field_name: field_h_summary
+entity_type: node
+bundle: h_audio
+label: Summary
+description: 'Summarise this information in 300 characters or less.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

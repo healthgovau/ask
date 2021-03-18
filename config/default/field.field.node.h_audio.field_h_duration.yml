@@ -1,0 +1,19 @@
+uuid: 556bbd6a-06a1-4fff-8ab0-6d97335e1034
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_duration
+    - node.type.h_audio
+id: node.h_audio.field_h_duration
+field_name: field_h_duration
+entity_type: node
+bundle: h_audio
+label: Duration
+description: 'Enter the duration of the audio clip in the format: HH:MM:SS or MM:SS. For example 1:02:26 for 1 hour 2 minutes and 26 seconds.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
