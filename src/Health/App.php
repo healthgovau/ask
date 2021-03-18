@@ -339,17 +339,22 @@ class App {
       else {
         throw new AppIntegrationException('Failed to create original package stub.');
       };
+
+      // Display the location of the newly installed app.
+      if (file_exists($destinationPath)) {
+        $this
+          ->consoleIO
+          ->write('App has been installed in the following location: ' . $destinationPath);
+      }
+      else {
+        throw new AppIntegrationException('Oops, the app cannot be found in the expected location.');
+      }
     }
     catch (AppIntegrationException $e) {
       $this
         ->consoleIO
-        ->write($e->getMessage());
+        ->write('ERROR: ' . $e->getMessage());
     }
-
-    // Display the location of the newly installed app.
-    $this
-      ->consoleIO
-      ->write("App has been installed in following location: $this->appPath");
   }
 
   /**
