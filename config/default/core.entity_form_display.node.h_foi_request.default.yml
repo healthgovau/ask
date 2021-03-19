@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.h_foi_request.field_h_content_owner
     - field.field.node.h_foi_request.field_h_content_pass_sentences
     - field.field.node.h_foi_request.field_h_content_readability
+    - field.field.node.h_foi_request.field_h_date_created
     - field.field.node.h_foi_request.field_h_date_published
     - field.field.node.h_foi_request.field_h_date_reviewed
     - field.field.node.h_foi_request.field_h_date_updated
@@ -23,6 +24,7 @@ dependencies:
     - field.field.node.h_foi_request.field_h_subject_3
     - field.field.node.h_foi_request.field_h_summary
     - node.type.h_foi_request
+    - workflows.workflow.editorial
   module:
     - content_moderation
     - datetime
@@ -197,6 +199,12 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
+  field_h_date_created:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_h_date_published:
     type: datetime_default
     weight: 0

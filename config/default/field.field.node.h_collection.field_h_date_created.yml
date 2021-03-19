@@ -1,0 +1,24 @@
+uuid: abdb82ef-061e-48da-8e8b-0fa7a0979192
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_date_created
+    - node.type.h_collection
+  module:
+    - datetime
+id: node.h_collection.field_h_date_created
+field_name: field_h_date_created
+entity_type: node
+bundle: h_collection
+label: 'Date created'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime
