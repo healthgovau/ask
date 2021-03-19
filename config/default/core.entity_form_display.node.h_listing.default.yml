@@ -71,13 +71,12 @@ third_party_settings:
         - field_h_date_updated
       parent_name: group_dates
       weight: 17
-      format_type: details
+      format_type: fieldset
       format_settings:
         id: ''
         classes: ''
         description: ''
         required_fields: true
-        open: false
       label: 'System dates'
       region: content
     group_metadata:
