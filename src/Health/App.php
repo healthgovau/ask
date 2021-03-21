@@ -36,6 +36,13 @@ class App {
   protected $packageEvent;
 
   /**
+   * The package manager used to control dependencies.
+   *
+   * @var string
+   */
+  protected $dependencyManager = 'npm';
+
+  /**
    * Package name.
    *
    * @var string
@@ -396,44 +403,113 @@ class App {
    * Post install/update processing for Angular apps.
    */
   protected function processReactApp() {
-    $removeCss = $this
-      ->consoleIO
-      ->askConfirmation("Remove static CSS links from project? (y, N): [default = N]", FALSE);
-    $this->removeCss = (empty($removeCss)) ? FALSE : TRUE;
+    try {
+      $removeCss = $this
+        ->consoleIO
+        ->askConfirmation("Remove static CSS links from project? (y, N): [default = N]", FALSE);
+      $this->removeCss = (empty($removeCss)) ? FALSE : TRUE;
 
-    // Add relevant environment variables.
-    $this->setReactEnvironmentalVariables();
+      // Add relevant environment variables.
+      $this->setReactEnvironmentalVariables();
 
-    // Install dependencies.
-    if (file_exists($this->appPath . 'package.json')) {
+      // Install dependencies.
+      $commands = [
+        'npm' => [
+          'install' => 'npm install',
+          'build' => 'npm run build',
+        ],
+        'yarn' => [
+          'install' => 'yarn install',
+          'build' => 'yarn build',
+        ],
+      ];
+      if (file_exists($this->appPath . 'yarn.lock') && !file_exists($this->appPath . 'package-lock.json')) {
+        $this->dependencyManager = 'yarn';
+      }
+      elseif (file_exists($this->appPath . 'package-lock.json') && !file_exists($this->appPath . 'yarn.lock')) {
+        $this->dependencyManager = 'npm';
+      }
+      elseif (file_exists($this->appPath . 'package-lock.json') && file_exists($this->appPath . 'yarn.lock')) {
+        $response = $this
+          ->consoleIO
+          ->ask("\n\nLock files have been found for both npm and yarn package manager systems. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2] npm\n\n");
+        while (!in_array($response, [1, 2])) {
+          $response = $this
+            ->consoleIO
+            ->ask("Not a valid selection. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2]npm\n\n");
+        }
+        switch ($response) {
+          case 1:
+            $this->dependencyManager = 'yarn';
+            break;
+
+          case 2:
+            $this->dependencyManager = 'npm';
+            break;
+        }
+      }
+      elseif (file_exists($this->appPath . 'yarn.json') && !file_exists($this->appPath . 'package.json')) {
+        $this->dependencyManager = 'yarn';
+      }
+      elseif (file_exists($this->appPath . 'package.json') && !file_exists($this->appPath . 'yarn.json')) {
+        $this->dependencyManager = 'npm';
+      }
+      elseif (file_exists($this->appPath . 'package.json') && file_exists($this->appPath . 'yarn.json')) {
+        $response = $this
+          ->consoleIO
+          ->ask("\n\nConfiguration files have been found for both npm and yarn package manager systems. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2] npm\n\n");
+        while (!in_array($response, [1, 2])) {
+          $response = $this
+            ->consoleIO
+            ->ask("Not a valid selection. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2]npm\n\n");
+        }
+        switch ($response) {
+          case 1:
+            $this->dependencyManager = 'yarn';
+            break;
+
+          case 2:
+            $this->dependencyManager = 'npm';
+            break;
+        }
+      }
+      else {
+        throw new AppIntegrationException('Could not find yarn or npm configuration for this project.');
+      }
+
       $this
         ->consoleIO
-        ->write("Installing dependencies... ");
-      $command = 'cd ' . escapeshellcmd($this->appPath) . ' && npm install';
+        ->write('Installing dependencies using ' . $this->dependencyManager . ' ...');
+      $command = 'cd ' . escapeshellcmd($this->appPath) . ' && ' . $commands[$this->dependencyManager]['install'];
       $this->executeCommand($command);
-    }
 
-    // Build app.
-    $this
-      ->consoleIO
-      ->write("Building React project... ");
-    if (file_exists($this->appPath . '.env.local')) {
-      $command = 'cd ' . escapeshellcmd($this->appPath) . ' && npm run build';
-      $this->executeCommand($command);
-    }
-
-    // Remove source files.
-    if ($this->isProductionBuild && file_exists($this->appPath . "src")) {
+      // Build app.
       $this
         ->consoleIO
-        ->write("Remove React project source files... ", FALSE);
-      $command = 'cd ' . escapeshellcmd($this->appPath) . ' && rm -Rf ./src';
-      $this->executeCommand($command);
+        ->write('Building React project using ' . $this->dependencyManager . ' ...');
+      if (file_exists($this->appPath . '.env.local')) {
+        $command = 'cd ' . escapeshellcmd($this->appPath) . ' && ' . $commands[$this->dependencyManager]['build'];
+        $this->executeCommand($command);
+      }
+
+      // Remove source files.
+      if ($this->isProductionBuild && file_exists($this->appPath . "src")) {
+        $this
+          ->consoleIO
+          ->write("Remove React project source files... ", FALSE);
+        $command = 'cd ' . escapeshellcmd($this->appPath) . ' && rm -Rf ./src';
+        $this->executeCommand($command);
+      }
+      else {
+        $this
+          ->consoleIO
+          ->write("Non-production build. React project source files have been retained.");
+      }
     }
-    else {
+    catch (AppIntegrationException $e) {
       $this
         ->consoleIO
-        ->write("Non-production build. React project source files have been retained.");
+        ->write('ERROR: ' . $e->getMessage());
     }
 
     // Remove static assets.
