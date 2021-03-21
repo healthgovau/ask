@@ -16,8 +16,17 @@
     },
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
+            "type": "package",
+            "package": {
+                "name": "healthgovau/out-of-pocket",
+                "version": "1.2.1",
+                "type": "health-app-react",
+                "source": {
+                    "type": "git",
+                    "url": "git@github.com:healthgovau/out-of-pocket.git",
+                    "reference": "v1.2.1"
+                }
+            }
         },
         {
             "type": "package",
@@ -44,6 +53,10 @@
                     "reference": "1.0.1"
                 }
             }
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
         }
     ],
     "minimum-stability": "stable",
