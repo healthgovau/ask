@@ -263,18 +263,28 @@ class App {
       $options[++$index] = '[' . $index . '] ' . $name;
       $themeMapping[$index] = $name;
     }
-    $text = "Select the number of the theme which the app should be added to:\n\n";
-    $text .= implode("\n", $options);
-    $text .= "\n\n";
-    $response = $this
-      ->consoleIO
-      ->ask($text);
-    while (!array_key_exists($response, $themeMapping)) {
+
+    $ci_mode = getenv('HEALTH_CI_MODE');
+    if (isset($ci_mode) && $ci_mode === TRUE) {
+      $theme_name = 'health';
+      $index = array_search($theme_name, $themeMapping);
+      $theme = $themeMapping[$index];
+    }
+    else {
+      $text = "Select the number of the theme which the app should be added to:\n\n";
+      $text .= implode("\n", $options);
+      $text .= "\n\n";
       $response = $this
         ->consoleIO
-        ->ask("Not a valid choice.\n\n" . $text);
+        ->ask($text);
+      while (!array_key_exists($response, $themeMapping)) {
+        $response = $this
+          ->consoleIO
+          ->ask("Not a valid choice.\n\n" . $text);
+      }
+      $theme = $themeMapping[$response];
     }
-    $this->destinationTheme = $themeMapping[$response];
+    $this->destinationTheme = $theme;
 
     // Confirm if app is a production or development build.
     $isProductionBuild = $this
