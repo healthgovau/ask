@@ -474,7 +474,7 @@ To use:
 
 The project makes use of [Cypress](https://www.cypress.io/) and [Percy](https://percy.io/) to implemented visual regression tests in Github workflow pipelines.
 
-When creating or updating pull requests on `develop` or `master` branches snapshots of sample content type pages will be created and analysed by Percy. In case of a failure the results can be reviewed in Percy. Once approved in Percy one will be able to merge the pull request.
+When creating or updating pull requests on the `v1.x` branch snapshots of sample content type pages will be created and analysed by Percy. In case of a failure the results can be reviewed in Percy. Once approved in Percy one will be able to merge the pull request.
 
 Cypress test configuration can be found in the `cypress/integration/` directory.
 
