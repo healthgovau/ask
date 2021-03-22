@@ -18,6 +18,13 @@ class App {
   protected $appRegistryFile;
 
   /**
+   * Is the script running in CI mode.
+   *
+   * @var bool
+   */
+  protected $ciMode = FALSE;
+
+  /**
    * List of support app types.
    *
    * @var array
@@ -134,6 +141,9 @@ class App {
     // Get package name.
     $path_components = explode('/', rtrim($relativeAppPath, '/'));
     $this->packageName = end($path_components);
+
+    // Check if in CI mode. Used by Github workflow.
+    $this->ciMode = empty(getenv('HEALTH_CI_MODE')) ? FALSE : TRUE;
   }
 
   /**
@@ -264,8 +274,7 @@ class App {
       $themeMapping[$index] = $name;
     }
 
-    $ci_mode = getenv('HEALTH_CI_MODE');
-    if ($ci_mode) {
+    if ($this->ciMode) {
       $theme_name = 'health';
       $index = array_search($theme_name, $themeMapping);
       $theme = $themeMapping[$index];
@@ -440,13 +449,18 @@ class App {
         $this->dependencyManager = 'npm';
       }
       elseif (file_exists($this->appPath . 'package-lock.json') && file_exists($this->appPath . 'yarn.lock')) {
-        $response = $this
-          ->consoleIO
-          ->ask("\n\nLock files have been found for both npm and yarn package manager systems. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2] npm\n\n");
-        while (!in_array($response, [1, 2])) {
+        if ($this->ciMode === TRUE) {
+          $response = 'npm';
+        }
+        else {
           $response = $this
             ->consoleIO
-            ->ask("Not a valid selection. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2]npm\n\n");
+            ->ask("\n\nLock files have been found for both npm and yarn package manager systems. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2] npm\n\n");
+          while (!in_array($response, [1, 2])) {
+            $response = $this
+              ->consoleIO
+              ->ask("Not a valid selection. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2]npm\n\n");
+          }
         }
         switch ($response) {
           case 1:
@@ -465,13 +479,18 @@ class App {
         $this->dependencyManager = 'npm';
       }
       elseif (file_exists($this->appPath . 'package.json') && file_exists($this->appPath . 'yarn.json')) {
-        $response = $this
-          ->consoleIO
-          ->ask("\n\nConfiguration files have been found for both npm and yarn package manager systems. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2] npm\n\n");
-        while (!in_array($response, [1, 2])) {
+        if ($this->ciMode === TRUE) {
+          $response = 'npm';
+        }
+        else {
           $response = $this
             ->consoleIO
-            ->ask("Not a valid selection. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2]npm\n\n");
+            ->ask("\n\nConfiguration files have been found for both npm and yarn package manager systems. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2] npm\n\n");
+          while (!in_array($response, [1, 2])) {
+            $response = $this
+              ->consoleIO
+              ->ask("Not a valid selection. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2]npm\n\n");
+          }
         }
         switch ($response) {
           case 1:
