@@ -10,6 +10,10 @@ use Composer\Package\CompletePackage;
  */
 class App {
 
+  const APP_MANAGER_NPM = 2;
+
+  const APP_MANAGER_YARN = 1;
+
   /**
    * Full path to app registry file.
    *
@@ -450,6 +454,7 @@ class App {
       }
       elseif (file_exists($this->appPath . 'package-lock.json') && file_exists($this->appPath . 'yarn.lock')) {
         if ($this->ciMode === TRUE) {
+          // Use npm as the package manager when running in CI mode.
           $response = 'npm';
         }
         else {
@@ -463,11 +468,11 @@ class App {
           }
         }
         switch ($response) {
-          case 1:
+          case $this::APP_MANAGER_YARN:
             $this->dependencyManager = 'yarn';
             break;
 
-          case 2:
+          case $this::APP_MANAGER_NPM:
             $this->dependencyManager = 'npm';
             break;
         }
@@ -480,6 +485,7 @@ class App {
       }
       elseif (file_exists($this->appPath . 'package.json') && file_exists($this->appPath . 'yarn.json')) {
         if ($this->ciMode === TRUE) {
+          // Use npm as the package manager when running in CI mode.
           $response = 'npm';
         }
         else {
@@ -493,11 +499,11 @@ class App {
           }
         }
         switch ($response) {
-          case 1:
+          case $this::APP_MANAGER_YARN:
             $this->dependencyManager = 'yarn';
             break;
 
-          case 2:
+          case $this::APP_MANAGER_NPM:
             $this->dependencyManager = 'npm';
             break;
         }
