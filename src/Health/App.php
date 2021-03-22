@@ -10,9 +10,9 @@ use Composer\Package\CompletePackage;
  */
 class App {
 
-  const APP_MANAGER_NPM = 2;
+  const PACKAGE_MANAGER_NPM = 2;
 
-  const APP_MANAGER_YARN = 1;
+  const PACKAGE_MANAGER_YARN = 1;
 
   /**
    * Full path to app registry file.
@@ -148,6 +148,43 @@ class App {
 
     // Check if in CI mode. Used by Github workflow.
     $this->ciMode = empty(getenv('HEALTH_CI_MODE')) ? FALSE : TRUE;
+  }
+
+  /**
+   * Selects the correct package manager to use to install the application.
+   *
+   * @return string
+   *   The name of the package manager to use (e.g. npm, yarn)
+   */
+  protected function choosePackageManager() {
+    if ($this->ciMode === TRUE) {
+      // Use npm as the package manager when running in CI mode.
+      $response = $this::PACKAGE_MANAGER_NPM;
+    }
+    else {
+      $response = $this
+        ->consoleIO
+        ->ask("\n\nLock files have been found for both npm and yarn package manager systems. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2] npm\n\n");
+      while (!in_array($response, [1, 2])) {
+        $response = $this
+          ->consoleIO
+          ->ask("Not a valid selection. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2]npm\n\n");
+      }
+    }
+
+    switch ($response) {
+
+      case $this::PACKAGE_MANAGER_YARN:
+        $packageManager = 'yarn';
+        break;
+
+      case $this::PACKAGE_MANAGER_NPM:
+        $packageManager = 'npm';
+        break;
+
+    }
+
+    return $packageManager;
   }
 
   /**
@@ -453,29 +490,7 @@ class App {
         $this->dependencyManager = 'npm';
       }
       elseif (file_exists($this->appPath . 'package-lock.json') && file_exists($this->appPath . 'yarn.lock')) {
-        if ($this->ciMode === TRUE) {
-          // Use npm as the package manager when running in CI mode.
-          $response = 'npm';
-        }
-        else {
-          $response = $this
-            ->consoleIO
-            ->ask("\n\nLock files have been found for both npm and yarn package manager systems. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2] npm\n\n");
-          while (!in_array($response, [1, 2])) {
-            $response = $this
-              ->consoleIO
-              ->ask("Not a valid selection. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2]npm\n\n");
-          }
-        }
-        switch ($response) {
-          case $this::APP_MANAGER_YARN:
-            $this->dependencyManager = 'yarn';
-            break;
-
-          case $this::APP_MANAGER_NPM:
-            $this->dependencyManager = 'npm';
-            break;
-        }
+        $this->dependencyManager = $this->choosePackageManager();
       }
       elseif (file_exists($this->appPath . 'yarn.json') && !file_exists($this->appPath . 'package.json')) {
         $this->dependencyManager = 'yarn';
@@ -484,29 +499,7 @@ class App {
         $this->dependencyManager = 'npm';
       }
       elseif (file_exists($this->appPath . 'package.json') && file_exists($this->appPath . 'yarn.json')) {
-        if ($this->ciMode === TRUE) {
-          // Use npm as the package manager when running in CI mode.
-          $response = 'npm';
-        }
-        else {
-          $response = $this
-            ->consoleIO
-            ->ask("\n\nConfiguration files have been found for both npm and yarn package manager systems. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2] npm\n\n");
-          while (!in_array($response, [1, 2])) {
-            $response = $this
-              ->consoleIO
-              ->ask("Not a valid selection. Which package manager would you like to use? [enter the number of the package manager to use]\n\n[1] yarn\n[2]npm\n\n");
-          }
-        }
-        switch ($response) {
-          case $this::APP_MANAGER_YARN:
-            $this->dependencyManager = 'yarn';
-            break;
-
-          case $this::APP_MANAGER_NPM:
-            $this->dependencyManager = 'npm';
-            break;
-        }
+        $this->dependencyManager = $this->choosePackageManager();
       }
       else {
         throw new AppIntegrationException('Could not find yarn or npm configuration for this project.');
