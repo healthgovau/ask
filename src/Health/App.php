@@ -265,7 +265,7 @@ class App {
     }
 
     $ci_mode = getenv('HEALTH_CI_MODE');
-    if (isset($ci_mode) && $ci_mode === TRUE) {
+    if ($ci_mode) {
       $theme_name = 'health';
       $index = array_search($theme_name, $themeMapping);
       $theme = $themeMapping[$index];
