@@ -62,6 +62,7 @@ This documentation assumes you are using MacOS or Linux as your host environment
 - [Docker](https://docs.docker.com/install/)
 - [Pygmy](https://pygmy.readthedocs.io/en/master/)
 - [Ahoy](https://github.com/ahoy-cli/ahoy)
+- [Yarn](https://yarnpkg.com/) (required if installing apps or tools built using Yarn)
 
 ## Create new project based on ASK
 
