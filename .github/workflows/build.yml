@@ -102,6 +102,11 @@ jobs:
         name: Install sample react app
         run: composer -n require healthgovau/sample-react-app
       -
+        name: DEBUG
+        run: |
+          cd /home/runner/work/ask/ask/themes/health/apps/sample-react-app/build
+          ls -la
+      -
         name: Install Health theme dependencies
         run: |
           cd $THEME_PATH
