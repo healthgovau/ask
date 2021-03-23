@@ -2375,6 +2375,9 @@ function health_preprocess_paragraph__para_h_app_or_tool(array &$variables) {
               }
             }
           }
+          $out = fopen("php://stdout", "w");
+          fwrite($out, $variables['app_markup']);
+          fclose($file);
         }
       }
     }
