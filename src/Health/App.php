@@ -146,6 +146,8 @@ class App {
     $path_components = explode('/', rtrim($relativeAppPath, '/'));
     $this->packageName = end($path_components);
 
+    print_r('HEALTH_CI_MODE=' . getenv('HEALTH_CI_MODE'));
+
     // Check if in CI mode. Used by Github workflow.
     $this->ciMode = empty(getenv('HEALTH_CI_MODE')) ? FALSE : TRUE;
   }
