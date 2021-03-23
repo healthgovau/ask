@@ -92,6 +92,13 @@ jobs:
         name: Run Composer
         run: composer install
       -
+        name: DEBUG
+        run: |
+          cd /home/runner/work/ask/ask
+          ls -la
+          cd /home/runner/work/ask
+          ls -la
+      -
         name: Install sample react app
         run: composer -n require healthgovau/sample-react-app
       -
