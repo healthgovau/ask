@@ -2288,6 +2288,7 @@ function health_preprocess_field__paragraph__field_h_title(array &$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function health_preprocess_paragraph__para_h_app_or_tool(array &$variables) {
+  print_r("\n\nhealth_preprocess_paragraph__para_h_app_or_tool\n\n");
   $paragraph = $variables['paragraph'];
   if ($paragraph instanceof ParagraphInterface) {
     $active_manager = \Drupal::service('theme.manager');
