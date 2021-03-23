@@ -1570,6 +1570,7 @@ function health_preprocess_html(array &$variables) {
  * Implements template_preprocess_HOOK().
  */
 function health_preprocess_node(array &$variables) {
+  print_r("\n\nhealth_preprocess_node\n\n");
   $node = $variables['node'];
   if ($node instanceof NodeInterface) {
     // Make information on whether Image Featured is present available to node
@@ -2309,8 +2310,8 @@ function health_preprocess_paragraph__para_h_app_or_tool(array &$variables) {
   print_r("\n\nhealth_preprocess_paragraph__para_h_app_or_tool\n\n");
   $paragraph = $variables['paragraph'];
   if ($paragraph instanceof ParagraphInterface) {
-    $active_manager = \Drupal::service('theme.manager');
-    $current_theme = $active_manager
+    $theme_manager = \Drupal::service('theme.manager');
+    $current_theme = $theme_manager
       ->getActiveTheme()
       ->getName();
     // Make CSS class for app width available to template.
@@ -2394,7 +2395,6 @@ function health_preprocess_paragraph__para_h_app_or_tool(array &$variables) {
               }
             }
           }
-          print_r($variables['app_markup']);
         }
       }
     }
