@@ -1,0 +1,48 @@
+id: ask_sample_image
+label: Sample Image - ASK
+migration_tags:
+  - ask_sample_content
+  - ask_sample_media
+migration_group: ask
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: ui_image_1
+      image: 'https://images.unsplash.com/photo-1563324446-2abc6211facb'
+  ids:
+    id:
+      type: string
+  constants:
+    DRUPAL_FILE_DIRECTORY: 'public://image/'
+process:
+  pseudo_destination_filename:
+    -
+      plugin: callback
+      callable: basename
+      source: image
+    -
+      plugin: skip_on_empty
+      method: row
+      message: 'Cannot import empty image filename.'
+  pseudo_destination_path:
+    -
+      plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - '@pseudo_destination_filename'
+  uri:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: image
+    -
+      plugin: file_copy
+      source:
+        - image
+        - '@pseudo_destination_path'
+      file_exists: rename
+      move: false
+destination:
+  plugin: 'entity:file'
+migration_dependencies: null
