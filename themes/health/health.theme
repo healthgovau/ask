@@ -2056,7 +2056,7 @@ function health_preprocess_file_link(array &$variables) {
  */
 function health_preprocess_paragraph(array &$variables) {
   $paragraph = $variables['paragraph'];
-  print_r("\n\n" . $paragraph->getBundle() . "\n\n");
+  print_r("\n\n" . $paragraph->bundle() . "\n\n");
   // Make background colour information available to template. Include colour's
   // hexcode and correspondin light/dark theme information.
   try {
