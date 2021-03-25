@@ -14,15 +14,9 @@
     it("renders correctly", () => {
       // Take a snapshot for visual diffing.
       const percyOptions = {};
-      cy.visit(landingPageUri);
-      cy.get('.ButtonPanel_component-button-panel__3doTu button').contains('7').click();
-      cy.get('.ButtonPanel_component-button-panel__3doTu button').contains('x').click();
-      cy.get('.ButtonPanel_component-button-panel__3doTu button').contains('9').click();
-      cy.get('.ButtonPanel_component-button-panel__3doTu button').contains('=').click();
-      cy.get('.Display_component-display__T1qck div').should('contain', 63)
-      .then(() => {
-        cy.percySnapshot("health_starter_kit_sample_app_or_tool_content_page_hosted", percyOptions);
-      });
+      cy
+        .visit(landingPageUri)
+        .percySnapshot("health_starter_kit_sample_app_or_tool_content_page_hosted", percyOptions);
     });
   });
 }
