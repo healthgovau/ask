@@ -321,7 +321,7 @@ class App {
       $theme = $themeMapping[$index];
     }
     else {
-      $text = "Select the number of the theme which the app should be added to:\n\n";
+      $text = "In which theme should the app or tool be installed? Enter the number corresponding to the theme:\n\n";
       $text .= implode("\n", $options);
       $text .= "\n\n";
       $response = $this
