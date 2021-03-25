@@ -1,7 +1,7 @@
 name: Adminimal Medela
 type: theme
 description: 'An administration theme based on the Adminimal theme.'
-core: 8.x
+core_version_requirement: ^8 || ^9
 base theme: adminimal_theme
 libraries:
   - adminimal_medela/global
