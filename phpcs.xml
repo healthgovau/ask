@@ -5,8 +5,12 @@
   <file>./themes/health</file>
   <exclude-pattern>./themes/*/app/*</exclude-pattern>
   <exclude-pattern>./scripts/*</exclude-pattern>
-  <arg name="extensions" value="php,module,inc,install,test,profile,theme,yml" />
-  <config name="drupal_core_version" value="8" />
-  <rule ref="./vendor/drupal/coder/coder_sniffer/Drupal" />
-  <rule ref="./vendor/drupal/coder/coder_sniffer/DrupalPractice" />
+  <arg name="extensions" value="php,module,inc,install,test,profile,theme,yml"/>
+  <config name="drupal_core_version" value="8"/>
+  <rule ref="./vendor/drupal/coder/coder_sniffer/Drupal"/>
+  <rule ref="./vendor/drupal/coder/coder_sniffer/DrupalPractice"/>
+  <property name="allowFallbackGlobalFunctions" value="false"/>
+  <rule ref="DrupalPractice.Constants.GlobalConstant.GlobalConstant">
+    <exclude-pattern>*.theme</exclude-pattern>
+  </rule>
 </ruleset>

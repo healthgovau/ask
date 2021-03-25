@@ -16,14 +16,12 @@ use Drupal\taxonomy\TermInterface;
 use Drupal\media\Entity\Media;
 use Drupal\file\Entity\File;
 
-// phpcs:disable
 // User roles.
 const ROLE_AUTHENTICATED = 'authenticated';
 const ROLE_CONTENT_AUTHOR = 'content_author';
 const ROLE_CONTENT_APPROVER = 'content_approver';
 const ROLE_MIGRATION = 'h_migration';
 const ROLE_SITE_BUILDER = 'h_site_builder';
-// phpcs:enable
 
 /**
  * Get taxonomy term by term name.
