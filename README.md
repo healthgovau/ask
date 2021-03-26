@@ -62,6 +62,7 @@ This documentation assumes you are using MacOS or Linux as your host environment
 - [Docker](https://docs.docker.com/install/)
 - [Pygmy](https://pygmy.readthedocs.io/en/master/)
 - [Ahoy](https://github.com/ahoy-cli/ahoy)
+- [Yarn](https://yarnpkg.com/) (required if installing apps or tools built using Yarn)
 
 ## Create new project based on ASK
 
@@ -193,12 +194,14 @@ Add the app using Composer using the package name.
 composer require healthgovau/out-of-pocket
 ```
 
-During the installation process you will be asked the following:
+During the installation process you will be asked one or more of the following questions:
 
 | Question | Description |
 | --- | --- |
-| Is this a production build? | Respond `n` to enable app console logging or if you want to use local dev version of the app (e.g. you want to run the app dev environment using `npm run start`). |
-| Remove static CSS links from project? | Will be asked when importing a React app. It is designed to support legacy apps which use the CSS stylesheets provided by the host site. Responding `y` will result in links to CSS files in `build/static/css` directory being removed from the app. This process effectively removes all CSS files compiled directly by the React app. The use of apps which are fully decoupled from the host site are strongly encouraged. In such case on would not remove static CSS links. Please consult with the app developer or app project manager if you are unclear whether or not these static CSS files should be included or not. |
+| In which theme should the app or tool be installed? | Enter the number corresponding to the theme in which the app or tool should be installed. |
+| Is this a production build? | Respond `n` to enable app console logging or if you want to use local dev version of the app (e.g. you want to run the app dev environment using `npm run start`). Default value is __yes__. |
+| Remove static CSS links from project? | Will be asked when importing a React app. The default value is __no__. It is designed to support legacy apps which use the CSS stylesheets provided by the host site. Responding `y` will result in links to CSS files in `build/static/css` directory being removed from the app. This process effectively removes all CSS files compiled directly by the React app. The use of apps which are fully decoupled from the host site are strongly encouraged. In such case on would not remove static CSS links. Please consult with the app developer or app project manager if you are unclear whether or not these static CSS files should be included or not. |
+| Which package manager would you like to use? | Enter the number of the package manager to use when building the app or tool project. The installer will attempt to detect whether npm or yarn is being used as the package manager. In the case that it detects configuration from both package managers it will ask you to confirm which one should be used. |
 
 #### Update an app
 
@@ -473,7 +476,7 @@ To use:
 
 The project makes use of [Cypress](https://www.cypress.io/) and [Percy](https://percy.io/) to implemented visual regression tests in Github workflow pipelines.
 
-When creating or updating pull requests on `develop` or `master` branches snapshots of sample content type pages will be created and analysed by Percy. In case of a failure the results can be reviewed in Percy. Once approved in Percy one will be able to merge the pull request.
+When creating or updating pull requests on the `v1.x` branch snapshots of sample content type pages will be created and analysed by Percy. In case of a failure the results can be reviewed in Percy. Once approved in Percy one will be able to merge the pull request.
 
 Cypress test configuration can be found in the `cypress/integration/` directory.
 
