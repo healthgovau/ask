@@ -24,7 +24,7 @@ third_party_settings:
       format_type: details
       region: content
       format_settings:
-        description: 'Customise the number of items per row based on device used. If a particular device is set to <em>none</em>, then that device will inherit the setting of the next smallest device. For example, if desktop is set to <em>none</em> and tablet is set to <em>2</em>, then desktop will display <em>2</em> items per row. If all devices are set to <em>none</em> then all devices will display a single item per row.'
+        description: 'Customise the number of items per row based on device used.'
         open: true
         required_fields: true
         id: ''

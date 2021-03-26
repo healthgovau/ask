@@ -47,6 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       THEME_PATH: 'themes/health'
+      HEALTH_CI_MODE: 1
     steps:
       -
         name: Checkout codebase
