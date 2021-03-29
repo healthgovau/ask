@@ -508,24 +508,13 @@ This project is configured to use PHP Code Sniffer check that custom module and 
 
 ## Enabling xdebug
 
-### Edit the codebase
-Add `XDEBUG_ENABLE` and `DOCKERHOST` variables to the end of the project's `.env` file.
-
-        ...
-        XDEBUG_ENABLE=true
-        DOCKERHOST=host.docker.internal
-
-> **Note for Linux users**
->
-> You will need to add the IP address of the Docker host instead of `host.docker.internal`. To get the IP address run `ip a` and then note the IP address of `docker0` adapter. Set `DOCKERHOST` to this IP address.
-
 Start your local containers.
 
         ahoy up
 
-If your local containers are already running, then you will need to restart them.
+Enable Xdebug.
 
-        ahoy stop && ahoy up
+        ahoy debug
 
 ### Configure your IDE to use Xdebug
 Below we offer instructions for the 2 most popular IDEs - VSCode and PHPStorm
@@ -587,7 +576,7 @@ Below we offer instructions for the 2 most popular IDEs - VSCode and PHPStorm
 
 Copy remote /app folder into a local.
 
-        docker cp hsk_cli_1:/app ./
+        docker cp ask_cli_1:/app ./
 
 *If the [distribution changes](Development/GovCMS-updates), this will need to be redone.*
 
@@ -606,6 +595,18 @@ These are the original instructions for reference:
 https://www.drupal.org/docs/7/modules/govcms/how-to-setup-xdebug-with-phpstorm
 
 Note that this simply allows PHPStorm to add breakpoints and view variables, any changes made to the files in /app locally are not synced to the remote.
+
+## Debugging Drush commands
+
+Start the Xdebug listener in your IDE and add a breakpoint to your code.
+
+SSH into the CLI container.
+
+        ahoy cli
+
+Use the relative path to drush in the drush command to debug. For example, to debug the migrate import process:
+
+        ./vendor/bin/drush mim --all
 
 ## Funnelback
 
