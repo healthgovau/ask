@@ -28,13 +28,21 @@ dependencies:
     - field.field.node.h_audio.field_h_subject_2
     - field.field.node.h_audio.field_h_subject_3
     - field.field.node.h_audio.field_h_summary
+    - image.style.square
     - node.type.h_audio
   module:
     - datetime
     - ds
     - media
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.h_audio.full
 targetEntityType: node
 bundle: h_audio
@@ -70,7 +78,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: h_audio_16_9_full
+      image_style: square
       image_link: ''
     third_party_settings: {  }
   field_h_resource_date:
@@ -101,9 +109,9 @@ content:
         ds_limit: ''
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   field_h_audience: true
   field_h_audio_files: true
