@@ -10,9 +10,9 @@ id: paragraph.para_h_content_image.field_h_image_featured
 field_name: field_h_image_featured
 entity_type: paragraph
 bundle: para_h_content_image
-label: 'Image featured'
-description: ''
-required: false
+label: Image
+description: 'Add a single image file here.'
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
