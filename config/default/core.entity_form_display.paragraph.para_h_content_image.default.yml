@@ -26,11 +26,11 @@ third_party_settings:
       format_type: details
       region: content
       format_settings:
-        id: ''
-        classes: ''
         description: ''
         open: true
         required_fields: true
+        id: ''
+        classes: health-image__figure-settings
       label: 'Figure settings'
 id: paragraph.para_h_content_image.default
 targetEntityType: paragraph
