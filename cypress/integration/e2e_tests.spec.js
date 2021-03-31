@@ -34,6 +34,7 @@ nodeNewsArticle.tests(cy);
 publication.tests(cy);
 referenceParagraphs.tests(cy);
 video.tests(cy);
+audio.tests(cy);
 foi.tests(cy);
 webforms.tests(cy);
 search.tests(cy);
