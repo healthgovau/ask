@@ -49,12 +49,13 @@ bundle: h_audio
 mode: full
 content:
   field_h_audio_files:
-    type: entity_reference_label
+    type: entity_reference_entity_view
     weight: 6
     region: content
     label: above
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
   field_h_date_updated:
     type: datetime_default
