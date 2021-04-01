@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_h_resource_availability
     - node.type.h_app_or_tool_hosted
     - taxonomy.vocabulary.h_resource_availability
+  content:
+    - 'taxonomy_term:h_resource_availability:3653c865-4657-4437-b688-bbb1a08f300f'
 id: node.h_app_or_tool_hosted.field_h_resource_availability
 field_name: field_h_resource_availability
 entity_type: node
@@ -14,7 +16,9 @@ label: 'Resource availability'
 description: 'Availability of this resource (online selected by default and cannot be changed).'
 required: true
 translatable: true
-default_value: {  }
+default_value:
+  -
+    target_uuid: 3653c865-4657-4437-b688-bbb1a08f300f
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
