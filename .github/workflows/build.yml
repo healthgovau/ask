@@ -119,15 +119,12 @@ jobs:
         name: Build project
         run: docker-compose up -d
       -
-        name: Check status of containers
-        run: docker-compose ps
-      -
         name: Wait for database to become available
         run: |
           docker-compose exec -T test dockerize -wait tcp://mariadb:3306 -timeout 2m
       -
-        name: Display info
-        run: ahoy info
+        name: Check status of containers
+        run: docker-compose ps
       -
         name: Install site
         run: docker-compose exec -T cli drush -v -y site:install --existing-config
