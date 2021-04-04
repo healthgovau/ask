@@ -555,7 +555,7 @@ function adminimal_medela_theme_suggestions_views_view_field_alter(array &$sugge
 }
 
 /**
- * Implements hook_media().
+ * Implements template_preprocess_media().
  */
 function adminimal_medela_preprocess_media(&$variables) {
   $m = $variables['media']->mid->first()->value;
