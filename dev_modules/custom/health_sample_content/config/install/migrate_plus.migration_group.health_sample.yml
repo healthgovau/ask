@@ -19,4 +19,4 @@ source_type: Sample data
 dependencies:
   enforced:
     module:
-      - migrate_example
+      - health_sample_content
