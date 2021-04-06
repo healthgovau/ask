@@ -1,0 +1,11 @@
+id: health_sample
+label: Health sample
+description: Health sample migrations.
+source_type: Sample data
+shared_configuration:
+  source:
+    key: default
+dependencies:
+  enforced:
+    module:
+      - health_sample_content
