@@ -13,6 +13,8 @@ use Drupal\node\NodeInterface;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\taxonomy\TermInterface;
+use Drupal\media\Entity\Media;
+use Drupal\file\Entity\File;
 
 // User roles.
 const ROLE_AUTHENTICATED = 'authenticated';
@@ -38,7 +40,9 @@ function _adminimal_medela_get_term_by_name($name, $vid) {
     'name' => $name,
     'vid' => $vid,
   ];
-  $terms = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->loadByProperties($term_properties);
+  $terms = \Drupal::service('entity_type.manager')
+    ->getStorage('taxonomy_term')
+    ->loadByProperties($term_properties);
   $term = reset($terms);
 
   return $term;
@@ -171,7 +175,9 @@ function adminimal_medela_get_friendly_mime($mimetype) {
  */
 function _adminimal_medela_file_rename($fid, $title, NodeInterface $node, MediaInterface $media) {
   $media_title = $media->getName();
-  $file = Drupal::service('entity_type.manager')->getStorage('file')->load($fid);
+  $file = Drupal::service('entity_type.manager')
+    ->getStorage('file')
+    ->load($fid);
 
   if ($file instanceof FileInterface) {
     $node_type_label = node_get_type_label($node);
@@ -317,9 +323,13 @@ function _adminimal_medela_validator_date_mandatory(array $element, FormStateInt
  *   A date if it has been published, otherwise FALSE.
  */
 function _adminimal_medela_node_first_published(NodeInterface $node) {
-  $vids = \Drupal::service('entity.manager')->getStorage('node')->revisionIds($node);
+  $vids = \Drupal::service('entity.manager')
+    ->getStorage('node')
+    ->revisionIds($node);
   foreach ($vids as $vid) {
-    $revision = \Drupal::service('entity.manager')->getStorage('node')->loadRevision($vid);
+    $revision = \Drupal::service('entity.manager')
+      ->getStorage('node')
+      ->loadRevision($vid);
     if ($revision->get('moderation_state')->getString() == 'published') {
       return $revision->getRevisionCreationTime();
     }
@@ -434,8 +444,8 @@ function adminimal_medela_form_alter(array &$form, FormStateInterface $form_stat
 
     case 'node_h_publication_edit_form':
     case 'node_h_publication_form':
-      // Conditionally display Order ID and Order Instructions fields if publication
-      // is orderable.
+      // Conditionally display Order ID and Order Instructions fields if
+      // publication is orderable.
       if (isset($form['field_h_resource_availability'])) {
         $term_name = 'Orderable';
         $term = _adminimal_medela_get_term_by_name($term_name, 'h_resource_availability');
@@ -517,4 +527,41 @@ function adminimal_medela_form_system_theme_settings_alter(array &$form, FormSta
     '#description' => t('Enter the format and selector, one per line. eg rich_text|.paragraph-type--para-h-content-text .field--name-field-h-body'),
     '#default_value' => NULL !== theme_get_setting('lock_text_formats_config') ? theme_get_setting('lock_text_formats_config') : "",
   ];
+}
+
+/**
+ * Implements hook_suggestions_views_view_field_alter().
+ */
+function adminimal_medela_theme_suggestions_views_view_field_alter(array &$suggestions, array &$variables, $hook) {
+
+  if ($variables['view']->id() == 'media') {
+    $parts = explode('.', $variables['row']->_entity->name->first()->value);
+    if (end($parts) == 'pdf' || end($parts) == 'docx') {
+      $suggestions[] = $hook . '__' . $variables['view']->id() . '__' . $variables['view']->current_display . '__' . $variables['field']->field . '__' . 'fileicon';
+      $variables['type'] = end($parts);
+    }
+    else {
+      if (end($parts) == 'svg') {
+        $suggestions[] = $hook . '__' . $variables['view']->id() . '__' . $variables['view']->current_display . '__' . $variables['field']->field . '__' . 'svgrenderimage';
+        $media = Media::load($variables['row']->_entity->mid->first()->value);
+        $fid = $media->field_media_file->target_id;
+        $file = File::load($fid);
+        $url = $file->createFileUrl();
+        $variables['img'] = $url;
+      }
+    }
+  }
+
+}
+
+/**
+ * Implements template_preprocess_media().
+ */
+function adminimal_medela_preprocess_media(&$variables) {
+  $m = $variables['media']->mid->first()->value;
+  $media = Media::load($m);
+  $fid = $media->field_media_file->target_id;
+  $file = File::load($fid);
+  $url = $file->createFileUrl();
+  $variables['img'] = $url;
 }
