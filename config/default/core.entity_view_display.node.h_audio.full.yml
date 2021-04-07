@@ -28,7 +28,7 @@ dependencies:
     - field.field.node.h_audio.field_h_subject_2
     - field.field.node.h_audio.field_h_subject_3
     - field.field.node.h_audio.field_h_summary
-    - image.style.square
+    - image.style.h_video_16_9_featured
     - node.type.h_audio
   module:
     - datetime
@@ -50,16 +50,24 @@ mode: full
 content:
   field_h_audio_files:
     type: entity_reference_entity_view
-    weight: 6
+    weight: 7
     region: content
     label: above
     settings:
       link: true
       view_mode: default
     third_party_settings: {  }
+  field_h_audio_type:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
   field_h_date_updated:
     type: datetime_default
-    weight: 5
+    weight: 6
     region: content
     label: inline
     settings:
@@ -68,13 +76,13 @@ content:
     third_party_settings: {  }
   field_h_description:
     type: text_default
-    weight: 4
+    weight: 5
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_h_duration:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       link_to_entity: false
@@ -83,16 +91,16 @@ content:
     region: content
   field_h_image_featured:
     type: media_thumbnail
-    weight: 0
+    weight: 1
     region: content
     label: hidden
     settings:
-      image_style: square
+      image_style: h_video_16_9_featured
       image_link: ''
     third_party_settings: {  }
   field_h_resource_date:
     type: datetime_default
-    weight: 3
+    weight: 4
     region: content
     label: above
     settings:
@@ -100,7 +108,7 @@ content:
       format_type: h_day_month_year
     third_party_settings: {  }
   field_h_resource_transcript:
-    weight: 2
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -108,7 +116,7 @@ content:
     region: content
   field_h_subject:
     type: entity_reference_label
-    weight: 7
+    weight: 8
     region: content
     label: inline
     settings:
@@ -117,13 +125,12 @@ content:
       ds:
         ds_limit: ''
   links:
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   field_h_audience: true
-  field_h_audio_type: true
   field_h_content_grade_level: true
   field_h_content_long_sentences: true
   field_h_content_owner: true

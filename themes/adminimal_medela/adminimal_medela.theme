@@ -558,10 +558,12 @@ function adminimal_medela_theme_suggestions_views_view_field_alter(array &$sugge
  * Implements template_preprocess_media().
  */
 function adminimal_medela_preprocess_media(&$variables) {
-  $m = $variables['media']->mid->first()->value;
-  $media = Media::load($m);
-  $fid = $media->field_media_file->target_id;
-  $file = File::load($fid);
-  $url = $file->createFileUrl();
-  $variables['img'] = $url;
+  if ($media = Media::load($variables['media']->mid->first()->value)) {
+    if ($media->field_media_file) {
+      if ($file = File::load($media->field_media_file->target_id)) {
+        $url = $file->createFileUrl();
+        $variables['img'] = $url;
+      }
+    }
+  }
 }

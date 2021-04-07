@@ -33,7 +33,7 @@ const tests = (cy) => {
       cy
         .visit(landingPageUri)
         .get("header")
-        .contains("6 results");
+        .contains("7 results");
     });
 
     it("facets display correctly", () => {
@@ -45,7 +45,8 @@ const tests = (cy) => {
         .should("be.visible")
         .contains(facetId, "App or tool (1)")
         .contains(facetId, "Publication (4)")
-        .contains(facetId, "Video (1)");
+        .contains(facetId, "Video (1)")
+        .contains(facetId, "Audio (1)");
     });
   });
 }
