@@ -28,19 +28,35 @@ dependencies:
     - field.field.node.h_audio.field_h_subject_2
     - field.field.node.h_audio.field_h_subject_3
     - field.field.node.h_audio.field_h_summary
+    - image.style.h_video_16_9_teaser
     - node.type.h_audio
   module:
     - datetime
     - media
+    - panelizer
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.h_audio.teaser
 targetEntityType: node
 bundle: h_audio
 mode: teaser
 content:
+  field_h_audio_type:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
   field_h_duration:
     type: string
-    weight: 1
+    weight: 2
     region: content
     label: hidden
     settings:
@@ -48,16 +64,16 @@ content:
     third_party_settings: {  }
   field_h_image_featured:
     type: media_thumbnail
-    weight: 0
+    weight: 1
     region: content
     label: hidden
     settings:
-      image_style: h_audio_16_9_teaser
+      image_style: h_video_16_9_teaser
       image_link: ''
     third_party_settings: {  }
   field_h_resource_date:
     type: datetime_default
-    weight: 2
+    weight: 3
     region: content
     label: hidden
     settings:
@@ -71,15 +87,9 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
-    region: content
 hidden:
   field_h_audience: true
   field_h_audio_files: true
-  field_h_audio_type: true
   field_h_content_grade_level: true
   field_h_content_long_sentences: true
   field_h_content_owner: true
@@ -98,4 +108,5 @@ hidden:
   field_h_subject_2: true
   field_h_subject_3: true
   langcode: true
+  links: true
   search_api_excerpt: true
