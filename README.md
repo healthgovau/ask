@@ -625,7 +625,8 @@ The search form is in the health-header.html.twig template by default, but can b
 Sometimes one may experience issues where Drupal is reporting that the Solr search in not reacheable or some similar error. A possible solution for this is to remove the existing Solr image and then rebuild the solr container. You can do this from the command line in your project directory.
 
         ahoy stop
-        docker image remove hsk_solr
+        docker container rm ask_solr_1
+        docker image remove ask_solr
         ahoy up
 
 ### Results counts in listings and facets
@@ -633,7 +634,8 @@ Sometimes one may experience issues where Drupal is reporting that the Solr sear
 One may encounter a situation where the result counts in facets and listing are not correct. This can occur when working with sample content where the sample content has been repeated imported then removed using the Drupal Migration API. This is caused by the content not being removed from the Solr index when rolling back migration content. If you experience this issue it is recommended that you rebuild the existing Solr container.
 
         ahoy stop
-        docker image remove hsk_solr
+        docker container rm ask_solr_1
+        docker image remove ask_solr
         ahoy up
 
 You may need to rebuild the search index in Drupal afterwards.
