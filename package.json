@@ -18,7 +18,12 @@
     "cypress:browser:edge": "npx cypress run --no-exit --browser edge",
     "cypress:browser:firefox": "npx cypress run --no-exit --browser firefox",
     "cypress:open": "npx cypress run",
-    "cypress:run": "percy exec -t 10000 -- cypress run"
+    "cypress:run": "percy exec -t 10000 -- cypress run",
+    "lint:scss:check": "npx stylelint",
+    "lint:scss:fix": "npx stylelint --fix",
+    "lint:js:check": "npx eslint",
+    "lint:js:fix": "npx eslint --fix",
+    "npx": "npx stylelint --print-config=.eslintrc.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +34,15 @@
   "devDependencies": {
     "@percy/cypress": "^2.3.1",
     "backstopjs": "^5.0.4",
-    "cypress": "^4.10.0"
-  },
-  "dependencies": {}
+    "cypress": "^4.10.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "stylelint": "^13.12.0",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-config-standard": "^21.0.0"
+  }
 }
