@@ -3,6 +3,8 @@
   "rules": {
     "indentation": 2,
     "max-nesting-depth": 4,
-    "selector-class-pattern": "[a-z_-]"
+    "selector-class-pattern": "[a-z_-]",
+    "selector-max-compound-selectors": 4,
+    "scss/at-extend-no-missing-placeholder": null
   }
 }
