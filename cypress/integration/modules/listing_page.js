@@ -22,7 +22,7 @@ const tests = (cy) => {
        cy
          .visit(landingPageUri)
          .scrollTo("bottom")
-         .get(".image img")
+         .get("img")
          .each(($image, index, $images) => {
            cy
              .wrap($image)

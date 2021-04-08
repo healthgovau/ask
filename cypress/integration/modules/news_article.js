@@ -17,7 +17,7 @@
       cy
         .visit(landingPageUri)
         .scrollTo("bottom")
-        .get(".image img")
+        .get("img")
         .should("be.visible")
         .percySnapshot("health_starter_kit_sample_news_article_page", percyOptions);
     });
