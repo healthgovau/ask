@@ -16,7 +16,7 @@
       const percyOptions = {};
       cy
         .visit(landingPageUri)
-        .get(".image img")
+        .get("img")
         .each(($image, index, $images) => {
           cy
             .wrap($image)

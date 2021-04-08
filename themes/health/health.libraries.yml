@@ -183,4 +183,4 @@ mfranzke.loading-attribute-polyfill:
     url: https://github.com/mfranzke/loading-attribute-polyfill/blob/master/LICENSE
     gpl-compatible: true
   js:
-    build/js/polyfills/loading-attribute-polyfill.min.js: { minified: true }
+    build/js/polyfills/loading-attribute-polyfill.umd.js: { minified: true }

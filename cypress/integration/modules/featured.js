@@ -22,7 +22,7 @@ const tests = (cy) => {
     it("Featured content field overrides are applied correctly", () => {
       cy
         .visit(page)
-        .get(".image img")
+        .get("img")
         .each(($image, index, $images) => {
           cy
             .wrap($image)
