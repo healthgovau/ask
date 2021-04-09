@@ -30,8 +30,15 @@ dependencies:
     - field.field.node.h_audio.field_h_summary
     - node.type.h_audio
   module:
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.h_audio.search_index
 targetEntityType: node
 bundle: h_audio
@@ -58,11 +65,6 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
-    region: content
 hidden:
   field_h_audience: true
   field_h_audio_files: true
@@ -86,4 +88,5 @@ hidden:
   field_h_subject_2: true
   field_h_subject_3: true
   langcode: true
+  links: true
   search_api_excerpt: true
