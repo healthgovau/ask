@@ -312,7 +312,7 @@ The GovCMS8 distribution is periodically updated. It is important that any site 
 
         ahoy cli
 
-1. Install the HSK site
+1. Install the ASK site
 
         drush si  --existing-config
 
@@ -324,7 +324,7 @@ The GovCMS8 distribution is periodically updated. It is important that any site 
 
         exit
 
-1. Get the number of the lastest release version of the [govcms8lagoon](https://github.com/govCMS/govcms8lagoon/releases) project
+1. Get the number of the lastest version of the GovCMS docker [image](https://hub.docker.com/r/govcms/nginx-drupal/tags?page=1&ordering=last_updated).
 
 1. Update the `GOVCMS_IMAGE_VERSION` variable to the latest release version in each of these files
 
