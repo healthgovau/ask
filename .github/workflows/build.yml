@@ -137,9 +137,6 @@ jobs:
         run: |
           docker-compose exec -T cli drush -y pm:enable health_sample_content
           docker-compose exec -T cli drush -y mim --all
-          docker-compose exec -T cli drush -y pm:uninstall health_sample_content
-          docker-compose exec -T cli drush -y pm:enable health_sample_content
-          docker-compose exec -T cli drush -y mim --all
       -
         uses: cypress-io/github-action@v2
       -
