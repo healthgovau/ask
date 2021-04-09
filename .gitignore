@@ -83,3 +83,6 @@ themes/medela/
 # Ignore modules and settings we tend to enable on our locals
 config/default/dblog.settings.yml
 config/default/views.view.watchdog.yml
+
+# Always ignore migration plus files in the config folder
+config/default/migrate_plus.migration.*

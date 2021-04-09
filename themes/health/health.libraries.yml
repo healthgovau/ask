@@ -171,16 +171,16 @@ kumarharsh.custom-event-polyfill:
     gpl-compatible: true
   js:
     build/js/polyfills/custom-event.polyfill.min.js: { minified: true }
-verlok.vanilla-lazyload:
-  remote: https://github.com/verlok/vanilla-lazyload
-  version: 8.6.0
-  license:
-    name: MIT
-    url: https://github.com/verlok/vanilla-lazyload/blob/license.md
-    gpl-compatible: true
-  js:
-    health_design_system/build/js/libraries/lazyload.min.js: { minified: true }
 funnelback.facet:
   version: 1.x
   js:
     source/js/libraries/funnelback.facet.js: {}
+mfranzke.loading-attribute-polyfill:
+  remote: https://github.com/mfranzke/loading-attribute-polyfill
+  version: 2.0.0-rc.0
+  license:
+    name: MIT
+    url: https://github.com/mfranzke/loading-attribute-polyfill/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    build/js/polyfills/loading-attribute-polyfill.umd.js: { minified: true }
