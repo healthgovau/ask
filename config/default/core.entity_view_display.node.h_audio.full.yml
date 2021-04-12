@@ -28,7 +28,7 @@ dependencies:
     - field.field.node.h_audio.field_h_subject_2
     - field.field.node.h_audio.field_h_subject_3
     - field.field.node.h_audio.field_h_summary
-    - image.style.h_video_16_9_featured
+    - image.style.h_video_16_9_teaser
     - node.type.h_audio
   module:
     - datetime
@@ -48,42 +48,35 @@ targetEntityType: node
 bundle: h_audio
 mode: full
 content:
+  field_h_audience:
+    type: entity_reference_label
+    weight: 4
+    region: content
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
   field_h_audio_files:
     type: entity_reference_entity_view
-    weight: 7
+    weight: 0
     region: content
     label: above
     settings:
       link: true
       view_mode: default
     third_party_settings: {  }
-  field_h_audio_type:
-    type: entity_reference_label
-    weight: 0
-    region: content
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
   field_h_date_updated:
     type: datetime_default
-    weight: 6
+    weight: 5
     region: content
     label: inline
     settings:
       timezone_override: ''
       format_type: h_day_month_year
     third_party_settings: {  }
-  field_h_description:
-    type: text_default
-    weight: 5
-    region: content
-    label: above
-    settings: {  }
-    third_party_settings: {  }
   field_h_duration:
     weight: 2
-    label: hidden
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -95,17 +88,8 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: h_video_16_9_featured
+      image_style: h_video_16_9_teaser
       image_link: ''
-    third_party_settings: {  }
-  field_h_resource_date:
-    type: datetime_default
-    weight: 4
-    region: content
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: h_day_month_year
     third_party_settings: {  }
   field_h_resource_transcript:
     weight: 3
@@ -116,7 +100,7 @@ content:
     region: content
   field_h_subject:
     type: entity_reference_label
-    weight: 8
+    weight: 6
     region: content
     label: inline
     settings:
@@ -125,12 +109,12 @@ content:
       ds:
         ds_limit: ''
   links:
-    weight: 9
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_h_audience: true
+  field_h_audio_type: true
   field_h_content_grade_level: true
   field_h_content_long_sentences: true
   field_h_content_owner: true
@@ -140,8 +124,10 @@ hidden:
   field_h_date_format: true
   field_h_date_published: true
   field_h_date_reviewed: true
+  field_h_description: true
   field_h_language: true
   field_h_resource_availability: true
+  field_h_resource_date: true
   field_h_subject_2: true
   field_h_subject_3: true
   field_h_summary: true
