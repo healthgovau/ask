@@ -47,7 +47,6 @@ third_party_settings:
     group_h_content:
       children:
         - field_h_summary
-        - field_h_resource_availability
         - field_h_content_components
       parent_name: group_h_tabs
       weight: 20
@@ -237,16 +236,6 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
-  field_h_resource_availability:
-    weight: 3
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_h_subject:
     weight: 12
     settings: {  }
@@ -324,4 +313,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_h_resource_availability: true
