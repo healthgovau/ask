@@ -4,4 +4,5 @@ ahoyapi: v2
 commands:
   rebuild:
     usage: Re-build project.
-    cmd: docker-compose up -d --build "$@" && ahoy info
+    cmd: |
+      docker-compose up -d --build "$@" && docker-compose exec -T test dockerize -wait tcp://mariadb:3306 -timeout 2m
