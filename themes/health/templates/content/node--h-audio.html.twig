@@ -5,19 +5,22 @@
 {% block content %}
   <div class="container">
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-4">
         {% block column_left %}
           {{ content.field_h_image_featured }}
+
+        {% endblock %}
+      </div>
+      <div class="col-sm-8 standard-gap--mobile-only">
+        {% block column_right %}
+          <h2>Downloads</h2>
+          {{ content.field_h_audio_files }}
           {% include "@health/custom/health-accordion-default.html.twig" with {
-            "title": "Transcript"|t,
+            "title": "Read transcript"|t,
             "content": content.field_h_resource_transcript,
             "id": nid
           } %}
-        {% endblock %}
-      </div>
-      <div class="col-sm-4 standard-gap--mobile-only">
-        {% block column_right %}
-          {{ content|without("field_h_video_youtubeid", "field_h_duration", "field_h_resource_transcript", "field_h_image_featured", 'field_h_date_updated', 'field_h_subject') }}
+          {{ content|without("field_h_audio_files", "field_h_video_youtubeid", "field_h_resource_transcript", "field_h_image_featured", 'field_h_date_updated', 'field_h_subject') }}
         {% endblock %}
       </div>
     </div>
