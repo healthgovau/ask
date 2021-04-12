@@ -119,16 +119,12 @@ jobs:
         name: Build project
         run: docker-compose up -d
       -
+        name: Wait for database to become available
+        run: |
+          docker-compose exec -T test dockerize -wait tcp://mariadb:3306 -timeout 2m
+      -
         name: Check status of containers
         run: docker-compose ps
-      -
-        name: Wait for 10secs to ensure database container is ready
-        uses: jakejarvis/wait-action@master
-        with:
-          time: 10s
-      -
-        name: Check drush version
-        run: docker-compose exec -T cli drush version
       -
         name: Install site
         run: docker-compose exec -T cli drush -v -y site:install --existing-config
