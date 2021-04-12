@@ -12,7 +12,7 @@ field_name: field_h_table_source
 entity_type: paragraph
 bundle: para_h_content_image
 label: Footnotes
-description: ''
+description: 'If you need to add footnotes for a table or infographic, enter them here.'
 required: false
 translatable: true
 default_value: {  }
