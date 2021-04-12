@@ -12,7 +12,7 @@ field_name: field_h_body
 entity_type: paragraph
 bundle: para_h_content_image
 label: 'Long description'
-description: "<p>If this image is complex and contain substantial information (more than can be conveyed in a short phrase or sentence) then you should add a long description.</p>\r\n\r\n<p>These are typically:\r\n\r\n<ul>\r\n<li>graphs and charts, including flow charts and organisational charts;</li>\r\n<li>diagrams and illustrations where the page text relies on the user being able to understand the image;</li>\r\n<li>maps showing locations or other information such as weather systems.</li>\r\n</ul>\r\n</p>\r\n\r\n<p>A long description is a textual representation of the essential information conveyed by the image.</p>\r\n\r\n<p>See <a href=\"https://www.w3.org/WAI/tutorials/images/complex/\">https://www.w3.org/WAI/tutorials/images/complex/</a> for more information.</p>"
+description: "Enter any essential information the image conveys in the Long description field. This can be read by a screen reader or other assistive technology.\r\nSee [www.w3.org etc etc] to learn more about long descriptions."
 required: false
 translatable: true
 default_value: {  }

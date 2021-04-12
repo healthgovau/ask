@@ -3,6 +3,16 @@ global:
   css:
     theme:
       build/css/styles.min.css: { minified: true }
+  dependencies:
+    - adminimal_medela/content-image
+content-image:
+  version: 1.0.0
+  js:
+    build/js/content-image.min.js: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery-once
 col-width-edit:
   version: 1.0.0
   js:

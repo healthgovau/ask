@@ -9,8 +9,8 @@ id: paragraph.para_h_content_image.field_h_image_zoomable
 field_name: field_h_image_zoomable
 entity_type: paragraph
 bundle: para_h_content_image
-label: Zoomable
-description: 'If this is a detailed image that would be difficult to see on mobile or desktop, enable this feature.'
+label: 'Make this image a figure'
+description: 'Tick this box to let users zoom in on the image for more details. Use this feature for infographics, tables, maps or diagrams.'
 required: false
 translatable: false
 default_value:

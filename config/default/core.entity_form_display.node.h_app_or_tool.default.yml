@@ -60,7 +60,6 @@ third_party_settings:
         - field_h_generate_toc
         - field_h_image_featured
         - field_h_resource_date
-        - field_h_resource_availability
         - group_h_app_store_links
         - field_h_content_components
         - field_h_resource_parts
@@ -314,16 +313,6 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_h_resource_availability:
-    weight: 15
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_h_resource_date:
     weight: 14
     settings: {  }
@@ -426,4 +415,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_h_resource_availability: true
