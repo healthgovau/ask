@@ -59,7 +59,6 @@ module:
   filter: 0
   focal_point: 0
   google_analytics: 0
-  health_sample_content: 0
   help: 0
   history: 0
   honeypot: 0
@@ -79,8 +78,6 @@ module:
   metatag_dc: 0
   metatag_open_graph: 0
   migrate: 0
-  migrate_plus: 0
-  migrate_tools: 0
   modifiers: 0
   module_filter: 0
   node: 0
