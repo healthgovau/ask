@@ -1488,17 +1488,9 @@ function health_preprocess_form_element(array &$variables) {
  * Implements template_preprocess_image().
  */
 function health_preprocess_image(array &$variables) {
-
   if (isset($variables['attributes']['src'])) {
     // Lazy load images.
-    $variables['attributes']['data-src'] = $variables['attributes']['src'];
-    unset($variables['attributes']['src']);
-
-    // Calculate ratio for space reservation.
-    if (isset($variables['width']) && isset($variables['height'])) {
-      $variables['ratio'] = round(($variables['height'] / $variables['width']) * 100, 2);
-    }
-
+    $variables['attributes']['loading'] = 'lazy';
     // Set image alt property to null for decorative images.
     $token = '<decorative>';
     if (isset($variables['attributes']['alt']) && $variables['attributes']['alt'] === $token) {
@@ -1506,7 +1498,6 @@ function health_preprocess_image(array &$variables) {
       $variables['attributes']['alt'] = '';
     }
   }
-
 }
 
 /**
@@ -1682,12 +1673,12 @@ function health_preprocess_node__h_global_notification(array &$variables) {
       if ($notification->hasField('field_h_icon') && $notification->get('field_h_icon')
         ->isEmpty() !== TRUE) {
         if ($icon = $notification->get('field_h_icon')->entity) {
-
-          $media = Media::load($icon->mid->first()->value);
-          $fid = $media->field_media_file->target_id;
-          $file = File::load($fid);
-          $url = $file->url();
-          $variables['health_notification_icon_url'] = $url;
+          if ($media = Media::load($icon->mid->first()->value)) {
+            $fid = $media->field_media_file->target_id;
+            $file = File::load($fid);
+            $url = $file->url();
+            $variables['health_notification_icon_url'] = $url;
+          }
         }
       }
     }
