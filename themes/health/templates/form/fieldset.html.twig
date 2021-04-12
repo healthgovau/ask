@@ -18,8 +18,6 @@
  * - prefix: The content to add before the <fieldset> children.
  * - suffix: The content to add after the <fieldset> children.
  *
- * In this template the description is always above the fieldset children.
- *
  * @see template_preprocess_fieldset()
  */
 #}
@@ -49,9 +47,6 @@
     </span>
   </legend>
   <div class="fieldset-wrapper">
-    {% if description.content %}
-      <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
-    {% endif %}
     {% if errors %}
       <div class="error">
         {{ errors }}
@@ -63,6 +58,9 @@
     {{ children }}
     {% if suffix %}
       <span class="field-suffix">{{ suffix }}</span>
+    {% endif %}
+    {% if description.content %}
+      <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
     {% endif %}
   </div>
 </fieldset>
