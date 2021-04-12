@@ -48,6 +48,9 @@ third_party_settings:
       index_prefix: ''
       collection: ''
       timezone: ''
+    term_modifiers:
+      slop: 10000000
+      fuzzy: 2
 id: h_index_default
 name: 'Site default index'
 description: 'Default Solr index for site. This is the primary search index for the site.'
