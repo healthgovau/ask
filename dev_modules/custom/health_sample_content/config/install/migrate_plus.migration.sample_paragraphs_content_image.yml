@@ -1,0 +1,67 @@
+id: sample_paragraphs_content_image
+label: Sample Paragraphs - Content Image
+migration_group: health_sample
+migration_tags:
+  - health_sample_content
+  - health_sample_paragraphs
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: para_h_content_image_1
+      field_h_image_featured: image_9
+    -
+      id: para_h_content_image_2
+      field_h_image_featured: image_10
+    -
+      id: para_h_content_image_3
+      field_h_image_featured: image_12
+    -
+      id: para_h_content_image_4
+      field_h_image_featured: image_13
+    -
+      id: para_h_content_image_5
+      field_h_image_featured: image_14
+    -
+      id: para_h_content_image_6
+      field_h_image_featured: image_22
+    -
+      id: para_h_content_image_7
+      field_h_image_featured: image_14
+    -
+      id: para_h_content_image_8
+      field_h_image_featured: image_23
+      field_h_table_source: |
+        <p>Created by Quarrie, a master engineer, the Blade Wing prototype — later nicknamed the B-wing — was unlike any starfighter previously known.</p>
+      field_h_body: |
+        <p>Created by Quarrie, a master engineer, the Blade Wing prototype — later nicknamed the B-wing — was unlike any starfighter previously known. It featured on-board ion cannons and proton torpedoes, advances in speed, and a gyroscopic rotating cockpit. Quarrie built the Blade Wing in secret on Shantipole, where the Empire had no presence. The craft would not take to the skies, however, until the arrival the rebels Hera, Sabine, and Zeb, who were looking for a powerful new starfighter to bust Imperial blockades. Hera became the Blade Wing’s test pilot and shortly after took it into battle, where it decimated an Imperial battleship and led to a successful mission.</p>
+      field_h_image_zoomable: '1'
+      field_h_title: B-wing Prototype (Blade Wing)
+  ids:
+    id:
+      type: string
+process:
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "en"
+  field_h_image_featured:
+    plugin: migration_lookup
+    migration: sample_media_image
+    source: field_h_image_featured
+  field_h_image_zoomable: field_h_image_zoomable
+  field_h_title: field_h_title
+  field_h_body/value: field_h_body
+  field_h_body/format:
+    plugin: default_value
+    default_value: rich_text
+  field_h_table_source/value: field_h_table_source
+  field_h_table_source/format:
+    plugin: default_value
+    default_value: rich_text
+destination:
+  plugin: 'entity:paragraph'
+  default_bundle: para_h_content_image
+migration_dependencies:
+  required:
+    - sample_media_image
