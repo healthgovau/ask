@@ -20,6 +20,7 @@ const search = require("./modules/search");
 const standardPage = require("./modules/standard_page");
 const webforms = require("./modules/webforms");
 const video = require("./modules/video");
+const audio = require("./modules/audio");
 
 appOrToolHosted.tests(cy);
 appOrTool.tests(cy);
@@ -33,6 +34,7 @@ nodeNewsArticle.tests(cy);
 publication.tests(cy);
 referenceParagraphs.tests(cy);
 video.tests(cy);
+audio.tests(cy);
 foi.tests(cy);
 webforms.tests(cy);
 search.tests(cy);

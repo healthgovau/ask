@@ -83,6 +83,7 @@ field_settings:
         'entity:node':
           h_app_or_tool: search_index
           h_app_or_tool_hosted: search_index
+          h_audio: search_index
           h_collection: search_index
           h_contact: search_index
           h_foi_request: search_index

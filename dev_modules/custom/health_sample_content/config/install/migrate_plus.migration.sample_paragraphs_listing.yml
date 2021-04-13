@@ -16,6 +16,8 @@ source:
           type: h_publication
         -
           type: h_video
+        -
+          type: h_audio
       field_h_listing_facets:
         -
           facet: h_content_type

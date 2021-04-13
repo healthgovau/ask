@@ -1,0 +1,28 @@
+uuid: 486af3cd-d759-44de-bc28-37eaa71743a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_audio_files
+    - media.type.audio
+    - node.type.h_audio
+id: node.h_audio.field_h_audio_files
+field_name: field_h_audio_files
+entity_type: node
+bundle: h_audio
+label: 'Audio files'
+description: 'Audio files.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      audio: audio
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
