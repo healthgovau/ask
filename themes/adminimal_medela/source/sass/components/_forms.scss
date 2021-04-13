@@ -18,3 +18,13 @@
     display: none;
   }
 }
+
+/* Override "seven" theme's rule for help text in admin forms. */
+ul.tips,
+div.description,
+.form-item .description {
+  margin: 0.5rem 0 1rem;
+  color: #595959;
+  font-size: 0.95em;
+  font-style: italic;
+}
