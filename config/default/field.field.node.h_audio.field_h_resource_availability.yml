@@ -1,0 +1,31 @@
+uuid: 7f20bb49-bf6d-4c13-8b7a-21e2802bb103
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_resource_availability
+    - node.type.h_audio
+    - taxonomy.vocabulary.h_resource_availability
+id: node.h_audio.field_h_resource_availability
+field_name: field_h_resource_availability
+entity_type: node
+bundle: h_audio
+label: 'Resource availability'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    target_uuid: ae2f9a7f-04c6-4b9f-bdef-75372edbcbd8
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      h_resource_availability: h_resource_availability
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

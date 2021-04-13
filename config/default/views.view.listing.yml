@@ -82,6 +82,7 @@ display:
             'entity:node':
               h_app_or_tool: teaser
               h_app_or_tool_hosted: teaser
+              h_audio: teaser
               h_collection: teaser
               h_contact: teaser
               h_foi_request: default

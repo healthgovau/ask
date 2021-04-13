@@ -43,7 +43,7 @@ const tests = (cy) => {
        cy
          .visit(landingPageUri)
          .get("header")
-         .contains("6 results");
+         .contains("7 results");
      });
 
     /**

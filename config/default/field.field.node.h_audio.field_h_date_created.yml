@@ -1,0 +1,21 @@
+uuid: 6e181b1e-45c8-470c-af2d-f12e80b7efc7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_date_created
+    - node.type.h_audio
+  module:
+    - datetime
+id: node.h_audio.field_h_date_created
+field_name: field_h_date_created
+entity_type: node
+bundle: h_audio
+label: 'Date created'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

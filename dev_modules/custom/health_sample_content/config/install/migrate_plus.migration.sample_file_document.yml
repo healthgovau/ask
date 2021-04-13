@@ -34,6 +34,9 @@ source:
     -
       id: 9
       file: 'https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/php.svg'
+    -
+      id: 10
+      file: 'https://www2.cs.uic.edu/~i101/SoundFiles/StarWars3.wav'
   ids:
     id:
       type: integer
