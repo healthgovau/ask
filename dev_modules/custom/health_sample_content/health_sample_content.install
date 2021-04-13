@@ -1,0 +1,41 @@
+<?php
+/**
+ * @file
+ * Contains health_sample_content.install.
+ */
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Removes stale migration configs during uninstall.
+ */
+function health_sample_content_uninstall() {
+  $query = db_select('config', 'c')
+    ->fields('c', ['name'])
+    ->condition('name', db_like('migrate_plus.migration.sample_') . '%', 'LIKE')
+    ->execute();
+
+  $config_names = $query->fetchAll();
+
+  // Delete each config using configFactory.
+  foreach ($config_names as $config_name) {
+    \Drupal::configFactory()->getEditable($config_name->name)->delete();
+  }
+
+  //migrate_plus.migration_group.health_sample
+
+  $query = db_select('config', 'c')
+    ->fields('c', ['name'])
+    ->condition('name', db_like('migrate_plus.migration_group.health_sample') . '%', 'LIKE')
+    ->execute();
+
+  $config_names = $query->fetchAll();
+
+  print_r($config_names);
+
+
+  // Delete each config using configFactory.
+  foreach ($config_names as $config_name) {
+    \Drupal::configFactory()->getEditable($config_name->name)->delete();
+  }
+}

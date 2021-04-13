@@ -33,7 +33,15 @@ then
         exit 1
     fi
 fi
-
 #### End of Code Sniffer
+
+### Check core.extensions.yml for modules that should be disabled in config before comitting.
+pattern='migrate\|migrate_\|health_sample_content\|dblog\|kint\|stage_file_proxy\|devel'
+if grep $pattern  config/default/core.extension.yml >> /dev/null; then
+    echo "Illegal modules detected as enabled. Please disable listed below"
+    grep $pattern config/default/core.extension.yml
+    exit 1
+fi
+### End check core.extensions for modules that should be disabled
 
 exit 0

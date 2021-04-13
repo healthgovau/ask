@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fff0c509b5a66ff46a39ca35b39c4832",
+    "content-hash": "63d2dd3db21bb43ef21b1eb6af1bb5e7",
     "packages": [
         {
             "name": "drupal/adminimal_theme",
@@ -101,6 +101,55 @@
                 "source": "https://www.drupal.org/project/coder"
             },
             "time": "2020-12-06T09:34:55+00:00"
+        },
+        {
+            "name": "drupal/migrate_cron",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/migrate_cron.git",
+                "reference": "8.x-1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/migrate_cron-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "14bec347cc30fb39da2cfb5336c2efa8efafc583"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/migrate_plus": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.3",
+                    "datestamp": "1602785244",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bohart",
+                    "homepage": "https://www.drupal.org/user/289861"
+                },
+                {
+                    "name": "vadimski",
+                    "homepage": "https://www.drupal.org/user/3395802"
+                }
+            ],
+            "description": "Run migrations at cron",
+            "homepage": "https://www.drupal.org/project/migrate_cron",
+            "support": {
+                "source": "https://git.drupalcode.org/project/migrate_cron"
+            }
         },
         {
             "name": "drupal/migrate_plus",

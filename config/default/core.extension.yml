@@ -77,6 +77,8 @@ module:
   metatag: 0
   metatag_dc: 0
   metatag_open_graph: 0
+  migrate: 0
+  migrate_plus: 0
   modifiers: 0
   module_filter: 0
   node: 0
