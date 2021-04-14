@@ -17,6 +17,7 @@ use Drupal\paragraphs\ParagraphInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\Core\Url;
 use Drupal\views\Views;
+use Drupal\views\ViewEntityInterface;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Render\Markup;
 use Drupal\Component\Serialization\Json;
@@ -978,24 +979,6 @@ function _health_get_views_exposed_form($view_id, $display_id) {
   }
 
   return $form;
-}
-
-/**
- * Confirms a view contains a given display mode.
- *
- * @param string $display_mode
- *   Machine name of the view display mode.
- * @param string $view
- *   Machine name of the view.
- *
- * @return bool
- *   TRUE if the view contains the given display mode. Otherwise FALSE is
- *   returned.
- */
-function _health_validate_view_display_mode($display_mode, $view) {
-  $display_mode_exists = FALSE;
-
-  return $display_mode_exists;
 }
 
 /**
@@ -2567,7 +2550,42 @@ function health_preprocess_paragraph__para_h_listing(array &$variables) {
  * Implements template_preprocess_HOOK().
  */
 function health_preprocess_paragraph__para_h_view(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  $variables['content'] = [];
+  $build = NULL;
+  try {
+    if ($paragraph instanceof ParagraphInterface) {
+      $view = $paragraph->get('field_h_view')->entity;
+      if ($view instanceof ViewEntityInterface) {
+        // Confirm display mode exists in the given view.
+        $display_id = $paragraph->get('field_h_view_display_mode')->value;
+        $display = $view->getDisplay($display_id);
+        if ($display !== NULL) {
+          // Process the view.
+          $view_executable = $view->getExecutable();
+
+          // Process view arguments.
+          $args = [];
+
+          // Execute view.
+          $view_executable->setDisplay($display_id);
+          $view_executable->preExecute();
+          $view_executable->execute();
+          $build = $view_executable->buildRenderable($display_id, $args);
+        }
+        else {
+          // Not a valid view display mode.
+          throw new Exception('Display mode `' . $display_id . '` does not exist in view `' . $view->id() . '`');
+        }
+      }
+    }
+  }
+  catch (Exception $e) {
+    // Log error and don't render view.
+    \Drupal::logger('health')->error($e->getMessage());
+  }
   // Load view render array.
+  $variables['content']['view'] = $build;
 }
 
 /**
