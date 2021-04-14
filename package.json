@@ -31,5 +31,9 @@
     "backstopjs": "^5.0.4",
     "cypress": "^4.10.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "line-reader": "^0.4.0",
+    "n-readlines": "^1.0.1"
+  }
 }
