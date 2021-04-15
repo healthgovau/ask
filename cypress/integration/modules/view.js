@@ -17,7 +17,7 @@
     it("contains the correct items", () => {
       cy.visit(targetPageUri);
       cy
-        .get(".health-embedded-listing-wrapper")
+        .get(".views-view--h-sample-custom-view ul")
         .eq(0)
         .within(() => {
           cy
