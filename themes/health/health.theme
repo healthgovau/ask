@@ -2609,6 +2609,11 @@ function health_preprocess_region__content_top(array &$variables) {
   }
   else {
     $variables['toolbar'] = NULL;
+    // Set page title.
+    $variables['page_title'] = NULL;
+    if (isset($variables['elements']['page_title_block'])) {
+      $variables['page_title'] = $variables['elements']['page_title_block'];
+    }
   }
 }
 

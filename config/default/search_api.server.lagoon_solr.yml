@@ -25,7 +25,7 @@ backend_config:
     commit_within: 1000
     solr_version: ''
     http_method: AUTO
-    skip_schema_check: false
+    skip_schema_check: 0
   retrieve_data: false
   highlight_data: false
   domain: generic
@@ -36,3 +36,4 @@ backend_config:
   rows: 10
   index_single_documents_fallback_count: 10
   fallback_multiple: true
+  skip_schema_check: false
