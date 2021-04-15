@@ -2574,9 +2574,14 @@ function health_preprocess_paragraph__para_h_view(array &$variables) {
 
           // Process view arguments.
           $args = [];
+          $arguments = $paragraph->get('field_h_view_arguments')->getValue();
+          foreach ($arguments as $argument) {
+            $args[] = $argument['value'];
+          }
 
           // Execute view.
           $view_executable->setDisplay($display_id);
+          $view_executable->setArguments($args);
           $view_executable->preExecute();
           $view_executable->execute();
           $variables['content']['field_h_view'] = $view_executable->buildRenderable($display_id, $args);
