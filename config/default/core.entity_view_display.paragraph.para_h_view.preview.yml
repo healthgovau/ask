@@ -1,18 +1,19 @@
-uuid: a1b2cbb1-1dff-42db-aa6a-8337dd625510
+uuid: 908e17ca-3466-4a0f-86c5-836ed03a0c07
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.para_h_view.field_h_summary
     - field.field.paragraph.para_h_view.field_h_title
     - field.field.paragraph.para_h_view.field_h_view
     - field.field.paragraph.para_h_view.field_h_view_arguments
     - field.field.paragraph.para_h_view.field_h_view_display_mode
     - paragraphs.paragraphs_type.para_h_view
-id: paragraph.para_h_view.default
+id: paragraph.para_h_view.preview
 targetEntityType: paragraph
 bundle: para_h_view
-mode: default
+mode: preview
 content:
   field_h_summary:
     weight: 1
@@ -32,9 +33,10 @@ content:
   field_h_view:
     weight: 2
     label: hidden
-    settings: {  }
+    settings:
+      link: false
     third_party_settings: {  }
-    type: entity_reference_entity_id
+    type: entity_reference_label
     region: content
 hidden:
   field_h_view_arguments: true

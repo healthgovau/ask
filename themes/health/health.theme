@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\file\FileInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -2551,17 +2552,24 @@ function health_preprocess_paragraph__para_h_listing(array &$variables) {
  */
 function health_preprocess_paragraph__para_h_view(array &$variables) {
   $paragraph = $variables['paragraph'];
-  $variables['content'] = [];
-  $build = NULL;
   try {
     if ($paragraph instanceof ParagraphInterface) {
+      // Process heading.
+      if ($paragraph->get('field_h_title')->isEmpty() !== TRUE) {
+        $variables['content']['field_h_title'] = [
+          '#theme' => 'health_heading',
+          '#level' => '2',
+          '#text' => Html::escape($paragraph->get('field_h_title')->value),
+        ];
+      }
+
+      // Process the view.
       $view = $paragraph->get('field_h_view')->entity;
       if ($view instanceof ViewEntityInterface) {
         // Confirm display mode exists in the given view.
         $display_id = $paragraph->get('field_h_view_display_mode')->value;
         $display = $view->getDisplay($display_id);
         if ($display !== NULL) {
-          // Process the view.
           $view_executable = $view->getExecutable();
 
           // Process view arguments.
@@ -2571,7 +2579,7 @@ function health_preprocess_paragraph__para_h_view(array &$variables) {
           $view_executable->setDisplay($display_id);
           $view_executable->preExecute();
           $view_executable->execute();
-          $build = $view_executable->buildRenderable($display_id, $args);
+          $variables['content']['field_h_view'] = $view_executable->buildRenderable($display_id, $args);
         }
         else {
           // Not a valid view display mode.
@@ -2583,9 +2591,8 @@ function health_preprocess_paragraph__para_h_view(array &$variables) {
   catch (Exception $e) {
     // Log error and don't render view.
     \Drupal::logger('health')->error($e->getMessage());
+    $variables['content'] = [];
   }
-  // Load view render array.
-  $variables['content']['view'] = $build;
 }
 
 /**
@@ -2740,6 +2747,14 @@ function health_theme(array $existing, $type, $theme, $path) {
         'modifiers' => NULL,
       ],
       'template' => 'custom/health-header',
+    ],
+    'health_heading' => [
+      'variables' => [
+        'level' => NULL,
+        'text' => NULL,
+        'classnames' => [],
+      ],
+      'template' => 'custom/health-heading',
     ],
     'health_hero' => [
       'variables' => [
