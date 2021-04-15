@@ -39,6 +39,8 @@ source:
           id: para_h_layout_grid_1
         -
           id: para_h_content_iframe_1
+        -
+          id: para_h_view_1
       generate_toc: 1
       subject: Politics
       content_language: English
@@ -130,6 +132,7 @@ process:
           - sample_paragraphs_content_table
           - sample_paragraphs_layout_grid
           - sample_paragraphs_listing_embedded
+          - sample_paragraphs_view
         source: id
       target_revision_id: '@target_id'
   field_h_generate_toc: generate_toc
@@ -215,3 +218,4 @@ migration_dependencies:
     - sample_paragraphs_content_text
     - sample_paragraphs_layout_grid
     - sample_paragraphs_listing_embedded
+    - sample_paragraphs_view
