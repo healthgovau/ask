@@ -384,6 +384,11 @@ function adminimal_medela_preprocess_input__checkbox(&$variables) {
  */
 function adminimal_medela_form_node_form_alter(array &$form, FormStateInterface &$form_state, $form_id) {
 
+  if ($form_id == 'node_h_standard_page_edit_form') {
+    $form['#attached']['library'][] = 'adminimal_medela/publication-rules';
+  }
+
+
   // Non-migration user.
   if (!_adminimal_medela_has_role(ROLE_MIGRATION)) {
     // Hide system dates.
