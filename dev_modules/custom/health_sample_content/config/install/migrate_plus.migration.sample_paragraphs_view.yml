@@ -16,7 +16,7 @@ source:
       field_h_view_display_mode: embed_1
       field_h_view_arguments:
         - h_publication
-        - Factsheet
+        - Infographic
   ids:
     id:
       type: string
