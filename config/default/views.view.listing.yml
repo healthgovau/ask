@@ -185,7 +185,7 @@ display:
             operator: search_api_fulltext_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: search_api_fulltext
+            identifier: search_api_fulltext_listing
             required: false
             remember: false
             multiple: false
@@ -199,6 +199,8 @@ display:
               h_migration: '0'
               h_menu_administrator: '0'
             placeholder: ''
+            expose_fields: false
+            searched_fields_id: ''
           is_grouped: false
           group_info:
             label: ''
