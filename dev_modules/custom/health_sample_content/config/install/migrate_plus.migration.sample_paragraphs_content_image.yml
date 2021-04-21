@@ -28,6 +28,15 @@ source:
     -
       id: para_h_content_image_7
       field_h_image_featured: image_14
+    -
+      id: para_h_content_image_8
+      field_h_image_featured: image_23
+      field_h_table_source: |
+        <p>Created by Quarrie, a master engineer, the Blade Wing prototype — later nicknamed the B-wing — was unlike any starfighter previously known.</p>
+      field_h_body: |
+        <p>Created by Quarrie, a master engineer, the Blade Wing prototype — later nicknamed the B-wing — was unlike any starfighter previously known. It featured on-board ion cannons and proton torpedoes, advances in speed, and a gyroscopic rotating cockpit. Quarrie built the Blade Wing in secret on Shantipole, where the Empire had no presence. The craft would not take to the skies, however, until the arrival the rebels Hera, Sabine, and Zeb, who were looking for a powerful new starfighter to bust Imperial blockades. Hera became the Blade Wing’s test pilot and shortly after took it into battle, where it decimated an Imperial battleship and led to a successful mission.</p>
+      field_h_image_zoomable: '1'
+      field_h_title: B-wing Prototype (Blade Wing)
   ids:
     id:
       type: string
@@ -40,6 +49,16 @@ process:
     plugin: migration_lookup
     migration: sample_media_image
     source: field_h_image_featured
+  field_h_image_zoomable: field_h_image_zoomable
+  field_h_title: field_h_title
+  field_h_body/value: field_h_body
+  field_h_body/format:
+    plugin: default_value
+    default_value: rich_text
+  field_h_table_source/value: field_h_table_source
+  field_h_table_source/format:
+    plugin: default_value
+    default_value: rich_text
 destination:
   plugin: 'entity:paragraph'
   default_bundle: para_h_content_image

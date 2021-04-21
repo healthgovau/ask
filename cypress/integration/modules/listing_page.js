@@ -22,7 +22,7 @@ const tests = (cy) => {
        cy
          .visit(landingPageUri)
          .scrollTo("bottom")
-         .get(".image img")
+         .get("img")
          .each(($image, index, $images) => {
            cy
              .wrap($image)
@@ -43,7 +43,7 @@ const tests = (cy) => {
        cy
          .visit(landingPageUri)
          .get("header")
-         .contains("6 results");
+         .contains("7 results");
      });
 
     /**

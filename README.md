@@ -47,12 +47,14 @@ This documentation assumes you are using MacOS or Linux as your host environment
   - [PHPStorm setup](#phpstorm-setup)
   - [Funnelback](#funnelback)
   - [Troubleshooting](#troubleshooting)
+    - [Git](#git)
+      - [Locked files](#locked-files)
     - [Solr](#solr)
-    - [Results counts in listings and facets](#results-counts-in-listings-and-facets)
-  - [Docker](#docker)
-    - [No space left of devices in Docker for Mac](#no-space-left-of-devices-in-docker-for-mac)
-  - [Search](#search)
-    - [Access Solr server UI](#access-solr-server-ui)
+      - [Results counts in listings and facets](#results-counts-in-listings-and-facets)
+    - [Docker](#docker)
+      - [No space left of devices in Docker for Mac](#no-space-left-of-devices-in-docker-for-mac)
+- [Search](#search)
+  - [Access Solr server UI](#access-solr-server-ui)
 
 ## Prerequisites
 
@@ -310,7 +312,7 @@ The GovCMS8 distribution is periodically updated. It is important that any site 
 
         ahoy cli
 
-1. Install the HSK site
+1. Install the ASK site
 
         drush si  --existing-config
 
@@ -322,7 +324,7 @@ The GovCMS8 distribution is periodically updated. It is important that any site 
 
         exit
 
-1. Get the number of the lastest release version of the [govcms8lagoon](https://github.com/govCMS/govcms8lagoon/releases) project
+1. Get the number of the lastest version of the GovCMS docker [image](https://hub.docker.com/r/govcms/nginx-drupal/tags?page=1&ordering=last_updated).
 
 1. Update the `GOVCMS_IMAGE_VERSION` variable to the latest release version in each of these files
 
@@ -620,27 +622,45 @@ The search form is in the health-header.html.twig template by default, but can b
 
 ## Troubleshooting
 
+### Git
+
+#### Locked files
+
+Certain files in the GovCMS scaffolding project are locked. This prevents developers from modifying these files. Sometimes these locked files interfer with merging two branches result in an error similar to the following.
+
+```
+remote: GitLab: The path '.lagoon.yml' is locked in Git LFS by Stuart Rowlands
+To projects.govcms.gov.au:abc/xyz.git
+ ! [remote rejected] develop -> develop (pre-receive hook declined)
+error: failed to push some refs to 'git@projects.govcms.gov.au:abc/xyz.git'
+```
+
+Fixing this error requires some Git surgery. Details on how to resolve this error can be found [here](https://www.govcms.support/support/solutions/articles/51000132393-git-push-or-merge-fails-due-to-locked-scaffold-files)
+
 ### Solr
 
 Sometimes one may experience issues where Drupal is reporting that the Solr search in not reacheable or some similar error. A possible solution for this is to remove the existing Solr image and then rebuild the solr container. You can do this from the command line in your project directory.
 
         ahoy stop
-        docker image remove hsk_solr
+        docker container rm ask_solr_1
+        docker image remove ask_solr
         ahoy up
 
-### Results counts in listings and facets
+#### Results counts in listings and facets
 
 One may encounter a situation where the result counts in facets and listing are not correct. This can occur when working with sample content where the sample content has been repeated imported then removed using the Drupal Migration API. This is caused by the content not being removed from the Solr index when rolling back migration content. If you experience this issue it is recommended that you rebuild the existing Solr container.
 
         ahoy stop
-        docker image remove hsk_solr
+
+        docker container rm ask_solr_1
+        docker image remove ask_solr
         ahoy up
 
 You may need to rebuild the search index in Drupal afterwards.
 
-## Docker
+### Docker
 
-### No space left of devices in Docker for Mac
+#### No space left of devices in Docker for Mac
 
 This issue can occur when rebuilding containers. Inspection of the Docker for Mac admin tool shows there is plenty of room left in the virtual disk and yet Docker is still complaining about disk space. The issue is that different parts of Docker have different disk space limitations. The `docker system fs` is your friend here. See this article [here](https://www.percona.com/blog/2019/08/21/cleaning-docker-disk-space-usage/) for more information on how to use it and free up more space.
 

@@ -7,7 +7,7 @@ dependencies:
     - node.type.h_app_or_tool
     - taxonomy.vocabulary.h_resource_availability
   content:
-    - 'taxonomy_term:h_resource_availability:da4f118a-d957-48a7-b16d-90e6a3559aef'
+    - 'taxonomy_term:h_resource_availability:3653c865-4657-4437-b688-bbb1a08f300f'
 id: node.h_app_or_tool.field_h_resource_availability
 field_name: field_h_resource_availability
 entity_type: node
@@ -18,7 +18,7 @@ required: false
 translatable: true
 default_value:
   -
-    target_uuid: da4f118a-d957-48a7-b16d-90e6a3559aef
+    target_uuid: 3653c865-4657-4437-b688-bbb1a08f300f
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'

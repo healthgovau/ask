@@ -10,14 +10,7 @@
  * @see template_preprocess_image()
  */
 #}
-{{ attach_library('health/lazyload') }}
-<div class="image-outer rs_skip rs_preserve">
-  <div class="image-placeholder" style="max-width: {{ attributes.width }}px">
-    <div style="padding-top: {{ ratio }}%"></div>
-  </div>
-  <div class="image-wrapper image-loading">
-    <div class="image">
-      <img{{ attributes }} />
-    </div>
-  </div>
-</div>
+{{ attach_library('health/mfranzke.loading-attribute-polyfill') }}
+<noscript class="loading-lazy">
+  <img{{ attributes }} />
+</noscript>

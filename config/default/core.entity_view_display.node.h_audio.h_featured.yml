@@ -1,0 +1,93 @@
+uuid: e93890f2-0839-4ee9-afd6-8cd7fc61e112
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.h_featured
+    - field.field.node.h_audio.field_h_audience
+    - field.field.node.h_audio.field_h_audio_files
+    - field.field.node.h_audio.field_h_audio_type
+    - field.field.node.h_audio.field_h_content_grade_level
+    - field.field.node.h_audio.field_h_content_long_sentences
+    - field.field.node.h_audio.field_h_content_owner
+    - field.field.node.h_audio.field_h_content_pass_sentences
+    - field.field.node.h_audio.field_h_content_readability
+    - field.field.node.h_audio.field_h_date_created
+    - field.field.node.h_audio.field_h_date_format
+    - field.field.node.h_audio.field_h_date_published
+    - field.field.node.h_audio.field_h_date_reviewed
+    - field.field.node.h_audio.field_h_date_updated
+    - field.field.node.h_audio.field_h_description
+    - field.field.node.h_audio.field_h_duration
+    - field.field.node.h_audio.field_h_image_featured
+    - field.field.node.h_audio.field_h_language
+    - field.field.node.h_audio.field_h_resource_availability
+    - field.field.node.h_audio.field_h_resource_date
+    - field.field.node.h_audio.field_h_resource_transcript
+    - field.field.node.h_audio.field_h_subject
+    - field.field.node.h_audio.field_h_subject_2
+    - field.field.node.h_audio.field_h_subject_3
+    - field.field.node.h_audio.field_h_summary
+    - node.type.h_audio
+  module:
+    - media
+    - text
+    - user
+id: node.h_audio.h_featured
+targetEntityType: node
+bundle: h_audio
+mode: h_featured
+content:
+  field_h_duration:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_h_image_featured:
+    type: media_thumbnail
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: h_audio_16_9_featured
+      image_link: ''
+    third_party_settings: {  }
+  field_h_resource_transcript:
+    type: text_default
+    weight: 3
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_h_audience: true
+  field_h_audio_files: true
+  field_h_audio_type: true
+  field_h_content_grade_level: true
+  field_h_content_long_sentences: true
+  field_h_content_owner: true
+  field_h_content_pass_sentences: true
+  field_h_content_readability: true
+  field_h_date_created: true
+  field_h_date_format: true
+  field_h_date_published: true
+  field_h_date_reviewed: true
+  field_h_date_updated: true
+  field_h_description: true
+  field_h_language: true
+  field_h_resource_availability: true
+  field_h_resource_date: true
+  field_h_subject: true
+  field_h_subject_2: true
+  field_h_subject_3: true
+  field_h_summary: true
+  langcode: true
+  search_api_excerpt: true

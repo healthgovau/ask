@@ -362,6 +362,24 @@ function _adminimal_medela_mandatory_system_dates(array &$form) {
 }
 
 /**
+ * Implements hook_preprocess_form_element().
+ */
+function adminimal_medela_preprocess_form_element(&$variables) {
+  if (isset($variables['element']['#title']) && $variables['element']['#title'] == 'Online') {
+    $variables['attributes']['class'][] = 'hidden';
+  }
+}
+
+/**
+ * Implements hook_preprocess_input__checkbox().
+ */
+function adminimal_medela_preprocess_input__checkbox(&$variables) {
+  if (isset($variables['element']['#title']) && $variables['element']['#title'] == 'Online') {
+    $variables['attributes']['disabled'] = 'disabled';
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function adminimal_medela_form_node_form_alter(array &$form, FormStateInterface &$form_state, $form_id) {
@@ -558,10 +576,12 @@ function adminimal_medela_theme_suggestions_views_view_field_alter(array &$sugge
  * Implements template_preprocess_media().
  */
 function adminimal_medela_preprocess_media(&$variables) {
-  $m = $variables['media']->mid->first()->value;
-  $media = Media::load($m);
-  $fid = $media->field_media_file->target_id;
-  $file = File::load($fid);
-  $url = $file->createFileUrl();
-  $variables['img'] = $url;
+  if ($media = Media::load($variables['media']->mid->first()->value)) {
+    if ($media->field_media_file) {
+      if ($file = File::load($media->field_media_file->target_id)) {
+        $url = $file->createFileUrl();
+        $variables['img'] = $url;
+      }
+    }
+  }
 }

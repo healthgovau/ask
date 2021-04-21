@@ -1,0 +1,21 @@
+uuid: fa12868e-b5e8-4224-a3f5-b7e6ee1553ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_date_reviewed
+    - node.type.h_audio
+  module:
+    - datetime
+id: node.h_audio.field_h_date_reviewed
+field_name: field_h_date_reviewed
+entity_type: node
+bundle: h_audio
+label: 'Date last reviewed'
+description: 'Select the date this information was last reviewed.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
