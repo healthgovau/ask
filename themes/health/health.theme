@@ -1595,6 +1595,26 @@ function health_preprocess_node(array &$variables) {
 /**
  * Implements template_preprocess_HOOK().
  */
+function health_preprocess_node__h_publication(array &$variables) {
+  $node = $variables['node'];
+  if ($node instanceof NodeInterface) {
+    $field_h_order_id = $variables['content']['field_h_order_id'];
+    $field_h_order_text = $variables['content']['field_h_order_text'];
+    unset($variables['content']['field_h_order_id']);
+    $availability = $node->field_h_resource_availability->referencedEntities();
+    foreach ($availability as $a) {
+      if ($a->getName() == 'Orderable') {
+        $variables['content']['field_h_order_id'] = $field_h_order_id;
+        $variables['content']['field_h_order_text'] = $field_h_order_text;
+        break;
+      }
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
 function health_preprocess_node__h_card(array &$variables) {
   $node = $variables['node'];
   if ($node instanceof NodeInterface) {
