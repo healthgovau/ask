@@ -8,9 +8,7 @@ PHPCBF_BIN="./vendor/bin/phpcbf"
 
 drupalfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep -E '\.php$|\.module$|\.inc$|\.install$|\.test$|\.profile$|\.theme$|\.css$|\.info$|\.txt$|\.md$|\.yml$|\.theme$')
 
-echo $drupalfiles;
-
-if [ "$drupalfiles" != "" ]
+if [[ "$drupalfiles" != "" ]]
 then
     drupalfailed=0
     echo "Running Code Sniffer..."
@@ -40,7 +38,7 @@ fi
 
 ### SCSS linting
 scssfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep -E '\.scss$')
-if [ $scssfiles != "" ]
+if [[ $scssfiles != "" ]]
 then
     scssfailed=0
     echo "Running SCSS Sniffer..."
@@ -67,7 +65,7 @@ fi
 
 ## JS linting
 jsfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep -E '\.scss$')
-if [ $jsfiles != "" ]
+if [[ $jsfiles != "" ]]
 then
     jsfailed=0
     echo "Running JS Sniffer..."
@@ -92,5 +90,4 @@ then
 fi
 ## End JS linting
 
-exit 1
 exit 0
