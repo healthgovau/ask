@@ -1,10 +1,10 @@
-module.exports = {
+{
     "env": {
         "browser": true,
         "es2020": true
     },
     "extends": [
-        "standard"
+        "airbnb-base"
     ],
     "parserOptions": {
         "ecmaVersion": 11,
@@ -29,4 +29,4 @@ module.exports = {
       "no-void": 0,
       "brace-style": 0
     }
-};
+}
