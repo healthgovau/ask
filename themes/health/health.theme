@@ -989,8 +989,9 @@ function health_form_views_exposed_form_alter(array &$form, FormStateInterface &
   if (isset($storage['view']) && $storage['view'] instanceof ViewExecutable) {
     $view = $storage['view'];
     $field_name = 'search_api_fulltext';
+    $field_name_alt = 'search_api_fulltext_listing';
 
-    if (isset($form[$field_name])) {
+    if (isset($form[$field_name]) || isset($form[$field_name_alt])) {
 
       // Set additional classes and placeholder text.
       $search_classes = 'health-search health-search__form';
