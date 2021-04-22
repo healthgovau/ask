@@ -988,10 +988,13 @@ function health_form_views_exposed_form_alter(array &$form, FormStateInterface &
   $storage = $form_state->getStorage();
   if (isset($storage['view']) && $storage['view'] instanceof ViewExecutable) {
     $view = $storage['view'];
-    $field_name = 'search_api_fulltext';
-    $field_name_alt = 'search_api_fulltext_listing';
 
-    if (isset($form[$field_name]) || isset($form[$field_name_alt])) {
+    // Assign custom class to specific search inputs to apply styling.
+    $field_names = ['search_api_fulltext', 'search_api_fulltext_listing'];
+    $matches = array_intersect($field_names, array_keys($form));
+    $field_name = reset($matches);
+
+    if (isset($form[$field_name])) {
 
       // Set additional classes and placeholder text.
       $search_classes = 'health-search health-search__form';
