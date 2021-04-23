@@ -47,7 +47,7 @@ lock-text-formats:
 publication-rules:
   version: 1.0.0
   js:
-    build/js/publication-rules.js: {}
+    build/js/publication-rules.min.js: {}
   dependencies:
     - core/drupal
     - core/jquery
