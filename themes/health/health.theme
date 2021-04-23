@@ -988,7 +988,11 @@ function health_form_views_exposed_form_alter(array &$form, FormStateInterface &
   $storage = $form_state->getStorage();
   if (isset($storage['view']) && $storage['view'] instanceof ViewExecutable) {
     $view = $storage['view'];
-    $field_name = 'search_api_fulltext';
+
+    // Assign custom class to specific search inputs to apply styling.
+    $field_names = ['search_api_fulltext', 'search_api_fulltext_listing'];
+    $matches = array_intersect($field_names, array_keys($form));
+    $field_name = reset($matches);
 
     if (isset($form[$field_name])) {
 
@@ -1587,6 +1591,39 @@ function health_preprocess_node(array &$variables) {
           // Do not render date updated.
           $variables['content']['field_h_date_updated']['#access'] = FALSE;
         }
+      }
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function health_preprocess_node__h_publication(array &$variables) {
+  $node = $variables['node'];
+
+  // Hide field_h_order_id and field_h_order_text if the publication isn't
+  // orderable.
+  if ($node instanceof NodeInterface) {
+    if (isset($variables['content']['field_h_order_id'])) {
+      $field_h_order_id = $variables['content']['field_h_order_id'];
+      unset($variables['content']['field_h_order_id']);
+    }
+    if (isset($variables['content']['field_h_order_text'])) {
+      $field_h_order_text = $variables['content']['field_h_order_text'];
+      unset($variables['content']['field_h_order_text']);
+    }
+
+    $availability = $node->field_h_resource_availability->referencedEntities();
+    foreach ($availability as $a) {
+      if ($a->getName() == 'Orderable') {
+        if (isset($field_h_order_id)) {
+          $variables['content']['field_h_order_id'] = $field_h_order_id;
+        }
+        if (isset($field_h_order_text)) {
+          $variables['content']['field_h_order_text'] = $field_h_order_text;
+        }
+        break;
       }
     }
   }
