@@ -37,7 +37,7 @@ fi
 #### End of Code Sniffer
 
 ### SCSS linting
-scssfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep -E '\.scss$')
+scssfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep 'source/sass'  | grep -E '\.scss$')
 if [[ $scssfiles != "" ]]
 then
     scssfailed=0
@@ -64,7 +64,7 @@ fi
 ## End scss linting
 
 ## JS linting
-jsfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep -E '\.scss$')
+jsfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep 'source/js' |grep -E '\.js$')
 if [[ $jsfiles != "" ]]
 then
     jsfailed=0
