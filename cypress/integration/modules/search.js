@@ -6,8 +6,8 @@
 const tests = (cy) => {
   const targetPageUri = "/star-wars";
   const searchResultsPageUri = "/search";
-  const searchFieldSelector = "#views-exposed-form-h-site-search-search-page input[name=search_api_fulltext]";
-  const searchButtonSelector = "#views-exposed-form-h-site-search-search-page input[type=submit]";
+  const searchFieldSelector = "#views-exposed-form-h-site-search-h-site-search input[name=search_api_fulltext]";
+  const searchButtonSelector = "#views-exposed-form-h-site-search-h-site-search input[type=submit]";
   const searchResultsSelector = ".health-listing li";
   const searchTerms = "star";
 
@@ -15,7 +15,7 @@ const tests = (cy) => {
     it("Search form is visible on page", () => {
       cy
         .visit(targetPageUri)
-        .get("#views-exposed-form-h-site-search-search-page")
+        .get("#views-exposed-form-h-site-search-h-site-search")
         .should("be.visible");
     });
 
