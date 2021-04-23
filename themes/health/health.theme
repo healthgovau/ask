@@ -1602,8 +1602,8 @@ function health_preprocess_node(array &$variables) {
 function health_preprocess_node__h_publication(array &$variables) {
   $node = $variables['node'];
 
-  //Hide field_h_order_id and field_h_order_text if the publication isn't
-  //orderable.
+  // Hide field_h_order_id and field_h_order_text if the publication isn't
+  // orderable.
   if ($node instanceof NodeInterface) {
     if (isset($variables['content']['field_h_order_id'])) {
       $field_h_order_id = $variables['content']['field_h_order_id'];
