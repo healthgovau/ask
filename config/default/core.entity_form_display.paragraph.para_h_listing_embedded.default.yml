@@ -64,11 +64,11 @@ third_party_settings:
       format_type: tab
       region: content
       format_settings:
-        id: ''
-        classes: ''
         description: ''
         formatter: closed
         required_fields: true
+        id: ''
+        classes: listing-embedded-filters
       label: Filters
     group_h_content_types:
       children:
@@ -79,11 +79,11 @@ third_party_settings:
       format_type: details
       region: content
       format_settings:
-        id: ''
-        classes: ''
         description: ''
         open: true
         required_fields: true
+        id: ''
+        classes: listing-embedded-filters--content-types
       label: 'Content types'
     group_h_audience:
       children:
@@ -95,11 +95,11 @@ third_party_settings:
       format_type: details
       region: content
       format_settings:
-        id: ''
-        classes: ''
         description: ''
-        open: false
         required_fields: true
+        id: ''
+        classes: listing-embedded-filters--audience
+        open: false
       label: Audience
     group_h_publication_type:
       children:
@@ -111,11 +111,11 @@ third_party_settings:
       format_type: details
       region: content
       format_settings:
-        id: ''
-        classes: ''
         description: ''
-        open: false
         required_fields: true
+        id: ''
+        classes: listing-embedded-filters--publication-type
+        open: false
       label: 'Publication type'
     group_h_general:
       children:

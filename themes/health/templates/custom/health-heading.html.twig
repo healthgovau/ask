@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Provides template for heading elements.
+ *
+ * Available variables:
+ * - level: number representing the level of the heading element.
+ * - classnames: array of CSS classnames to add to the heading element.
+ * - text: the text to display as a heading.
+ */
+#}
+<h{{ level }} class="{{ classnames|join(' ') }}">{{ text }}</h{{ level }}>

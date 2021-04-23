@@ -1,0 +1,42 @@
+uuid: a1b2cbb1-1dff-42db-aa6a-8337dd625510
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.para_h_view.field_h_summary
+    - field.field.paragraph.para_h_view.field_h_title
+    - field.field.paragraph.para_h_view.field_h_view
+    - field.field.paragraph.para_h_view.field_h_view_arguments
+    - field.field.paragraph.para_h_view.field_h_view_display_mode
+    - paragraphs.paragraphs_type.para_h_view
+id: paragraph.para_h_view.default
+targetEntityType: paragraph
+bundle: para_h_view
+mode: default
+content:
+  field_h_summary:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_h_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_h_view:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: entity_reference_entity_id
+    region: content
+hidden:
+  field_h_view_arguments: true
+  field_h_view_display_mode: true
+  search_api_excerpt: true

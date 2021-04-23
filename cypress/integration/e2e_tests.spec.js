@@ -21,6 +21,7 @@ const standardPage = require("./modules/standard_page");
 const webforms = require("./modules/webforms");
 const video = require("./modules/video");
 const audio = require("./modules/audio");
+const view = require("./modules/view");
 
 appOrToolHosted.tests(cy);
 appOrTool.tests(cy);
@@ -39,3 +40,4 @@ foi.tests(cy);
 webforms.tests(cy);
 search.tests(cy);
 globalNotification.tests(cy);
+view.tests(cy);

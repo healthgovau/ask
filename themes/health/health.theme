@@ -11,12 +11,14 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\file\FileInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\Core\Url;
 use Drupal\views\Views;
+use Drupal\views\ViewEntityInterface;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Render\Markup;
 use Drupal\Component\Serialization\Json;
@@ -988,7 +990,11 @@ function health_form_views_exposed_form_alter(array &$form, FormStateInterface &
   $storage = $form_state->getStorage();
   if (isset($storage['view']) && $storage['view'] instanceof ViewExecutable) {
     $view = $storage['view'];
-    $field_name = 'search_api_fulltext';
+
+    // Assign custom class to specific search inputs to apply styling.
+    $field_names = ['search_api_fulltext', 'search_api_fulltext_listing'];
+    $matches = array_intersect($field_names, array_keys($form));
+    $field_name = reset($matches);
 
     if (isset($form[$field_name])) {
 
@@ -1587,6 +1593,39 @@ function health_preprocess_node(array &$variables) {
           // Do not render date updated.
           $variables['content']['field_h_date_updated']['#access'] = FALSE;
         }
+      }
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function health_preprocess_node__h_publication(array &$variables) {
+  $node = $variables['node'];
+
+  // Hide field_h_order_id and field_h_order_text if the publication isn't
+  // orderable.
+  if ($node instanceof NodeInterface) {
+    if (isset($variables['content']['field_h_order_id'])) {
+      $field_h_order_id = $variables['content']['field_h_order_id'];
+      unset($variables['content']['field_h_order_id']);
+    }
+    if (isset($variables['content']['field_h_order_text'])) {
+      $field_h_order_text = $variables['content']['field_h_order_text'];
+      unset($variables['content']['field_h_order_text']);
+    }
+
+    $availability = $node->field_h_resource_availability->referencedEntities();
+    foreach ($availability as $a) {
+      if ($a->getName() == 'Orderable') {
+        if (isset($field_h_order_id)) {
+          $variables['content']['field_h_order_id'] = $field_h_order_id;
+        }
+        if (isset($field_h_order_text)) {
+          $variables['content']['field_h_order_text'] = $field_h_order_text;
+        }
+        break;
       }
     }
   }
@@ -2548,6 +2587,59 @@ function health_preprocess_paragraph__para_h_listing(array &$variables) {
 /**
  * Implements template_preprocess_HOOK().
  */
+function health_preprocess_paragraph__para_h_view(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  try {
+    if ($paragraph instanceof ParagraphInterface) {
+      // Process heading.
+      if ($paragraph->get('field_h_title')->isEmpty() !== TRUE) {
+        $variables['content']['field_h_title'] = [
+          '#theme' => 'health_heading',
+          '#level' => '2',
+          '#text' => Html::escape($paragraph->get('field_h_title')->value),
+        ];
+      }
+
+      // Process the view.
+      $view = $paragraph->get('field_h_view')->entity;
+      if ($view instanceof ViewEntityInterface) {
+        // Confirm display mode exists in the given view.
+        $display_id = $paragraph->get('field_h_view_display_mode')->value;
+        $display = $view->getDisplay($display_id);
+        if ($display !== NULL) {
+          $view_executable = $view->getExecutable();
+
+          // Process view arguments.
+          $args = [];
+          $arguments = $paragraph->get('field_h_view_arguments')->getValue();
+          foreach ($arguments as $argument) {
+            $args[] = $argument['value'];
+          }
+
+          // Execute view.
+          $view_executable->setDisplay($display_id);
+          $view_executable->setArguments($args);
+          $view_executable->preExecute();
+          $view_executable->execute();
+          $variables['content']['field_h_view'] = $view_executable->buildRenderable($display_id, $args);
+        }
+        else {
+          // Not a valid view display mode.
+          throw new Exception('Display mode `' . $display_id . '` does not exist in view `' . $view->id() . '`');
+        }
+      }
+    }
+  }
+  catch (Exception $e) {
+    // Log error and don't render view.
+    \Drupal::logger('health')->error($e->getMessage());
+    $variables['content'] = [];
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
 function health_preprocess_region(array &$variables) {
   // Add .region--REGION_NAME CSS class to regions.
   $class_name = 'region--' . $variables['region'];
@@ -2609,6 +2701,11 @@ function health_preprocess_region__content_top(array &$variables) {
   }
   else {
     $variables['toolbar'] = NULL;
+    // Set page title.
+    $variables['page_title'] = NULL;
+    if (isset($variables['elements']['page_title_block'])) {
+      $variables['page_title'] = $variables['elements']['page_title_block'];
+    }
   }
 }
 
@@ -2697,6 +2794,14 @@ function health_theme(array $existing, $type, $theme, $path) {
         'modifiers' => NULL,
       ],
       'template' => 'custom/health-header',
+    ],
+    'health_heading' => [
+      'variables' => [
+        'level' => NULL,
+        'text' => NULL,
+        'classnames' => [],
+      ],
+      'template' => 'custom/health-heading',
     ],
     'health_hero' => [
       'variables' => [

@@ -1,0 +1,19 @@
+uuid: c901ac69-27ef-4aee-a016-a0daeafd140c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_h_view_arguments
+    - paragraphs.paragraphs_type.para_h_view
+id: paragraph.para_h_view.field_h_view_arguments
+field_name: field_h_view_arguments
+entity_type: paragraph
+bundle: para_h_view
+label: Arguments
+description: 'Values add here will be passed through to the view as arguments.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: 1fb6701c-c4c3-4627-8a4c-7a366249e6dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_h_view
+    - paragraphs.paragraphs_type.para_h_view
+id: paragraph.para_h_view.field_h_view
+field_name: field_h_view
+entity_type: paragraph
+bundle: para_h_view
+label: View
+description: 'Select the view to use.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

@@ -1,0 +1,39 @@
+id: sample_paragraphs_view
+label: Sample Paragraphs - View
+migration_group: health_sample
+migration_tags:
+  - health_sample_content
+  - health_sample_paragraphs
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: para_h_view_1
+      field_h_title: Twig for Template Designers
+      field_h_summary: |
+        This document describes the syntax and semantics of the template engine and will be most useful as reference to those creating Twig templates.
+      field_h_view: h_sample_custom_view
+      field_h_view_display_mode: embed_1
+      field_h_view_arguments:
+        - h_publication
+        - Infographic
+  ids:
+    id:
+      type: string
+process:
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "en"
+  field_h_title: field_h_title
+  'field_h_summary/value': field_h_summary
+  'field_h_summary/format':
+    plugin: default_value
+    default_value: plain_text
+  field_h_view: field_h_view
+  field_h_view_display_mode: field_h_view_display_mode
+  field_h_view_arguments: field_h_view_arguments
+destination:
+  plugin: 'entity:paragraph'
+  default_bundle: para_h_view
+migration_dependencies: null

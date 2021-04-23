@@ -1,0 +1,8 @@
+/**
+ * @file
+ * Contains styling for View paragraph type.
+ */
+
+ .au-body * + .views-element-container {
+   @include AU-space(margin-top, 1.5unit);
+ }
