@@ -18,6 +18,7 @@ dependencies:
     - paragraphs.paragraphs_type.para_h_listing_curated
     - paragraphs.paragraphs_type.para_h_listing_embedded
     - paragraphs.paragraphs_type.para_h_listing_tile
+    - paragraphs.paragraphs_type.para_h_view
   module:
     - entity_reference_revisions
 id: paragraph.para_h_band.field_h_content_components
@@ -48,6 +49,7 @@ settings:
       para_h_listing_embedded: para_h_listing_embedded
       para_h_listing_tile: para_h_listing_tile
       para_h_listing_curated: para_h_listing_curated
+      para_h_view: para_h_view
     target_bundles_drag_drop:
       para_h_address:
         weight: -51
@@ -127,4 +129,7 @@ settings:
       para_h_tile:
         weight: -29
         enabled: false
+      para_h_view:
+        enabled: true
+        weight: 54
 field_type: entity_reference_revisions
