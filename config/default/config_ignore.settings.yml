@@ -5,5 +5,7 @@ ignored_config_entities:
   6: shield.settings
   8: 'migrate_plus.migration.*'
   10: 'migrate_plus.migration_group.*'
+  12: 'migration.*'
+  14: 'migration_group.*'
 _core:
   default_config_hash: wkcuoFmlPvO6vAZlHjmW0x_dpmKg1XZWLWckYA5GPhw
