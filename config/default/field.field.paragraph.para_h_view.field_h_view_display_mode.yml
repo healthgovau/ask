@@ -1,0 +1,19 @@
+uuid: 2e987c42-b0e6-4a1b-b395-48608a5f784a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_h_view_display_mode
+    - paragraphs.paragraphs_type.para_h_view
+id: paragraph.para_h_view.field_h_view_display_mode
+field_name: field_h_view_display_mode
+entity_type: paragraph
+bundle: para_h_view
+label: 'Display mode'
+description: 'The machine name of the display mode to use with this view.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -11,12 +11,14 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\file\FileInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\Core\Url;
 use Drupal\views\Views;
+use Drupal\views\ViewEntityInterface;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Render\Markup;
 use Drupal\Component\Serialization\Json;
@@ -2585,6 +2587,59 @@ function health_preprocess_paragraph__para_h_listing(array &$variables) {
 /**
  * Implements template_preprocess_HOOK().
  */
+function health_preprocess_paragraph__para_h_view(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  try {
+    if ($paragraph instanceof ParagraphInterface) {
+      // Process heading.
+      if ($paragraph->get('field_h_title')->isEmpty() !== TRUE) {
+        $variables['content']['field_h_title'] = [
+          '#theme' => 'health_heading',
+          '#level' => '2',
+          '#text' => Html::escape($paragraph->get('field_h_title')->value),
+        ];
+      }
+
+      // Process the view.
+      $view = $paragraph->get('field_h_view')->entity;
+      if ($view instanceof ViewEntityInterface) {
+        // Confirm display mode exists in the given view.
+        $display_id = $paragraph->get('field_h_view_display_mode')->value;
+        $display = $view->getDisplay($display_id);
+        if ($display !== NULL) {
+          $view_executable = $view->getExecutable();
+
+          // Process view arguments.
+          $args = [];
+          $arguments = $paragraph->get('field_h_view_arguments')->getValue();
+          foreach ($arguments as $argument) {
+            $args[] = $argument['value'];
+          }
+
+          // Execute view.
+          $view_executable->setDisplay($display_id);
+          $view_executable->setArguments($args);
+          $view_executable->preExecute();
+          $view_executable->execute();
+          $variables['content']['field_h_view'] = $view_executable->buildRenderable($display_id, $args);
+        }
+        else {
+          // Not a valid view display mode.
+          throw new Exception('Display mode `' . $display_id . '` does not exist in view `' . $view->id() . '`');
+        }
+      }
+    }
+  }
+  catch (Exception $e) {
+    // Log error and don't render view.
+    \Drupal::logger('health')->error($e->getMessage());
+    $variables['content'] = [];
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
 function health_preprocess_region(array &$variables) {
   // Add .region--REGION_NAME CSS class to regions.
   $class_name = 'region--' . $variables['region'];
@@ -2734,6 +2789,14 @@ function health_theme(array $existing, $type, $theme, $path) {
         'modifiers' => NULL,
       ],
       'template' => 'custom/health-header',
+    ],
+    'health_heading' => [
+      'variables' => [
+        'level' => NULL,
+        'text' => NULL,
+        'classnames' => [],
+      ],
+      'template' => 'custom/health-heading',
     ],
     'health_hero' => [
       'variables' => [
