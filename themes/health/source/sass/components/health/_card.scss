@@ -2,9 +2,11 @@
 
   // Title.
 
-  &__title {}
+  // &__title {}
 
-  &__title--dark {}
+  // &__title--dark {}
+
+  // &__title--light {}
 
   &__title.health-card__title--light {
     color: $AU-color-foreground-text;
@@ -12,9 +14,23 @@
 
   // Text.
 
-  &__text {}
+  // &__text {}
 
-  &__text--dark {}
+  // &__text--cta {}
 
-  &__text--light {}
+  // &__text--dark {}
+
+  // &__text--light {}
+}
+
+/**
+ * Hacks to get around selector precedence rules.
+ */
+
+.health-card__text.health-card__text {
+  margin-top: 0;
+}
+
+.health-card__text.health-card__text--cta {
+  @include AU-space(margin-top, 1unit);
 }
