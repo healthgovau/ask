@@ -14,15 +14,17 @@
     set template = "@health/custom/" ~ templates[content.field_h_type]
   %}
 
-  {%
-    include template with {
-      "url": content.field_h_link_external_internal,
-      "title": content.field_h_title,
-      "image": content.field_h_image_featured,
-      "summary": content.field_h_summary,
-      "colour": content.field_h_colour_background.colour,
-      "theme": content.field_h_colour_background.theme
-    }
-  %}
+  <div>
+    {%
+      include template with {
+        "url": content.field_h_link_external_internal,
+        "title": content.field_h_title,
+        "image": content.field_h_image_featured,
+        "summary": content.field_h_summary,
+        "colour": content.field_h_colour_background.colour,
+        "theme": content.field_h_colour_background.theme
+      }
+    %}
+  </div>
 
 {% endblock %}
