@@ -10,16 +10,16 @@
     // Container.
 
     &--plain-large {
-      vertical-align: top;
-      position: relative;
-      margin: 0 0 1rem;
+      background: $colour-lighter;
+      height: 100%;
       padding: 1.5rem;
-      background: #f1f1f2;
+      position: relative;
+      vertical-align: top;
     }
 
-    &--plain-large-dark {}
+    // &--plain-large-dark {}
 
-    &--plain-large-light {}
+    // &--plain-large-light {}
 
     // Link.
 
@@ -29,9 +29,9 @@
       line-height: 1.2;
     }
 
-    &__link--plain-large {}
+    // &__link--plain-large {}
 
-    &__link--plain-large-light {}
+    // &__link--plain-large-light {}
 
     &__link--plain-large-dark,
     &__link--plain-large-dark:link,
@@ -43,11 +43,11 @@
 
     // Summary.
 
-    &__summary {}
+    // &__summary {}
 
-    &__summary--plain-large {}
+    // &__summary--plain-large {}
 
-    &__summary--plain-large-light {}
+    // &__summary--plain-large-light {}
 
     &__summary--plain-large-dark {
       color: $white;
