@@ -1,0 +1,20 @@
+.health-card {
+
+  // Title.
+
+  &__title {}
+
+  &__title--dark {}
+
+  &__title.health-card__title--light {
+    color: $AU-color-foreground-text;
+  }
+
+  // Text.
+
+  &__text {}
+
+  &__text--dark {}
+
+  &__text--light {}
+}

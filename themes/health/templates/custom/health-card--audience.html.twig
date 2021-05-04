@@ -1,13 +1,6 @@
-<a
-  class="health-card health-card--solid-half health-card--shadow health-card--colour1"
-  href="{{ url }}"
-  style="
-    background-color: {{ colour }};
-    background-image: linear-gradient(to right, {{ colour }} 0, {{ colour }} 35%, #fff 35%, #fff 100%);
-  "
->
-  <h3 class="health-card__title au-display-md">{{ title }}</h3>
-  <div class="health-card__text">
+<a class="health-card health-card--solid-half health-card--shadow health-card--colour1 health-card--{{ theme }}" href="{{ url }}" style="background-color: {{ colour }}; background-image: linear-gradient(to right, {{ colour }} 0, {{ colour }} 35%, #fff 35%, #fff 100%);">
+  <h3 class="health-card__title health-card__title--{{ theme }} au-display-md">{{ title }}</h3>
+  <div class="health-card__text health-card__text--{{ theme }}">
     <p>{{ summary }}</p>
   </div>
 </a>
