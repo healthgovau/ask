@@ -9,10 +9,19 @@
   href="{{ url }}"
   style="border-top-color: {{ colour }};"
 >
-  <div class="health-card__image">
-    {{ image }}
-  </div>
-    <h3 class="health-card__title au-display-md au-display--heavy">
-      {{ title }}
-    </h3>
+  {% if image %}
+    <div class="health-card__image health-card__image--full-width">
+      {{ image }}
+    </div>
+  {% endif %}
+
+  <h3 class="health-card__title au-display-md au-display--heavy">
+    {{ title }}
+  </h3>
+
+  {% if summary %}
+    <p class="health-card__text">
+      {{ summary }}
+    </p>
+  {% endif %}
 </a>
