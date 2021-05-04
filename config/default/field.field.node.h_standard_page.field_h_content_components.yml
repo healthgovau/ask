@@ -16,6 +16,7 @@ dependencies:
     - paragraphs.paragraphs_type.para_h_layout_grid
     - paragraphs.paragraphs_type.para_h_layout_three_column
     - paragraphs.paragraphs_type.para_h_layout_two_column
+    - paragraphs.paragraphs_type.para_h_link_featured
     - paragraphs.paragraphs_type.para_h_listing_curated
     - paragraphs.paragraphs_type.para_h_listing_embedded
     - paragraphs.paragraphs_type.para_h_view
@@ -49,6 +50,7 @@ settings:
       para_h_layout_grid: para_h_layout_grid
       para_h_layout_three_column: para_h_layout_three_column
       para_h_layout_two_column: para_h_layout_two_column
+      para_h_link_featured: para_h_link_featured
       para_h_view: para_h_view
     target_bundles_drag_drop:
       para_h_address:
@@ -105,6 +107,9 @@ settings:
       para_h_layout_two_column:
         enabled: true
         weight: -29
+      para_h_link_featured:
+        enabled: true
+        weight: 47
       para_h_listing:
         weight: -35
         enabled: false

@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.para_h_layout_grid
     - paragraphs.paragraphs_type.para_h_layout_three_column
     - paragraphs.paragraphs_type.para_h_layout_two_column
+    - paragraphs.paragraphs_type.para_h_link_featured
     - paragraphs.paragraphs_type.para_h_publication_grouping
     - paragraphs.paragraphs_type.para_h_tile
   module:
@@ -41,10 +42,14 @@ settings:
       para_h_layout_three_column: para_h_layout_three_column
       para_h_layout_two_column: para_h_layout_two_column
       para_h_publication_grouping: para_h_publication_grouping
+      para_h_link_featured: para_h_link_featured
       para_h_tile: para_h_tile
     target_bundles_drag_drop:
       para_h_address:
         weight: 25
+        enabled: false
+      para_h_app_or_tool:
+        weight: 30
         enabled: false
       para_h_band:
         weight: 26
@@ -94,8 +99,14 @@ settings:
       para_h_layout_two_column:
         enabled: true
         weight: 41
+      para_h_link_featured:
+        enabled: true
+        weight: 47
       para_h_listing:
         weight: 42
+        enabled: false
+      para_h_listing_curated:
+        weight: 49
         enabled: false
       para_h_listing_embedded:
         weight: 43
@@ -115,4 +126,7 @@ settings:
       para_h_tile:
         enabled: true
         weight: 48
+      para_h_view:
+        weight: 56
+        enabled: false
 field_type: entity_reference_revisions
