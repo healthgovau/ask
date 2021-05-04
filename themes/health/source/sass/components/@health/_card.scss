@@ -1,4 +1,7 @@
 .health-card {
-  min-height: 200px;
   height: 100%;
+
+  &--cta {
+    min-height: 200px;
+  }
 }
