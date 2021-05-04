@@ -41,6 +41,8 @@ source:
           id: para_h_content_iframe_1
         -
           id: para_h_view_1
+        -
+          id: para_h_layout_grid_3
       generate_toc: 1
       subject: Politics
       content_language: English

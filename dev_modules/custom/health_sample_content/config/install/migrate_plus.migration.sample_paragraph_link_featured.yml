@@ -1,0 +1,97 @@
+id: sample_paragraphs_link_featured
+label: Sample Paragraphs - Link Featured
+migration_group: health_sample
+migration_tags:
+  - health_sample_content
+  - health_sample_paragraphs
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: para_h_link_featured_1
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_5
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Interceptor
+    -
+      id: para_h_link_featured_2
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_5
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Fighter
+    -
+      id: para_h_link_featured_3
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_5
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Defender
+    -
+      id: para_h_link_featured_4
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_5
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Bomber
+    -
+      id: para_h_link_featured_5
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_5
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Striker
+    -
+      id: para_h_link_featured_6
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_5
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Tank
+  ids:
+    id:
+      type: string
+process:
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "en"
+  field_h_type: field_h_type
+  field_h_colour_background:
+    plugin: entity_lookup
+    entity_type: taxonomy_term
+    value_key: name
+    source: field_h_colour_background
+    bundle_key: vid
+    bundle: h_colour
+  field_h_image_featured:
+    plugin: migration_lookup
+    migration: sample_media_image
+    source: field_h_image_featured
+  'field_h_link_external_internal/uri': field_h_link_external_internal
+  'field_h_summary/value': field_h_summary
+  'field_h_summary/format':
+    plugin: default_value
+    default_value: plain_text
+  field_h_title: field_h_title
+destination:
+  plugin: 'entity:paragraph'
+  default_bundle: para_h_link_featured
+migration_dependencies:
+  required:
+    - sample_file_image
+    - sample_media_image
+    - sample_taxonomy_colour

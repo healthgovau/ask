@@ -45,6 +45,24 @@ source:
       field_h_items_per_row_mobile: '2'
       field_h_items_per_row_tablet: none
       field_h_items_per_row_desktop: none
+    -
+      id: para_h_layout_grid_3
+      field_h_content_components:
+        -
+          id: para_h_link_featured_1
+        -
+          id: para_h_link_featured_2
+        -
+          id: para_h_link_featured_3
+        -
+          id: para_h_link_featured_4
+        -
+          id: para_h_link_featured_5
+        -
+          id: para_h_link_featured_6
+      field_h_items_per_row: '3'
+      field_h_items_per_row_tablet: none
+      field_h_items_per_row_desktop: none
   ids:
     id:
       type: string
@@ -60,6 +78,7 @@ process:
       target_id:
         plugin: migration_lookup
         migration:
+          - sample_paragraphs_link_featured
           - sample_paragraphs_tile
         source: id
       target_revision_id: '@target_id'
@@ -74,3 +93,4 @@ migration_dependencies:
   required:
     - sample_media_image
     - sample_paragraphs_tile
+    - sample_paragraphs_link_featured
