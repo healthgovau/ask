@@ -1,0 +1,30 @@
+uuid: b632a206-719e-45dd-b27c-0674aa720cb8
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_h_type
+field_name: field_h_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: link--top-task
+      label: 'Top task'
+    -
+      value: link--plain-title-top
+      label: 'Plain - title above'
+    -
+      value: link--plain-title-left
+      label: 'Plain - title on left'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

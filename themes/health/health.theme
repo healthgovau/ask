@@ -2299,6 +2299,29 @@ function health_preprocess_paragraph__para_h_layout_two_column(array &$variables
 /**
  * Implements template_preprocess_HOOK().
  */
+function health_preprocess_paragraph__para_h_link_featured(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  if ($paragraph instanceof ParagraphInterface) {
+    $title = $paragraph->get('field_h_title')->value;
+    $type = $paragraph->get('field_h_type')->value;
+    $uri = $paragraph->get('field_h_link_external_internal')->uri;
+    $summary = $paragraph->get('field_h_summary')->value;
+    // $test = $paragraph->get('field_h_colour_background')->entity->get('field_h_colour_hex')->value;
+    $colour = $paragraph->get('field_h_colour_background')->entity->get('field_h_colour_hex')->value;
+    $theme = $paragraph->get('field_h_colour_background')->entity->get('field_h_colour_theme')->value;
+
+    $variables['content']['field_h_title'] = $title;
+    $variables['content']['field_h_type'] = $type;
+    $variables['content']['field_h_link_external_internal'] = Url::fromUri($uri);
+    $variables['content']['field_h_summary'] = ($summary) ?: '';
+    $variables['content']['field_h_colour_background']['theme'] = $theme;
+    $variables['content']['field_h_colour_background']['colour'] = $colour ?: '#ffffff';
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
 function health_preprocess_paragraph__para_h_listing_embedded(array &$variables) {
   // Create the renderable elements making up the embedding listing component.
   $paragraph = $variables['paragraph'];
