@@ -2306,7 +2306,6 @@ function health_preprocess_paragraph__para_h_link_featured(array &$variables) {
     $type = $paragraph->get('field_h_type')->value;
     $uri = $paragraph->get('field_h_link_external_internal')->uri;
     $summary = $paragraph->get('field_h_summary')->value;
-    // $test = $paragraph->get('field_h_colour_background')->entity->get('field_h_colour_hex')->value;
     $colour = $paragraph->get('field_h_colour_background')->entity->get('field_h_colour_hex')->value;
     $theme = $paragraph->get('field_h_colour_background')->entity->get('field_h_colour_theme')->value;
 
