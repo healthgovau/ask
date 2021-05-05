@@ -61,6 +61,51 @@ source:
       field_h_summary: |
         Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
       field_h_title: TIE Tank
+    -
+      id: para_h_link_featured_7
+      field_h_type: link--plain-title-top
+      field_h_colour_background: teal
+      field_h_image_featured: image_7
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Bomber
+    -
+      id: para_h_link_featured_8
+      field_h_type: link--plain-title-top
+      field_h_colour_background: primary
+      field_h_image_featured: image_3
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Striker
+    -
+      id: para_h_link_featured_9
+      field_h_type: link--plain-title-top
+      field_h_colour_background: warning
+      field_h_image_featured: image_4
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Tank
+    -
+      id: para_h_link_featured_10
+      field_h_type: link--plain-title-left
+      field_h_colour_background: primary
+      field_h_image_featured: image_8
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Striker
+    -
+      id: para_h_link_featured_11
+      field_h_type: link--plain-title-left
+      field_h_colour_background: warning
+      field_h_image_featured: image_9
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Tank
   ids:
     id:
       type: string

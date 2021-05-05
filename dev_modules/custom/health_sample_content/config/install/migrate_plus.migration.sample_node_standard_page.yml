@@ -43,6 +43,14 @@ source:
           id: para_h_view_1
         -
           id: para_h_layout_grid_3
+        -
+          id: para_h_link_featured_7
+        -
+          id: para_h_link_featured_8
+        -
+          id: para_h_link_featured_9
+        -
+          id: para_h_layout_grid_4
       generate_toc: 1
       subject: Politics
       content_language: English
@@ -133,6 +141,7 @@ process:
           - sample_paragraphs_content_text
           - sample_paragraphs_content_table
           - sample_paragraphs_layout_grid
+          - sample_paragraphs_link_featured
           - sample_paragraphs_listing_embedded
           - sample_paragraphs_view
         source: id

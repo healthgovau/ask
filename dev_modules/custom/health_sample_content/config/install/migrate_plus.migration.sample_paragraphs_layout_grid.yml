@@ -43,8 +43,8 @@ source:
           id: para_h_tile_4
       field_h_items_per_row: custom
       field_h_items_per_row_mobile: '2'
-      field_h_items_per_row_tablet: none
-      field_h_items_per_row_desktop: none
+      field_h_items_per_row_tablet: _none
+      field_h_items_per_row_desktop: _none
     -
       id: para_h_layout_grid_3
       field_h_content_components:
@@ -61,8 +61,18 @@ source:
         -
           id: para_h_link_featured_6
       field_h_items_per_row: '3'
-      field_h_items_per_row_tablet: none
-      field_h_items_per_row_desktop: none
+      field_h_items_per_row_tablet: _none
+      field_h_items_per_row_desktop: _none
+    -
+      id: para_h_layout_grid_4
+      field_h_content_components:
+        -
+          id: para_h_link_featured_10
+        -
+          id: para_h_link_featured_11
+      field_h_items_per_row: '2'
+      field_h_items_per_row_tablet: _none
+      field_h_items_per_row_desktop: _none
   ids:
     id:
       type: string
