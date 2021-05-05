@@ -1,16 +1,14 @@
 {% extends "@paragraphs/paragraph.html.twig" %}
 
 {% block paragraph %}
-  <div>
-    {%
-      include "@health/custom/health-card--call-to-action.html.twig" with {
-        "url": url,
-        "title": title,
-        "image": image,
-        "summary": summary,
-        "colour": "#0077c8",
-        "theme": "light"
-      }
-    %}
-  </div>
+  {%
+    include "@health/custom/health-card--call-to-action.html.twig" with {
+      "url": url,
+      "title": title,
+      "image": image,
+      "summary": summary,
+      "colour": "#0077c8",
+      "theme": "light"
+    }
+  %}
 {% endblock %}
