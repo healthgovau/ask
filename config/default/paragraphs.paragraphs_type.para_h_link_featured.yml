@@ -1,0 +1,10 @@
+uuid: 1eaf4278-423e-43cf-9bf5-30d4a6073327
+langcode: en
+status: true
+dependencies: {  }
+id: para_h_link_featured
+label: 'Link - Featured'
+icon_uuid: null
+icon_default: null
+description: 'A prominent link which is designed to capture attention and drive users to another section of the site.'
+behavior_plugins: {  }

@@ -1,0 +1,142 @@
+id: sample_paragraphs_link_featured
+label: Sample Paragraphs - Link Featured
+migration_group: health_sample
+migration_tags:
+  - health_sample_content
+  - health_sample_paragraphs
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: para_h_link_featured_1
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_5
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Interceptor
+    -
+      id: para_h_link_featured_2
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_6
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Faster and better-armed descendents of regular TIE fighters, TIE interceptors defended the second Death Star at the Battle of Endor. The bent-winged fighters swarmed the Rebel fleet in a terrifying display of the Empire's military might.
+      field_h_title: TIE Fighter
+    -
+      id: para_h_link_featured_3
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_7
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        The best way to acquire a breeding pair is to purchase a half dozen juvenile silver dollars and raise them together. The parents will not consume the eggs or fry, although other fish will, so when spawning them it is wise to place them in a separate tank.
+      field_h_title: TIE Defender
+    -
+      id: para_h_link_featured_4
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_8
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Piranhas are generally less valued, although they are commonly consumed by subsistence fishers and frequently sold for food in local market's.
+      field_h_title: Piranha
+    -
+      id: para_h_link_featured_5
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_5
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        The diets of the various serrasalmid fishes include seeds, fruits, leaves, and various invertebrate and vertebrate prey, as well as fish flesh, scales, and fins. To emphasize the diversity of diets, authors commonly highlight the fruit- and leaf-eating pacus and the highly carnivorous piranhas.
+      field_h_title: TIE Striker
+    -
+      id: para_h_link_featured_6
+      field_h_type: link--top-task
+      field_h_colour_background: teal
+      field_h_image_featured: image_6
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        The fish might also be effectively an annual species with a lifespan of just a single year in nature. It lives for several years in captivity.
+      field_h_title: Cardinal tetra
+    -
+      id: para_h_link_featured_7
+      field_h_type: link--plain-title-top
+      field_h_colour_background: teal
+      field_h_image_featured: image_7
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        The cardinal tetra forages in areas of slow-moving, shallow water. It is predominantly predatory, feeding on tiny animals found on underwater plants, roots, and leaf litter.
+      field_h_title: TIE Bomber
+    -
+      id: para_h_link_featured_8
+      field_h_type: link--plain-title-top
+      field_h_colour_background: primary
+      field_h_image_featured: image_8
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        The cardinal tetra has bright red ventral parts and an iridescent blue line that runs horizontally along its body. The characteristic iridescence of this and related fishes, such as the neon tetra, is a structural color, caused by refraction of light within guanine crystals that develop within special cells called iridocytes in the subcutaneous layer.
+      field_h_title: TIE Striker
+    -
+      id: para_h_link_featured_9
+      field_h_type: link--plain-title-top
+      field_h_colour_background: warning
+      field_h_image_featured: image_5
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Arapaima are particularly vulnerable to overfishing because of their size and because they must surface periodically to breathe. Some 7000 tons per year were taken from 1918 to 1924, the height of commercial arapaima fishing; demand led to farming of the fish by native ribeirinhos.
+      field_h_title: Aeapaima
+    -
+      id: para_h_link_featured_10
+      field_h_type: link--plain-title-left
+      field_h_colour_background: primary
+      field_h_image_featured: image_6
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        The diet of the arapaima consists of fish, crustaceans, fruits, seeds, insects, and small land animals that walk near the shore.
+      field_h_title: TIE Striker
+    -
+      id: para_h_link_featured_11
+      field_h_type: link--plain-title-left
+      field_h_colour_background: warning
+      field_h_image_featured: image_7
+      field_h_link_external_internal: 'https://www.starwars.com/databank/tie-interceptor'
+      field_h_summary: |
+        Arapaima can reach lengths more than 2 m (6 ft 7 in), in some exceptional cases even exceeding 2.6 m (8 ft 6 in) and over 100 kg (220 lb). The maximum recorded weight for the species is 200 kg (440 lb), while the longest recorded length verified was 3.07 meters (10 ft 1 in).
+      field_h_title: TIE Tank
+  ids:
+    id:
+      type: string
+process:
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "en"
+  field_h_type: field_h_type
+  field_h_colour_background:
+    plugin: entity_lookup
+    entity_type: taxonomy_term
+    value_key: name
+    source: field_h_colour_background
+    bundle_key: vid
+    bundle: h_colour
+  field_h_image_featured:
+    plugin: migration_lookup
+    migration: sample_media_image
+    source: field_h_image_featured
+  'field_h_link_external_internal/uri': field_h_link_external_internal
+  'field_h_summary/value': field_h_summary
+  'field_h_summary/format':
+    plugin: default_value
+    default_value: plain_text
+  field_h_title: field_h_title
+destination:
+  plugin: 'entity:paragraph'
+  default_bundle: para_h_link_featured
+migration_dependencies:
+  required:
+    - sample_file_image
+    - sample_media_image
+    - sample_taxonomy_colour

@@ -1,0 +1,63 @@
+/**
+ * @file
+ * Styles for the Featured Link component.
+ */
+
+.au-body {
+
+  .featured-link {
+
+    // Container.
+
+    &--plain-large {
+      background: $colour-lighter;
+      height: 100%;
+      padding: 1.5rem;
+      position: relative;
+      vertical-align: top;
+    }
+
+    // &--plain-large-dark {}
+
+    // &--plain-large-light {}
+
+    // Link.
+
+    &__link {
+      font-weight: 700;
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+
+    // &__link--plain-large {}
+
+    // &__link--plain-large-light {}
+
+    &__link--plain-large-dark,
+    &__link--plain-large-dark:link,
+    &__link--plain-large-dark:visited,
+    &__link--plain-large-dark:hover,
+    &__link--plain-large-dark:active {
+      color: $white;
+    }
+
+    // Summary.
+
+    // &__summary {}
+
+    &__summary--plain-large {
+      margin-top: 1rem;
+    }
+
+    // &__summary--plain-large-light {}
+
+    &__summary--plain-large-dark {
+      color: $white;
+    }
+  }
+}
+
+// Spacing between adjacent featured links.
+.featured-link + .featured-link {
+  margin-top: 1rem;
+}

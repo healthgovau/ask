@@ -1,0 +1,28 @@
+{% extends "@paragraphs/paragraph.html.twig" %}
+
+{% block paragraph %}
+
+  {%
+    set templates = {
+      "link--top-task": "health-card--call-to-action.html.twig",
+      "link--plain-title-left": "health-card--audience.html.twig",
+      "link--plain-title-top": "health-card--plain-large.html.twig"
+    }
+  %}
+
+  {%
+    set template = "@health/custom/" ~ templates[content.field_h_type]
+  %}
+
+  {%
+    include template with {
+      "url": content.field_h_link_external_internal,
+      "title": content.field_h_title,
+      "image": content.field_h_image_featured,
+      "summary": content.field_h_summary,
+      "colour": content.field_h_colour_background.colour,
+      "theme": content.field_h_colour_background.theme
+    }
+  %}
+
+{% endblock %}
