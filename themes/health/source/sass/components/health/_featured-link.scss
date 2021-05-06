@@ -56,3 +56,8 @@
     }
   }
 }
+
+// Spacing between adjacent featured links.
+.featured-link + .featured-link {
+  margin-top: 1rem;
+}
