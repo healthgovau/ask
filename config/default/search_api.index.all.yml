@@ -8,9 +8,11 @@ dependencies:
     - node
     - search_api
   config:
-    - field.storage.node.field_h_date_updated
-    - field.storage.node.field_h_summary
     - field.storage.node.field_h_audience
+    - field.storage.node.field_h_date_created
+    - field.storage.node.field_h_date_updated
+    - field.storage.node.field_h_resource_date
+    - field.storage.node.field_h_summary
     - search_api.server.lagoon_solr
 third_party_settings:
   search_api_solr:
@@ -58,6 +60,14 @@ name: All
 description: ''
 read_only: false
 field_settings:
+  field_h_date_created:
+    label: 'Date created'
+    datasource_id: 'entity:node'
+    property_path: field_h_date_created
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_h_date_created
   field_h_date_updated:
     label: 'Last updated'
     datasource_id: 'entity:node'
@@ -66,6 +76,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_h_date_updated
+  field_h_resource_date:
+    label: 'Resource published'
+    datasource_id: 'entity:node'
+    property_path: field_h_resource_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_h_resource_date
   field_h_summary:
     label: Summary
     datasource_id: 'entity:node'
