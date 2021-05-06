@@ -1,0 +1,39 @@
+<a class="
+    health-card
+    health-card--centered
+    health-card--shadow
+    health-card--top-highlight
+    health-card--cta
+    colour1
+  "
+  href="{{ url }}"
+  style="border-top-color: {{ colour }};"
+>
+  {% if image %}
+    <div class="
+      health-card__image
+      health-card__image--cta
+      health-card__image--full-width"
+    >
+      {{ image }}
+    </div>
+  {% endif %}
+
+  <h3 class="
+    health-card__title
+    health-card__title--cta
+    au-display-md
+    au-display--heavy"
+  >
+    {{ title }}
+  </h3>
+
+  {% if summary %}
+    <p class="
+      health-card__text
+      health-card__text--cta"
+    >
+      {{ summary }}
+    </p>
+  {% endif %}
+</a>

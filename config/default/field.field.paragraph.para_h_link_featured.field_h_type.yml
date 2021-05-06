@@ -1,0 +1,21 @@
+uuid: 98c1b936-03a9-4595-a593-fbdbd5e76a62
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_h_type
+    - paragraphs.paragraphs_type.para_h_link_featured
+  module:
+    - options
+id: paragraph.para_h_link_featured.field_h_type
+field_name: field_h_type
+entity_type: paragraph
+bundle: para_h_link_featured
+label: Type
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

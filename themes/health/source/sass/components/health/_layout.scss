@@ -1,12 +1,10 @@
+// Size of gutter between grid items.
+$grid-gutter-size: 1rem;
+
 .au-body {
 
-  .health-grid {
-    margin-left: -1rem;
-    margin-right: -1rem;
-
-    > * + p {
-      margin-top: 0;
-    }
+  .health-grid > * + p {
+    margin-top: 0;
   }
 }
 
@@ -14,12 +12,13 @@
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   > * {
     box-sizing: border-box;
     flex-basis: 100%;
     -ms-flex: auto;
+    margin-bottom: $grid-gutter-size;
     padding: 1rem;
   }
 
@@ -27,28 +26,28 @@
 
     &-xs > * {
       @include AU-media(xs) {
-        flex-basis: calc(100% / 1);
+        @include health-grid-item-width();
         -ms-flex: auto;
       }
     }
 
     &-sm > * {
       @include AU-media(sm) {
-        flex-basis: calc(100% / 1);
+        @include health-grid-item-width();
         -ms-flex: auto;
       }
     }
 
     &-md > * {
       @include AU-media(md) {
-        flex-basis: calc(100% / 1);
+        @include health-grid-item-width();
         -ms-flex: auto;
       }
     }
 
     &-lg > * {
       @include AU-media(lg) {
-        flex-basis: calc(100% / 1);
+        @include health-grid-item-width();
         -ms-flex: auto;
       }
     }
@@ -58,28 +57,28 @@
 
     &-xs > * {
       @include AU-media(xs) {
-        flex-basis: calc(100% / 2);
+        @include health-grid-item-width(2, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-sm > * {
       @include AU-media(sm) {
-        flex-basis: calc(100% / 2);
+        @include health-grid-item-width(2, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-md > * {
       @include AU-media(md) {
-        flex-basis: calc(100% / 2);
+        @include health-grid-item-width(2, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-lg > * {
       @include AU-media(lg) {
-        flex-basis: calc(100% / 2);
+        @include health-grid-item-width(2, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
@@ -89,28 +88,28 @@
 
     &-xs > * {
       @include AU-media(xs) {
-        flex-basis: calc(100% / 3);
+        @include health-grid-item-width(3, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-sm > * {
       @include AU-media(sm) {
-        flex-basis: calc(100% / 3);
+        @include health-grid-item-width(3, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-md > * {
       @include AU-media(md) {
-        flex-basis: calc(100% / 3);
+        @include health-grid-item-width(3, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-lg > * {
       @include AU-media(lg) {
-        flex-basis: calc(100% / 3);
+        @include health-grid-item-width(3, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
@@ -120,28 +119,28 @@
 
     &-xs > * {
       @include AU-media(xs) {
-        flex-basis: calc(100% / 4);
+        @include health-grid-item-width(4, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-sm > * {
       @include AU-media(sm) {
-        flex-basis: calc(100% / 4);
+        @include health-grid-item-width(4, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-md > * {
       @include AU-media(md) {
-        flex-basis: calc(100% / 4);
+        @include health-grid-item-width(4, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-lg > * {
       @include AU-media(lg) {
-        flex-basis: calc(100% / 4);
+        @include health-grid-item-width(4, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
@@ -151,28 +150,28 @@
 
     &-xs > * {
       @include AU-media(xs) {
-        flex-basis: calc(100% / 5);
+        @include health-grid-item-width(5, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-sm > * {
       @include AU-media(sm) {
-        flex-basis: calc(100% / 5);
+        @include health-grid-item-width(5, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-md > * {
       @include AU-media(md) {
-        flex-basis: calc(100% / 5);
+        @include health-grid-item-width(5, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-lg > * {
       @include AU-media(lg) {
-        flex-basis: calc(100% / 5);
+        @include health-grid-item-width(5, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
@@ -182,28 +181,28 @@
 
     &-xs > * {
       @include AU-media(xs) {
-        flex-basis: calc(100% / 6);
+        @include health-grid-item-width(6, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-sm > * {
       @include AU-media(sm) {
-        flex-basis: calc(100% / 6);
+        @include health-grid-item-width(6, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-md > * {
       @include AU-media(md) {
-        flex-basis: calc(100% / 6);
+        @include health-grid-item-width(6, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-lg > * {
       @include AU-media(lg) {
-        flex-basis: calc(100% / 6);
+        @include health-grid-item-width(6, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
@@ -213,28 +212,28 @@
 
     &-xs > * {
       @include AU-media(xs) {
-        flex-basis: calc(100% / 7);
+        @include health-grid-item-width(7, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-sm > * {
       @include AU-media(sm) {
-        flex-basis: calc(100% / 7);
+        @include health-grid-item-width(7, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-md > * {
       @include AU-media(md) {
-        flex-basis: calc(100% / 7);
+        @include health-grid-item-width(7, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-lg > * {
       @include AU-media(lg) {
-        flex-basis: calc(100% / 7);
+        @include health-grid-item-width(7, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
@@ -244,28 +243,28 @@
 
     &-xs > * {
       @include AU-media(xs) {
-        flex-basis: calc(100% / 8);
+        @include health-grid-item-width(8, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-sm > * {
       @include AU-media(sm) {
-        flex-basis: calc(100% / 8);
+        @include health-grid-item-width(8, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-md > * {
       @include AU-media(md) {
-        flex-basis: calc(100% / 8);
+        @include health-grid-item-width(8, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
 
     &-lg > * {
       @include AU-media(lg) {
-        flex-basis: calc(100% / 8);
+        @include health-grid-item-width(8, $grid-gutter-size);
         -ms-flex: auto;
       }
     }
