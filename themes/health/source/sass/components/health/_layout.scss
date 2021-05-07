@@ -22,250 +22,537 @@ $grid-gutter-size: 1rem;
     padding: 1rem;
   }
 
+  > img {
+    padding: 0;
+  }
+
   &--1col {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width();
-        -ms-flex: auto;
+    &-xs {
+      > * {
+        @include AU-media(xs) {
+          flex-basis: health-grid-item-width();
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(xs) {
+          max-width: health-grid-item-width();
+        }
       }
     }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width();
-        -ms-flex: auto;
+    &-sm {
+
+      > * {
+        @include AU-media(sm) {
+          flex-basis: health-grid-item-width();
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(sm) {
+          max-width: health-grid-item-width();
+        }
       }
     }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width();
-        -ms-flex: auto;
+    &-md {
+
+      > * {
+        @include AU-media(md) {
+          flex-basis: health-grid-item-width();
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(md) {
+          max-width: health-grid-item-width();
+        }
       }
     }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width();
-        -ms-flex: auto;
+    &-lg {
+
+      > * {
+        @include AU-media(lg) {
+          flex-basis: health-grid-item-width();
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(lg) {
+          max-width: health-grid-item-width();
+        }
       }
     }
   }
 
   &--2col {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(2, $grid-gutter-size);
-        -ms-flex: auto;
+    &-xs {
+      > * {
+        @include AU-media(xs) {
+          flex-basis: health-grid-item-width(2, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(xs) {
+          max-width: health-grid-item-width(2, $grid-gutter-size);
+        }
       }
     }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(2, $grid-gutter-size);
-        -ms-flex: auto;
+    &-sm {
+      > * {
+        @include AU-media(sm) {
+          flex-basis: health-grid-item-width(2, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(sm) {
+          max-width: health-grid-item-width(2, $grid-gutter-size);
+        }
       }
     }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(2, $grid-gutter-size);
-        -ms-flex: auto;
+    &-md {
+      > * {
+        @include AU-media(md) {
+          flex-basis: health-grid-item-width(2, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(md) {
+          max-width: health-grid-item-width(2, $grid-gutter-size);
+        }
       }
     }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(2, $grid-gutter-size);
-        -ms-flex: auto;
+    &-lg {
+      > * {
+        @include AU-media(lg) {
+          flex-basis: health-grid-item-width(2, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(lg) {
+          max-width: health-grid-item-width(2, $grid-gutter-size);
+        }
       }
     }
   }
 
   &--3col {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(3, $grid-gutter-size);
-        -ms-flex: auto;
+    &-xs {
+
+      > * {
+        @include AU-media(xs) {
+          flex-basis: health-grid-item-width(3, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(xs) {
+          max-width: health-grid-item-width(3, $grid-gutter-size);
+        }
       }
     }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(3, $grid-gutter-size);
-        -ms-flex: auto;
+    &-sm {
+
+      > * {
+        @include AU-media(sm) {
+          flex-basis: health-grid-item-width(3, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(sm) {
+          max-width: health-grid-item-width(3, $grid-gutter-size);
+        }
       }
     }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(3, $grid-gutter-size);
-        -ms-flex: auto;
+    &-md {
+
+      > * {
+        @include AU-media(md) {
+          flex-basis: health-grid-item-width(3, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(md) {
+          max-width: health-grid-item-width(3, $grid-gutter-size);
+        }
       }
     }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(3, $grid-gutter-size);
-        -ms-flex: auto;
+    &-lg {
+
+      > * {
+        @include AU-media(lg) {
+          flex-basis: health-grid-item-width(3, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(lg) {
+          max-width: health-grid-item-width(3, $grid-gutter-size);
+        }
       }
     }
   }
 
   &--4col {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(4, $grid-gutter-size);
-        -ms-flex: auto;
+    &-xs {
+
+      > * {
+        @include AU-media(xs) {
+          flex-basis: health-grid-item-width(4, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(xs) {
+          max-width: health-grid-item-width(4, $grid-gutter-size);
+        }
       }
     }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(4, $grid-gutter-size);
-        -ms-flex: auto;
+    &-sm {
+
+      > * {
+        @include AU-media(sm) {
+          flex-basis: health-grid-item-width(4, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(sm) {
+          max-width: health-grid-item-width(4, $grid-gutter-size);
+        }
       }
     }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(4, $grid-gutter-size);
-        -ms-flex: auto;
+    &-md {
+
+      > * {
+        @include AU-media(md) {
+          flex-basis: health-grid-item-width(4, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(md) {
+          max-width: health-grid-item-width(4, $grid-gutter-size);
+        }
       }
     }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(4, $grid-gutter-size);
-        -ms-flex: auto;
+    &-lg {
+
+      > * {
+        @include AU-media(lg) {
+          flex-basis: health-grid-item-width(4, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(lg) {
+          max-width: health-grid-item-width(4, $grid-gutter-size);
+        }
       }
     }
   }
 
   &--5col {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(5, $grid-gutter-size);
-        -ms-flex: auto;
+    &-xs {
+
+      > * {
+        @include AU-media(xs) {
+          flex-basis: health-grid-item-width(5, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(xs) {
+          max-width: health-grid-item-width(5, $grid-gutter-size);
+        }
       }
     }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(5, $grid-gutter-size);
-        -ms-flex: auto;
+    &-sm {
+
+      > * {
+        @include AU-media(sm) {
+          flex-basis: health-grid-item-width(5, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(sm) {
+          max-width: health-grid-item-width(5, $grid-gutter-size);
+        }
       }
     }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(5, $grid-gutter-size);
-        -ms-flex: auto;
+    &-md {
+
+      > * {
+        @include AU-media(md) {
+          flex-basis: health-grid-item-width(5, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(md) {
+          max-width: health-grid-item-width(5, $grid-gutter-size);
+        }
       }
     }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(5, $grid-gutter-size);
-        -ms-flex: auto;
+    &-lg {
+
+      > * {
+        @include AU-media(lg) {
+          flex-basis: health-grid-item-width(5, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(lg) {
+          max-width: health-grid-item-width(5, $grid-gutter-size);
+        }
       }
     }
   }
 
   &--6col {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(6, $grid-gutter-size);
-        -ms-flex: auto;
+    &-xs {
+
+      > * {
+        @include AU-media(xs) {
+          flex-basis: health-grid-item-width(6, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(xs) {
+          max-width: health-grid-item-width(6, $grid-gutter-size);
+        }
       }
     }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(6, $grid-gutter-size);
-        -ms-flex: auto;
+    &-sm {
+
+      > * {
+        @include AU-media(sm) {
+          flex-basis: health-grid-item-width(6, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(sm) {
+          max-width: health-grid-item-width(6, $grid-gutter-size);
+        }
       }
     }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(6, $grid-gutter-size);
-        -ms-flex: auto;
+    &-md {
+
+      > * {
+        @include AU-media(md) {
+          flex-basis: health-grid-item-width(6, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(md) {
+          max-width: health-grid-item-width(6, $grid-gutter-size);
+        }
       }
     }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(6, $grid-gutter-size);
-        -ms-flex: auto;
+    &-lg {
+
+      > * {
+        @include AU-media(lg) {
+          flex-basis: health-grid-item-width(6, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(lg) {
+          max-width: health-grid-item-width(6, $grid-gutter-size);
+        }
       }
     }
   }
 
   &--7col {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(7, $grid-gutter-size);
-        -ms-flex: auto;
+    &-xs {
+
+      > * {
+        @include AU-media(xs) {
+          flex-basis: health-grid-item-width(7, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(xs) {
+          max-width: health-grid-item-width(7, $grid-gutter-size);
+        }
       }
     }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(7, $grid-gutter-size);
-        -ms-flex: auto;
+    &-sm {
+
+      > * {
+        @include AU-media(sm) {
+          flex-basis: health-grid-item-width(7, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(sm) {
+          max-width: health-grid-item-width(7, $grid-gutter-size);
+        }
       }
     }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(7, $grid-gutter-size);
-        -ms-flex: auto;
+    &-md {
+
+      > * {
+        @include AU-media(md) {
+          flex-basis: health-grid-item-width(7, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(md) {
+          max-width: health-grid-item-width(7, $grid-gutter-size);
+        }
       }
     }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(7, $grid-gutter-size);
-        -ms-flex: auto;
+    &-lg {
+
+      > * {
+        @include AU-media(lg) {
+          flex-basis: health-grid-item-width(7, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(lg) {
+          max-width: health-grid-item-width(7, $grid-gutter-size);
+        }
       }
     }
   }
 
   &--8col {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(8, $grid-gutter-size);
-        -ms-flex: auto;
+    &-xs {
+
+      > * {
+        @include AU-media(xs) {
+          flex-basis: health-grid-item-width(8, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(xs) {
+          max-width: health-grid-item-width(8, $grid-gutter-size);
+        }
       }
     }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(8, $grid-gutter-size);
-        -ms-flex: auto;
+    &-sm {
+
+      > * {
+        @include AU-media(sm) {
+          flex-basis: health-grid-item-width(8, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(sm) {
+          max-width: health-grid-item-width(8, $grid-gutter-size);
+        }
       }
     }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(8, $grid-gutter-size);
-        -ms-flex: auto;
+    &-md {
+
+      > * {
+        @include AU-media(md) {
+          flex-basis: health-grid-item-width(8, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(md) {
+          max-width: health-grid-item-width(8, $grid-gutter-size);
+        }
       }
     }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(8, $grid-gutter-size);
-        -ms-flex: auto;
+    &-lg {
+
+      > * {
+        @include AU-media(lg) {
+          flex-basis: health-grid-item-width(8, $grid-gutter-size);
+          -ms-flex: auto;
+        }
+      }
+
+      > img {
+        @include AU-media(lg) {
+          max-width: health-grid-item-width(8, $grid-gutter-size);
+        }
       }
     }
   }
