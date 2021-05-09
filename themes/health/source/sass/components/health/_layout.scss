@@ -1,6 +1,3 @@
-// Size of gutter between grid items.
-$grid-gutter-size: 1rem;
-
 .au-body {
 
   .health-grid > * + p {
@@ -19,6 +16,7 @@ $grid-gutter-size: 1rem;
     flex-basis: 100%;
     -ms-flex: auto;
     margin-bottom: $grid-gutter-size;
+    margin-right: $grid-gutter-size;
     padding: 1rem;
   }
 
@@ -91,95 +89,34 @@ $grid-gutter-size: 1rem;
   }
 }
 
-@for $index from 2 through 8 {
-  .health-grid--#{$index}col-xs {
+@each $bp in $breakpoint-sizes {
+  @for $i from 2 through 8 {
+    .health-grid--#{$i}col-#{$bp} {
 
-    > * {
-      @include AU-media(xs) {
-        flex-basis: health-grid-item-width($index, $grid-gutter-size);
-        -ms-flex: auto;
-        margin-right: $grid-gutter-size;
+      > * {
+        @include AU-media($bp) {
+          flex-basis: health-grid-item-width($i, $grid-gutter-size);
+          -ms-flex: auto;
+        }
       }
-    }
 
-    > *:nth-child(#{$index}n + #{$index}) {
-      @include AU-media(xs) {
-        margin-right: 0rem;
+      > *:not(*:nth-child(#{$i}n + #{$i})) {
+        @include AU-media($bp) {
+          margin-right: $grid-gutter-size;
+        }
       }
-    }
 
-    > img {
-      @include AU-media(xs) {
-        max-width: health-grid-item-width($index, $grid-gutter-size);
+      > *:nth-child(#{$i}n + #{$i}) {
+        @include AU-media($bp) {
+          margin-right: 0rem;
+        }
       }
-    }
-  }
 
-  .health-grid--#{$index}col-sm {
-
-    > * {
-      @include AU-media(sm) {
-        flex-basis: health-grid-item-width($index, $grid-gutter-size);
-        -ms-flex: auto;
-        margin-right: $grid-gutter-size;
-      }
-    }
-
-    > *:nth-child(#{$index}n + #{$index}) {
-      @include AU-media(sm) {
-        margin-right: 0rem;
-      }
-    }
-
-    > img {
-      @include AU-media(sm) {
-        max-width: health-grid-item-width($index, $grid-gutter-size);
-      }
-    }
-  }
-
-  .health-grid--#{$index}col-md {
-
-    > * {
-      @include AU-media(md) {
-        flex-basis: health-grid-item-width($index, $grid-gutter-size);
-        -ms-flex: auto;
-        margin-right: $grid-gutter-size;
-      }
-    }
-
-    > *:nth-child(#{$index}n + #{$index}) {
-      @include AU-media(md) {
-        margin-right: 0rem;
-      }
-    }
-
-    > img {
-      @include AU-media(md) {
-        max-width: health-grid-item-width($index, $grid-gutter-size);
-      }
-    }
-  }
-
-  .health-grid--#{$index}col-lg {
-
-    > * {
-      @include AU-media(lg) {
-        flex-basis: health-grid-item-width($index, $grid-gutter-size);
-        -ms-flex: auto;
-        margin-right: $grid-gutter-size;
-      }
-    }
-
-    > *:nth-child(#{$index}n + #{$index}) {
-      @include AU-media(lg) {
-        margin-right: 0rem;
-      }
-    }
-
-    > img {
-      @include AU-media(lg) {
-        max-width: health-grid-item-width($index, $grid-gutter-size);
+      > img {
+        @include AU-media($bp) {
+          margin-top: 0;
+          max-width: health-grid-item-width($i, $grid-gutter-size);
+        }
       }
     }
   }
