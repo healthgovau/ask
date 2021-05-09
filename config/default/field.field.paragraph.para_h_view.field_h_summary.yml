@@ -1,0 +1,19 @@
+uuid: b0d7f021-751e-4597-a083-b43dc3640282
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_h_summary
+    - paragraphs.paragraphs_type.para_h_view
+id: paragraph.para_h_view.field_h_summary
+field_name: field_h_summary
+entity_type: paragraph
+bundle: para_h_view
+label: Summary
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

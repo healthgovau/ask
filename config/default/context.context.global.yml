@@ -21,7 +21,7 @@ reactions:
         depth: '1'
         expand_all_items: 0
         region: navigation
-        weight: '0'
+        weight: '-9'
         context_mapping: {  }
         theme: health
         css_class: ''
@@ -111,7 +111,7 @@ reactions:
         provider: help
         label_display: '0'
         region: header_top
-        weight: '-3'
+        weight: '-9'
         context_mapping: {  }
         theme: health
         css_class: ''
@@ -119,21 +119,6 @@ reactions:
         context_id: global
         uuid: 639a6a7f-6512-4b9b-98e3-964602d2ca0a
         custom_id: help_block
-      c353e81e-45cd-4812-bbb9-472472f5b0ff:
-        id: 'views_exposed_filter_block:h_site_search-search_page'
-        label: ''
-        provider: views
-        label_display: '0'
-        views_label: ''
-        region: header
-        weight: '-3'
-        context_mapping: {  }
-        theme: health
-        css_class: ''
-        unique: 0
-        context_id: global
-        uuid: c353e81e-45cd-4812-bbb9-472472f5b0ff
-        custom_id: views_exposed_filter_block_h_site_search_search_page
       4289eef5-bfc0-4164-ac5c-a711b5ed0e3f:
         id: local_tasks_block
         label: Tabs
@@ -158,7 +143,7 @@ reactions:
         views_label: ''
         items_per_page: none
         region: header_top
-        weight: '-4'
+        weight: '-10'
         context_mapping: {  }
         custom_id: views_block_h_global_notifications_block_1
         theme: health
@@ -166,6 +151,21 @@ reactions:
         unique: 0
         context_id: global
         uuid: 94e0e3c1-01ff-49a9-8313-cb3ca9e45932
+      03a585b4-f83c-4b20-a603-e6e2297b73a1:
+        id: 'views_exposed_filter_block:h_site_search-h_site_search'
+        label: ''
+        provider: views
+        label_display: '0'
+        views_label: ''
+        region: header
+        weight: '-3'
+        context_mapping: {  }
+        custom_id: views_exposed_filter_block_h_site_search_h_site_search
+        theme: health
+        css_class: ''
+        unique: 0
+        context_id: global
+        uuid: 03a585b4-f83c-4b20-a603-e6e2297b73a1
     id: blocks
     saved: false
     uuid: 4021adfc-f96a-4137-a5e5-e586dc56566c

@@ -1,0 +1,23 @@
+uuid: 1cf37a41-247b-4edb-a29b-f0e91cac440e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_h_link_external_internal
+    - paragraphs.paragraphs_type.para_h_link_featured
+  module:
+    - link
+id: paragraph.para_h_link_featured.field_h_link_external_internal
+field_name: field_h_link_external_internal
+entity_type: paragraph
+bundle: para_h_link_featured
+label: Link
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

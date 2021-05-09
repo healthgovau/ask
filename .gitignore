@@ -63,6 +63,9 @@ cypress/video/*
 *.sql.tar.gz
 *.sql.tar
 
+# IDE files.
+.vscode/settings.json
+
 # Patch files.
 *.patch
 

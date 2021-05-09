@@ -1,0 +1,10 @@
+uuid: a1bf444a-5ea0-47cb-b3a1-808c054ce479
+langcode: en
+status: true
+dependencies: {  }
+id: para_h_view
+label: View
+icon_uuid: null
+icon_default: null
+description: 'Embed a custom view on the page. This is used when a custom view has been created, usually because other available listing paragraph types are not able to provide the level of customisation required.'
+behavior_plugins: {  }
