@@ -1427,7 +1427,10 @@ function health_preprocess_field__node__field_h_resource_parts__h_foi_request(ar
 function health_preprocess_field__field_h_files(array &$variables) {
   $paragraph = $variables['element']['#object'];
   if ($paragraph instanceof ParagraphInterface) {
-    $resource_file_title = $paragraph->get('field_h_resource_file_title')->value;
+    $resource_file_title = NULL;
+    if ($paragraph->hasField('field_h_resource_file_title')) {
+      $resource_file_title = $paragraph->get('field_h_resource_file_title')->value;
+    }
     foreach ($variables['items'] as $index => $item) {
       $media = $variables['items'][$index]['content']['#media'];
       if ($media->hasField('field_media_file')) {
