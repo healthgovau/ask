@@ -2567,13 +2567,19 @@ function health_preprocess_paragraph__para_h_listing(array &$variables) {
 
       // Get default sort option and order.
       $default_sort_value = explode(':', $paragraph->get('field_h_sort_option_default')->value);
-      $default_sort_option_machine_name = $default_sort_value[0];
+      // We need to strip the "_value" string from the value. This is because
+      // the 'listing' view does not use the "_value" suffix for sort names.
+      // The code used here is a copy of the same code used by embedded
+      // listings which does use the "_value" suffix. This is a messy solution
+      // but used so that we can use the same field_h_sort_option_default field
+      // for both Embedded Listing and Listing paragraph types.
+      $default_sort_option_machine_name = str_replace('_value', '', $default_sort_value[0]);
       $default_order = (!empty($default_sort_value[1])) ? strtoupper($default_sort_value[1]) : '';
       $sort_options[$default_sort_option_machine_name] = $default_order;
 
       foreach ($sort_handlers as $delta => $handler) {
         $sort_option_names = array_keys($sort_options);
-        if (in_array($delta . '_value', $sort_option_names) === FALSE) {
+        if (in_array($delta, $sort_option_names) === FALSE) {
           // Remove any sort handlers not used by this embedded listing.
           $view->removeHandler($display_mode, 'sort', $delta);
         }
