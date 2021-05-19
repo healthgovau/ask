@@ -21,7 +21,7 @@ third_party_settings:
       format_type: details
       region: content
       format_settings:
-        description: 'The following settings are for advanced users. Please consult with your site builder or administrator for more information on what values to use.'
+        description: 'Add details of the app folder path and HTML files, and set the width of the app display on the page. Please consult with your site builder or administrator if you are unsure what values to use here.'
         open: true
         required_fields: true
         id: ''
