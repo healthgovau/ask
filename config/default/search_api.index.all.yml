@@ -9,11 +9,12 @@ dependencies:
     - search_api
   config:
     - field.storage.node.field_h_audience
-    - field.storage.node.field_h_date_created
     - field.storage.node.field_h_date_updated
     - field.storage.node.field_h_resource_date
     - field.storage.node.field_h_summary
     - search_api.server.lagoon_solr
+    - core.entity_view_mode.node.full
+    - core.entity_view_mode.node.teaser
 third_party_settings:
   search_api_solr:
     finalize: false
@@ -52,9 +53,6 @@ third_party_settings:
       index_prefix: ''
       collection: ''
       timezone: ''
-    term_modifiers:
-      slop: 10000000
-      fuzzy: 2
 id: all
 name: All
 description: ''
@@ -102,6 +100,29 @@ field_settings:
         - field.storage.node.field_h_audience
       module:
         - taxonomy
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    boost: 0.8
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          h_app_or_tool: full
+          h_app_or_tool_hosted: full
+          h_audio: full
+          h_collection: full
+          h_contact: full
+          h_foi_request: full
+          h_landing_page: teaser
+          h_listing: teaser
+          h_news_article: full
+          h_publication: full
+          h_standard_page: full
+          h_video: full
+          search_results: ''
   status:
     label: Published
     datasource_id: 'entity:node'
@@ -115,6 +136,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: title
     type: text
+    boost: !!float 2
     dependencies:
       module:
         - node
