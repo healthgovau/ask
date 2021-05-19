@@ -85,14 +85,14 @@ display:
               h_audio: teaser
               h_collection: teaser
               h_contact: teaser
-              h_foi_request: default
+              h_foi_request: teaser
               h_landing_page: teaser
               h_listing: teaser
               h_news_article: teaser
               h_publication: teaser
               h_standard_page: teaser
               h_video: teaser
-              search_results: default
+              search_results: teaser
       fields:
         field_h_summary:
           table: search_api_index_all
@@ -217,7 +217,55 @@ display:
           min_length: null
           fields: {  }
           plugin_id: search_api_fulltext
-      sorts: {  }
+      sorts:
+        title:
+          id: title
+          table: search_api_index_all
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+        field_h_date_updated:
+          id: field_h_date_updated
+          table: search_api_index_all
+          field: field_h_date_updated
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+        field_h_date_created:
+          id: field_h_date_created
+          table: search_api_index_all
+          field: field_h_date_created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+        field_h_resource_date:
+          id: field_h_resource_date
+          table: search_api_index_all
+          field: field_h_resource_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
       title: Listing
       header:
         result:
