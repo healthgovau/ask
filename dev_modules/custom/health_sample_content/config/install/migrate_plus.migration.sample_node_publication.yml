@@ -30,10 +30,10 @@ source:
       field_h_audience: Everyone
       field_h_content_owner: Incom
       field_h_subject: Politics
-      field_h_date_created: '06-05-2019'
-      field_h_date_published: '06-05-2019'
-      field_h_date_reviewed: '06-05-2019'
-      field_h_date_updated: '06-05-2019'
+      field_h_date_created: '06-03-2021'
+      field_h_date_published: '06-03-2021'
+      field_h_date_reviewed: '06-03-2021'
+      field_h_date_updated: '06-03-2021'
       status: '1'
     -
       id: node_h_publication_2
@@ -58,16 +58,16 @@ source:
       field_h_audience: Everyone
       field_h_content_owner: Incom
       field_h_subject: Politics
-      field_h_date_created: '07-05-2019'
-      field_h_date_published: '07-05-2019'
-      field_h_date_reviewed: '07-05-2019'
-      field_h_date_updated: '07-05-2019'
+      field_h_date_created: '07-06-2019'
+      field_h_date_published: '07-06-2019'
+      field_h_date_reviewed: '07-06-2019'
+      field_h_date_updated: '07-06-2019'
       status: '1'
     -
       id: node_h_publication_3
       title: A-wing
       field_h_summary: |
-        The A-wing was a wedge-shaped strike fighter that took design inspiration from Republic starfighters of the Clone Wars. The Empire passed on the earliest A-wing model, Kuat Systems Engineering’s R-22, but rebel cells modified the seemingly failed fighter into a blazingly fast attack craft, dubbed the RZ-1.
+        The A-wing was a wedge-shaped strike fighter that took design inspiration from Republic starfighters of the Clone Wars. The Empire passed on the earliest A-wing model, Kuat Systems Engineering’s R-22, but rebel cells modified the seemingly failed fighter into a blazingly fast attack craft.
       field_h_description: |
         <p>One of the earliest rebel units to use these quick, powerful fighters was Phoenix Squadron, whose pilots would tragically meet their match in an encounter with Darth Vader. Several of the fighters entered the fray when Vader tracked the Ghost crew to the rebel fleet. The Imperial enforcer methodically wiped the craft out, showing expert piloting skills and a ruthlessness that the A-wing pilots could not equal.</p>
         <p>As the Empire ramped up production of both standard TIE fighters and experimental models, the Alliance sought to turn the A-wing into a starfighter that could outfly them all. Alliance techs stripped away shields, armor and heavy weapons to create a fighter that was tough to maintain and fly, but could outrun even a TIE interceptor. These reworked RZ-1s played an important role in the Battle of Endor, the rebels' greatest victory over the Empire.</p>
@@ -87,10 +87,10 @@ source:
       field_h_audience: Everyone
       field_h_content_owner: Incom
       field_h_subject: Politics
-      field_h_date_created: '08-05-2019'
-      field_h_date_published: '08-05-2019'
-      field_h_date_reviewed: '08-05-2019'
-      field_h_date_updated: '08-05-2019'
+      field_h_date_created: '08-07-2019'
+      field_h_date_published: '08-07-2019'
+      field_h_date_reviewed: '08-07-2019'
+      field_h_date_updated: '08-07-2019'
       status: '1'
     -
       id: node_h_publication_4
@@ -117,10 +117,10 @@ source:
       field_h_audience: Everyone
       field_h_content_owner: Incom
       field_h_subject: Politics
-      field_h_date_created: '09-05-2019'
-      field_h_date_published: '09-05-2019'
-      field_h_date_reviewed: '09-05-2019'
-      field_h_date_updated: '09-05-2019'
+      field_h_date_created: '09-01-2020'
+      field_h_date_published: '09-01-2020'
+      field_h_date_reviewed: '09-01-2020'
+      field_h_date_updated: '09-01-2020'
       status: '1'
   ids:
     id:
