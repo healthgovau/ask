@@ -2984,3 +2984,17 @@ function health_views_pre_render(&$view) {
     unset($view->element['#attached']['drupalSettings']['views']['ajaxViews']);
   }
 }
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function health_preprocess_node__h_webinar(array &$variables) {
+  $node = $variables['node'];
+
+  $start = $node->field_h_start_date->value;
+  $end = $node->field_h_end_date->value;
+  $variables['startstamp'] = strtotime($start);
+  $variables['endstamp'] = strtotime($end);
+
+}
+
