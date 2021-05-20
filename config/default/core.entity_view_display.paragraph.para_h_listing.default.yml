@@ -5,7 +5,10 @@ dependencies:
   config:
     - field.field.paragraph.para_h_listing.field_h_listing_content_types
     - field.field.paragraph.para_h_listing.field_h_listing_facets
+    - field.field.paragraph.para_h_listing.field_h_sort_option_default
     - paragraphs.paragraphs_type.para_h_listing
+  module:
+    - options
 id: paragraph.para_h_listing.default
 targetEntityType: paragraph
 bundle: para_h_listing
@@ -26,6 +29,13 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_h_sort_option_default:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
 hidden:
   search_api_excerpt: true
