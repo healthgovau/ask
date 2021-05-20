@@ -1,0 +1,15 @@
+uuid: 568b280d-c99e-4087-ac23-c2e4d9393c64
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - health_sample_content
+_core:
+  default_config_hash: rhMSfvbOzqlbHkDhK1bMT0GBZswspYZdJzbVu8ND168
+id: health_sample
+label: 'Health sample'
+description: 'Health sample migrations.'
+source_type: 'Sample data'
+module: null
+shared_configuration: null

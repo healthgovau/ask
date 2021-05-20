@@ -1,26 +1,26 @@
-uuid: dfcf8ae1-cdbb-42e4-845a-1196d9cd4138
+uuid: 183f2f98-be31-47bf-a08c-2f445176d532
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_h_subject_3
+    - field.storage.node.field_h_related_committee_s_and
     - node.type.h_webinar
-    - taxonomy.vocabulary.h_subject_3
-id: node.h_webinar.field_h_subject_3
-field_name: field_h_subject_3
+    - taxonomy.vocabulary.h_committee_or_group
+id: node.h_webinar.field_h_related_committee_s_and
+field_name: field_h_related_committee_s_and
 entity_type: node
 bundle: h_webinar
-label: 'Related subjects 3'
+label: 'Related Committee(s) and Group(s)'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      h_subject_3: h_subject_3
+      h_committee_or_group: h_committee_or_group
     sort:
       field: name
       direction: asc

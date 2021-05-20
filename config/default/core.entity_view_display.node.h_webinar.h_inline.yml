@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.h_inline
     - field.field.node.h_webinar.field_h_audience
+    - field.field.node.h_webinar.field_h_content_components
     - field.field.node.h_webinar.field_h_content_grade_level
     - field.field.node.h_webinar.field_h_content_long_sentences
     - field.field.node.h_webinar.field_h_content_owner
@@ -16,16 +17,16 @@ dependencies:
     - field.field.node.h_webinar.field_h_date_reviewed
     - field.field.node.h_webinar.field_h_date_updated
     - field.field.node.h_webinar.field_h_description
+    - field.field.node.h_webinar.field_h_end_date
     - field.field.node.h_webinar.field_h_image_featured
     - field.field.node.h_webinar.field_h_language
+    - field.field.node.h_webinar.field_h_related_committee_s_and
+    - field.field.node.h_webinar.field_h_related_conditions_and_d
     - field.field.node.h_webinar.field_h_resource_availability
     - field.field.node.h_webinar.field_h_resource_date
-    - field.field.node.h_webinar.field_h_resource_transcript
+    - field.field.node.h_webinar.field_h_start_date
     - field.field.node.h_webinar.field_h_subject
-    - field.field.node.h_webinar.field_h_subject_2
-    - field.field.node.h_webinar.field_h_subject_3
     - field.field.node.h_webinar.field_h_summary
-    - field.field.node.h_webinar.field_h_webinar_date
     - field.field.node.h_webinar.field_h_webinar_link
     - node.type.h_webinar
   module:
@@ -59,6 +60,7 @@ content:
     region: content
 hidden:
   field_h_audience: true
+  field_h_content_components: true
   field_h_content_grade_level: true
   field_h_content_long_sentences: true
   field_h_content_owner: true
@@ -70,14 +72,14 @@ hidden:
   field_h_date_reviewed: true
   field_h_date_updated: true
   field_h_description: true
+  field_h_end_date: true
   field_h_language: true
+  field_h_related_committee_s_and: true
+  field_h_related_conditions_and_d: true
   field_h_resource_availability: true
   field_h_resource_date: true
-  field_h_resource_transcript: true
+  field_h_start_date: true
   field_h_subject: true
-  field_h_subject_2: true
-  field_h_subject_3: true
-  field_h_webinar_date: true
   field_h_webinar_link: true
   langcode: true
   search_api_excerpt: true

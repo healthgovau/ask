@@ -1,0 +1,21 @@
+uuid: 9b31c856-a18e-4f98-bcb3-f01692b7fd83
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_end_date
+    - node.type.h_webinar
+  module:
+    - datetime
+id: node.h_webinar.field_h_end_date
+field_name: field_h_end_date
+entity_type: node
+bundle: h_webinar
+label: 'End Date'
+description: 'Select the end date and time of the webinar'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

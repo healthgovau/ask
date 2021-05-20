@@ -1,4 +1,4 @@
-uuid: 859d48fb-15ec-462c-ac6e-664841ec6f70
+uuid: eb1d1c65-9617-4ba9-92c9-c90c1fd5a9dc
 langcode: en
 status: true
 dependencies:
@@ -11,13 +11,13 @@ id: node.h_webinar.field_h_webinar_link
 field_name: field_h_webinar_link
 entity_type: node
 bundle: h_webinar
-label: 'Webinar link'
-description: ''
+label: 'Webinar Link'
+description: 'Enter URL link to external (not health.gov.au) webinar'
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  link_type: 17
-  title: 1
+  link_type: 16
+  title: 0
 field_type: link

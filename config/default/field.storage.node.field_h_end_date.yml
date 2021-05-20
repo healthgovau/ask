@@ -1,12 +1,12 @@
-uuid: 1e55bab8-4b88-493f-a290-b1f4f11ff7fd
+uuid: e74c33ef-3f51-4299-8861-32ed9980615d
 langcode: en
 status: true
 dependencies:
   module:
     - datetime
     - node
-id: node.field_h_webinar_date
-field_name: field_h_webinar_date
+id: node.field_h_end_date
+field_name: field_h_end_date
 entity_type: node
 type: datetime
 settings:

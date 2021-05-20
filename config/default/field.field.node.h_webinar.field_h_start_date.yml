@@ -1,0 +1,21 @@
+uuid: 17d80439-f854-4dd6-8472-cb79c41ebcf9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_start_date
+    - node.type.h_webinar
+  module:
+    - datetime
+id: node.h_webinar.field_h_start_date
+field_name: field_h_start_date
+entity_type: node
+bundle: h_webinar
+label: 'Start Date'
+description: 'Select the start date and time of the webinar. Note the webinar will automatically display as ‘open’ 15 minutes before this start'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

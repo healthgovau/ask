@@ -1,26 +1,26 @@
-uuid: 184f6fff-0074-42e4-bc85-c34b24fd5eb5
+uuid: 68b3067e-63e2-437a-9b6c-00c93f0cd5a4
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_h_subject_2
+    - field.storage.node.field_h_related_conditions_and_d
     - node.type.h_webinar
-    - taxonomy.vocabulary.h_subject_2
-id: node.h_webinar.field_h_subject_2
-field_name: field_h_subject_2
+    - taxonomy.vocabulary.h_related_conditions_and_disease
+id: node.h_webinar.field_h_related_conditions_and_d
+field_name: field_h_related_conditions_and_d
 entity_type: node
 bundle: h_webinar
-label: 'Related subjects 2'
+label: 'Related Conditions and Diseases'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      h_subject_2: h_subject_2
+      h_related_conditions_and_disease: h_related_conditions_and_disease
     sort:
       field: name
       direction: asc

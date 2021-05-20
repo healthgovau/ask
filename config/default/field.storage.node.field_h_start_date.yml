@@ -1,16 +1,17 @@
-uuid: 295ccab1-cb24-42af-be0a-2ce97cf96369
+uuid: 8f419158-74a7-41ce-bf28-b120208e62a9
 langcode: en
 status: true
 dependencies:
   module:
-    - link
+    - datetime
     - node
-id: node.field_h_webinar_link
-field_name: field_h_webinar_link
+id: node.field_h_start_date
+field_name: field_h_start_date
 entity_type: node
-type: link
-settings: {  }
-module: link
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
 locked: false
 cardinality: 1
 translatable: true
