@@ -2997,4 +2997,3 @@ function health_preprocess_node__h_webinar(array &$variables) {
   $variables['endstamp'] = strtotime($end);
 
 }
-
