@@ -5,20 +5,67 @@ dependencies:
   config:
     - field.field.paragraph.para_h_listing.field_h_listing_content_types
     - field.field.paragraph.para_h_listing.field_h_listing_facets
+    - field.field.paragraph.para_h_listing.field_h_sort_option_default
     - paragraphs.paragraphs_type.para_h_listing
+  module:
+    - field_group
+third_party_settings:
+  field_group:
+    group_config:
+      children:
+        - group_filters
+        - group_sort
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        direction: vertical
+      label: Config
+    group_filters:
+      children:
+        - field_h_listing_content_types
+        - field_h_listing_facets
+      parent_name: group_config
+      weight: 5
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Filters
+    group_sort:
+      children:
+        - field_h_sort_option_default
+      parent_name: group_config
+      weight: 6
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Sort
 id: paragraph.para_h_listing.default
 targetEntityType: paragraph
 bundle: para_h_listing
 mode: default
 content:
   field_h_listing_content_types:
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_h_listing_facets:
-    weight: 1
+    weight: 2
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -26,6 +73,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_h_sort_option_default:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
 hidden:
   created: true
