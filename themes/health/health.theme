@@ -25,6 +25,7 @@ use Drupal\Component\Serialization\Json;
 use GuzzleHttp\Exception\RequestException;
 use Drupal\media\Entity\Media;
 use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
 
 /**
  * Check if field contains data.
@@ -556,9 +557,9 @@ function _health_generate_embedded_listing(array &$variables) {
       // Process exposed sort handlers.
       $sort_order_is_exposed = $paragraph->get('field_h_sort_order_expose')->value;
       if ($sort_order_is_exposed && $paragraph->get('field_h_sort_options_exposed')
-        ->isEmpty() !== TRUE) {
+          ->isEmpty() !== TRUE) {
         foreach ($paragraph->get('field_h_sort_options_exposed')
-          ->getValue() as $value) {
+                   ->getValue() as $value) {
           $exposed_sort_option_machine_name = $value['value'];
           if ($exposed_sort_option_machine_name !== $default_sort_option_machine_name) {
             $sort_options[$exposed_sort_option_machine_name] = '';
@@ -784,7 +785,7 @@ function _health_process_featured_content_overrides(ParagraphInterface $paragrap
     }
     // Process href.
     if ($paragraph->get('field_h_link_external_internal')
-      ->isEmpty() === FALSE) {
+        ->isEmpty() === FALSE) {
       // Override the link with the value set in the paragraph.
       $href = $paragraph->get('field_h_link_external_internal')->uri;
     }
@@ -1225,6 +1226,18 @@ function health_preprocess_block(array &$variables) {
  */
 function health_preprocess_menu(array &$variables) {
 
+
+  if ($variables['menu_name'] == "main") {
+    foreach ($variables['items'] as $key => $item) {
+      $entity = $item['url']->getRouteParameters();
+      if (isset($entity['node'])) {
+        if (!Node::load($entity['node'])->isPublished()) {
+          $variables['items'][$key]['attributes']->addClass('not-published');
+        }
+      }
+    }
+  }
+
   if (isset($variables['attributes']['data-region'])) {
     $region = $variables['attributes']['data-region'];
 
@@ -1252,7 +1265,7 @@ function health_preprocess_menu(array &$variables) {
             // Check if the current route node is the same as the parent link
             // parameters.
             if ($route->getParameter('node')
-              ->id() == $parent_link->getRouteParameters()['node']) {
+                ->id() == $parent_link->getRouteParameters()['node']) {
               // Set the active class on the link.
               $url->setOption('attributes', ['class' => 'active']);
             }
@@ -1308,7 +1321,7 @@ function health_theme_suggestions_paragraph_alter(array &$suggestions, array $va
     // Create template suggestion "paragraph__PARAGRAPH_TYPE__node_NODE_TYPE"
     // for paragraph types which reference node content.
     if ($paragraph->hasField('field_h_content_featured') && $paragraph->get('field_h_content_featured')
-      ->isEmpty() !== TRUE) {
+        ->isEmpty() !== TRUE) {
       $node = $paragraph->get('field_h_content_featured')->first()->entity;
       if ($node instanceof NodeInterface) {
         $suggestions[] = 'paragraph__' . $paragraph->getType() . '__node_' . $node->bundle();
@@ -1569,14 +1582,19 @@ function health_preprocess_html(array &$variables) {
 function health_preprocess_node(array &$variables) {
   $node = $variables['node'];
   if ($node instanceof NodeInterface) {
+
+    //Check if node is published
+    if (!$node->isPublished()) {
+      $variables['attributes']['class'][] = 'not-published';
+    }
+
     // Make information on whether Image Featured is present available to node
     // templates.
     try {
       $image_featured_present = $node->get('field_h_image_featured')
         ->isEmpty() ? FALSE : TRUE;
       $variables['image_featured_present'] = $image_featured_present;
-    }
-    catch (\InvalidArgumentException $e) {
+    } catch (\InvalidArgumentException $e) {
       // Set variables passed to templates as NULL if the relevant field doesn't
       // exist.
       $variables['image_featured_present'] = NULL;
@@ -1670,8 +1688,7 @@ function health_preprocess_node__h_featured(array &$variables) {
           ->view($field_settings);
         $variables['image_data_source'] = $image_data_source;
       }
-    }
-    catch (\InvalidArgumentException $e) {
+    } catch (\InvalidArgumentException $e) {
       // This content type doesn't contain field so does not support display as
       // hero functionality.
       $variables['image_data_source'] = NULL;
@@ -1688,7 +1705,7 @@ function health_preprocess_node__h_global_notification(array &$variables) {
     $variables['health_notification_id'] = $node->getRevisionId();
     // Optionally display date the notification was last updated.
     if ($node->hasField('field_h_display_date') && $node->get('field_h_display_date')
-      ->isEmpty() !== TRUE) {
+        ->isEmpty() !== TRUE) {
       $display_date = (empty($node->get('field_h_display_date')->value)) ? FALSE : TRUE;
       $variables['health_display_notification_date'] = $display_date;
     }
@@ -1710,7 +1727,7 @@ function health_preprocess_node__h_global_notification(array &$variables) {
 
       $notification = $node->get('field_h_notification_type')->entity;
       if ($notification->hasField('field_h_icon') && $notification->get('field_h_icon')
-        ->isEmpty() !== TRUE) {
+          ->isEmpty() !== TRUE) {
         if ($icon = $notification->get('field_h_icon')->entity) {
           if ($media = Media::load($icon->mid->first()->value)) {
             $fid = $media->field_media_file->target_id;
@@ -1750,8 +1767,7 @@ function health_preprocess_node__search_results(array &$variables) {
     // Query Funnelback.
     try {
       $response = \Drupal::httpClient()->request('get', $url);
-    }
-    catch (RequestException $e) {
+    } catch (RequestException $e) {
       \Drupal::messenger()
         ->addError(t('We could not complete your search at this time. Please try again later.'));
       return;
@@ -1921,8 +1937,8 @@ function _funnelback_filter_query_string($strQuery) {
  */
 function health_preprocess_page(array &$variables) {
   $variables['logo'] = '/' . \Drupal::service('theme.manager')
-    ->getActiveTheme()
-    ->getPath() . '/logo.png';
+      ->getActiveTheme()
+      ->getPath() . '/logo.png';
 
   // Set footer.
   $variables['footer'] = _health_get_footer($variables);
@@ -2086,6 +2102,19 @@ function health_preprocess_file_link(array &$variables) {
 function health_preprocess_paragraph(array &$variables) {
   $paragraph = $variables['paragraph'];
 
+  // Add not-published class to a paragraph that refers to an unpublished node.
+  foreach ($variables['elements'] as $key => $el) {
+    if (substr($key, 0, 1) !== "#") {
+      if (isset($el['#field_type']) && $el['#field_type'] == 'entity_reference') {
+        foreach ($el['#items']->referencedEntities() as $k => $item) {
+          if (!$item->isPublished()) {
+            $variables['content_attributes']['class'][] = 'not-published';
+          }
+        }
+      }
+    }
+  }
+
   // Make background colour information available to template. Include colour's
   // hexcode and correspondin light/dark theme information.
   try {
@@ -2097,11 +2126,10 @@ function health_preprocess_paragraph(array &$variables) {
       if ($color_theme === 'dark') {
         $variables['health_use_dark_colour_theme'] = TRUE;
       }
-      // Process background colour hexcode.
+      // Process background colour hexcode.content-featured--node-h-video.html.twig
       $variables['background_colour'] = $term->get('field_h_colour_hex')->value;
     }
-  }
-  catch (\InvalidArgumentException $e) {
+  } catch (\InvalidArgumentException $e) {
     // Set variables passed to templates as NULL if the relevant data doesn't
     // exist.
     $variables['background_colour'] = NULL;
@@ -2112,8 +2140,7 @@ function health_preprocess_paragraph(array &$variables) {
   try {
     $title = $paragraph->get('field_h_title')->value;
     $variables['title'] = $title;
-  }
-  catch (\InvalidArgumentException $e) {
+  } catch (\InvalidArgumentException $e) {
     // Set variables passed to templates as NULL if the relevant data doesn't
     // exist.
     $variables['title'] = NULL;
@@ -2123,8 +2150,7 @@ function health_preprocess_paragraph(array &$variables) {
   try {
     $summary = $paragraph->get('field_h_summary')->value;
     $variables['summary'] = $summary;
-  }
-  catch (\InvalidArgumentException $e) {
+  } catch (\InvalidArgumentException $e) {
     // Set variables passed to templates as NULL if the relevant data doesn't
     // exist.
     $variables['summary'] = NULL;
@@ -2142,8 +2168,8 @@ function health_preprocess_paragraph__para_h_address(array &$variables) {
 
     // Process longitude and latitude to generate Google static map api URL.
     $generate_map = ($paragraph->get('field_h_location_longitude')
-      ->isEmpty() === FALSE && $paragraph->get('field_h_location_latitude')
-      ->isEmpty() === FALSE) ? TRUE : FALSE;
+        ->isEmpty() === FALSE && $paragraph->get('field_h_location_latitude')
+        ->isEmpty() === FALSE) ? TRUE : FALSE;
     if ($generate_map) {
       $gmap_key = theme_get_setting('health_google_maps_client');
       if (!empty($gmap_key)) {
@@ -2368,14 +2394,14 @@ function health_preprocess_paragraph__para_h_app_or_tool(array &$variables) {
     // Make CSS class for app width available to template.
     $variables['app_width_class'] = '';
     if ($paragraph->hasField('field_h_app_width') && $paragraph->get('field_h_app_width')
-      ->isEmpty() === FALSE) {
+        ->isEmpty() === FALSE) {
       $variables['app_width_class'] = $paragraph->get('field_h_app_width')->value;
     }
 
     // Make the app/tool markup as well as CSS and JavaScript assets available
     // to template.
     if ($paragraph->hasField('field_h_app_path') && $paragraph->get('field_h_app_path')
-      ->isEmpty() === FALSE) {
+        ->isEmpty() === FALSE) {
       $path = str_replace('../', '', $paragraph->get('field_h_app_path')->value);
       // Remove any leading or trailing slashes.
       $location = drupal_get_path('theme', $current_theme) . '/apps/' . $path;
@@ -2502,9 +2528,9 @@ function health_preprocess_paragraph__para_h_tile(array &$variables) {
     $parent_has_summary_info = FALSE;
     if ($parent_paragraph instanceof ParagraphInterface && $parent_paragraph->getType() === 'para_h_listing_tile') {
       $parent_has_title = ($parent_paragraph->hasField('field_h_title') && !$parent_paragraph->get('field_h_title')
-        ->isEmpty()) ? TRUE : FALSE;
+          ->isEmpty()) ? TRUE : FALSE;
       $parent_has_summary = ($parent_paragraph->hasField('field_h_summary') && !$parent_paragraph->get('field_h_summary')
-        ->isEmpty()) ? TRUE : FALSE;
+          ->isEmpty()) ? TRUE : FALSE;
 
       if ($parent_has_title || $parent_has_summary) {
         $parent_has_summary_info = TRUE;
@@ -2651,8 +2677,7 @@ function health_preprocess_paragraph__para_h_view(array &$variables) {
         }
       }
     }
-  }
-  catch (Exception $e) {
+  } catch (Exception $e) {
     // Log error and don't render view.
     \Drupal::logger('health')->error($e->getMessage());
     $variables['content'] = [];
