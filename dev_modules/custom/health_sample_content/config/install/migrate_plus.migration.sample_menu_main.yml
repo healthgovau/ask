@@ -85,14 +85,13 @@ source:
       updated: 1609979676
     -
       id: 7
-      plid: 3
-      parent_link_path: '/resources'
-      link_title: Code of the Sith
+      plid: 0
+      link_title: Unpublished Content
       description: null
-      link_path: '/resources/unpublished-content'
+      link_path: '/unpublished-content'
       options: []
       external: 0
-      weight: 1
+      weight: 2
       expanded: 0
       enabled: 1
       updated: 1609979679
@@ -147,4 +146,5 @@ migration_dependencies:
     - sample_node_search_results
     - sample_node_standard_page
     - sample_node_video
+    - sample_node_unpublished
   optional: []

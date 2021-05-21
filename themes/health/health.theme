@@ -2109,8 +2109,10 @@ function health_preprocess_paragraph(array &$variables) {
     if (substr($key, 0, 1) !== "#") {
       if (isset($el['#field_type']) && $el['#field_type'] == 'entity_reference') {
         foreach ($el['#items']->referencedEntities() as $item) {
-          if (!$item->isPublished()) {
-            $variables['content_attributes']['class'][] = 'not-published';
+          if (method_exists($item, 'isPublished')) {
+            if (!$item->isPublished()) {
+              $variables['content_attributes']['class'][] = 'not-published';
+            }
           }
         }
       }

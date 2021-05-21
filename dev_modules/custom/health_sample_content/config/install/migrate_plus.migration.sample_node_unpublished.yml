@@ -1,5 +1,5 @@
 id: sample_node_unpublished
-label: Sample Nodes - Unpublished
+label: Sample Nodes - Video
 migration_group: health_sample
 migration_tags:
   - health_sample_content
@@ -7,15 +7,16 @@ migration_tags:
 source:
   plugin: embedded_data
   data_rows:
-    - id: node_h_webinar_1
-      title: Unpublished content
+    -
+      id: node_h_unpublished_1
+      title: Unpublished Content
+      field_h_video_youtubeid: DVtNve4qySA
+      field_h_duration: '05:28'
       field_h_summary: |
-        Unpublished nodes can still be seen by content editors. But not by visitors.
+        This is unpublished content.
       field_h_description: |
-        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Curabitur aliquet quam id dui posuere blandit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat.</p>
+        <p>Unpublished content can only ben seen by logged in users.</p><p><p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Curabitur aliquet quam id dui posuere blandit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat.</p>
       field_h_image_featured: image_4
-      field_h_resource_transcript: |
-        <p>Short transcript</p>
       field_h_resource_availability: Online
       field_h_resource_date: 01-02-2019
       field_h_date_format: monthyear
@@ -141,7 +142,7 @@ process:
       '1': published
 destination:
   plugin: 'entity:node'
-  default_bundle: h_video
+  default_bundle: h_standard_page
 migration_dependencies:
   required:
     - sample_taxonomy_audience
