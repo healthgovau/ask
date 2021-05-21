@@ -35,8 +35,9 @@ This documentation assumes you are using MacOS or Linux as your host environment
     - [Import sample content](#import-sample-content)
     - [Remove imported content](#remove-imported-content)
   - [Visual regression tests](#visual-regression-tests)
-    - [Local (Backstop.js)](#local-backstopjs)
-    - [Remote (Cypress/Percy)](#remote-cypresspercy)
+    - [Backstop.js (local)](#local-backstopjs)
+    - [Cypress/Percy (remote))](#remote-cypresspercy)
+      - [Updating reference images](#updating-reference-images-in-percy)
   - [Coding standards](#coding-standards)
 - [PHP debugging](#php-debugging)
   - [Enabling xdebug](#enabling-xdebug)
@@ -481,6 +482,12 @@ The project makes use of [Cypress](https://www.cypress.io/) and [Percy](https://
 When creating or updating pull requests on the `v1.x` branch snapshots of sample content type pages will be created and analysed by Percy. In case of a failure the results can be reviewed in Percy. Once approved in Percy one will be able to merge the pull request.
 
 Cypress test configuration can be found in the `cypress/integration/` directory.
+
+#### Updating reference images in Percy
+
+Percy requires the use of a reference images of content pages when performing visual regression tests. The reference images will need to be updated to ensure Percy has access to the most recent version of the site.
+
+To update the reference images you will need to merge `v1.x` branch into the `v1.x-percy-build` branch.
 
 > **Note:** Cypress can also be used to create end-to-end functional tests.
 

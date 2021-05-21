@@ -1,0 +1,23 @@
+uuid: 270f5f8a-0e39-4926-ac7b-05ff861c4306
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_h_sort_option_default
+    - paragraphs.paragraphs_type.para_h_listing
+  module:
+    - options
+id: paragraph.para_h_listing.field_h_sort_option_default
+field_name: field_h_sort_option_default
+entity_type: paragraph
+bundle: para_h_listing
+label: 'Sort order'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'field_h_date_created_value:desc'
+default_value_callback: ''
+settings: {  }
+field_type: list_string
