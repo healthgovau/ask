@@ -9,6 +9,7 @@ on:
       - master
       - develop
       - v1.x
+      - v1.x-build
 jobs:
   coding-standards:
     name: Drupal coding standards
@@ -142,6 +143,7 @@ jobs:
           command: "cypress run"
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          LOG_LEVEL: debug
       - uses: actions/upload-artifact@v1
         if: failure()
         with:

@@ -7,13 +7,33 @@ dependencies:
     - field.field.paragraph.para_h_app_or_tool.field_h_app_path
     - field.field.paragraph.para_h_app_or_tool.field_h_app_width
     - paragraphs.paragraphs_type.para_h_app_or_tool
+  module:
+    - field_group
+third_party_settings:
+  field_group:
+    group_h_configuration:
+      children:
+        - field_h_app_path
+        - field_h_app_index_file
+        - field_h_app_width
+      parent_name: ''
+      weight: 0
+      format_type: details
+      region: content
+      format_settings:
+        description: 'Add details of the app folder path and HTML files, and set the width of the app display on the page. Please consult with your site builder or administrator if you are unsure what values to use here.'
+        open: true
+        required_fields: true
+        id: ''
+        classes: ''
+      label: Settings
 id: paragraph.para_h_app_or_tool.default
 targetEntityType: paragraph
 bundle: para_h_app_or_tool
 mode: default
 content:
   field_h_app_index_file:
-    weight: 1
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -21,7 +41,7 @@ content:
     type: string_textfield
     region: content
   field_h_app_path:
-    weight: 0
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -29,7 +49,7 @@ content:
     type: string_textfield
     region: content
   field_h_app_width:
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
