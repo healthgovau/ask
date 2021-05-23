@@ -18,7 +18,6 @@ source:
       field_h_resource_availability: Online
       field_h_resource_date: 01-02-2019
       field_h_date_format: monthyear
-      field_h_video_type: Presentation
       field_h_language: English
       field_h_audience: Everyone
       field_h_content_owner: Incom
@@ -27,8 +26,8 @@ source:
       field_h_date_published: '06-05-2019'
       field_h_date_reviewed: '06-05-2019'
       field_h_date_updated: '06-05-2019'
-      field_h_start_date: '06-05-2021 11:00:00'
-      field_h_end_date: '06-05-2021 13:00:00'
+      field_h_date_time_range_value: '10-05-2021 01:00:00'
+      field_h_date_time_range_end_value: '10-05-2021 03:00:00'
       field_h_webinar_link: 'https://health.gov.au/'
       status: '1'
   ids:
@@ -75,13 +74,6 @@ process:
     to_format: 'Y-m-d'
     source: field_h_resource_date
   field_h_date_format: field_h_date_format
-  field_h_video_type:
-    plugin: entity_lookup
-    entity_type: taxonomy_term
-    value_key: name
-    source: field_h_video_type
-    bundle_key: vid
-    bundle: h_video_type
   field_h_language:
     plugin: entity_lookup
     entity_type: taxonomy_term
@@ -112,12 +104,12 @@ process:
     bundle: h_subject
   field_h_date_created:
     plugin: format_date
-    from_format: 'd-m-Y'
+    from_format: 'd-m-Y H:i:s'
     to_format: 'Y-m-d\TH:i:s'
     source: field_h_date_created
   field_h_date_updated:
     plugin: format_date
-    from_format: 'd-m-Y'
+    from_format: 'd-m-Y H:i:s'
     to_format: 'Y-m-d\TH:i:s'
     source: field_h_date_updated
   field_h_date_reviewed:
@@ -130,16 +122,16 @@ process:
     from_format: 'd-m-Y'
     to_format: 'Y-m-d\TH:i:s'
     source: field_h_date_published
-  field_h_start_date:
+  'field_h_date_time_range/value':
     plugin: format_date
     from_format: 'd-m-Y H:i:s'
     to_format: 'Y-m-d\TH:i:s'
-    source: field_h_start_date
-  field_h_end_date:
+    source: field_h_date_time_range_value
+  'field_h_date_time_range/end_value':
     plugin: format_date
     from_format: 'd-m-Y H:i:s'
     to_format: 'Y-m-d\TH:i:s'
-    source: field_h_end_date
+    source: field_h_date_time_range_end_value
   field_h_webinar_link: field_h_webinar_link
   moderation_state:
     plugin: static_map
