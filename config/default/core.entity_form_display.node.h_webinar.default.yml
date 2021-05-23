@@ -15,16 +15,13 @@ dependencies:
     - field.field.node.h_webinar.field_h_date_format
     - field.field.node.h_webinar.field_h_date_published
     - field.field.node.h_webinar.field_h_date_reviewed
+    - field.field.node.h_webinar.field_h_date_time_range
     - field.field.node.h_webinar.field_h_date_updated
     - field.field.node.h_webinar.field_h_description
-    - field.field.node.h_webinar.field_h_end_date
     - field.field.node.h_webinar.field_h_image_featured
     - field.field.node.h_webinar.field_h_language
-    - field.field.node.h_webinar.field_h_related_committee_s_and
-    - field.field.node.h_webinar.field_h_related_conditions_and_d
     - field.field.node.h_webinar.field_h_resource_availability
     - field.field.node.h_webinar.field_h_resource_date
-    - field.field.node.h_webinar.field_h_start_date
     - field.field.node.h_webinar.field_h_subject
     - field.field.node.h_webinar.field_h_summary
     - field.field.node.h_webinar.field_h_webinar_link
@@ -32,6 +29,7 @@ dependencies:
   module:
     - content_moderation
     - datetime
+    - datetime_range
     - entity_browser
     - field_group
     - link
@@ -64,9 +62,8 @@ third_party_settings:
         - field_h_resource_date
         - field_h_date_format
         - field_h_image_featured
+        - field_h_date_time_range
         - field_h_webinar_link
-        - field_h_start_date
-        - field_h_end_date
       parent_name: group_h_tabs
       weight: 15
       format_type: tab
@@ -96,9 +93,7 @@ third_party_settings:
       region: content
     group_h_related:
       children:
-        - field_h_related_committee_s_and
         - field_h_subject
-        - field_h_related_conditions_and_d
       parent_name: group_h_tabs
       weight: 17
       format_type: tab
@@ -251,6 +246,12 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
+  field_h_date_time_range:
+    weight: 121
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
   field_h_date_updated:
     weight: 122
     settings: {  }
@@ -272,12 +273,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_h_end_date:
-    weight: 123
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_h_image_featured:
     weight: 120
@@ -307,26 +302,6 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_h_related_committee_s_and:
-    weight: 31
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_h_related_conditions_and_d:
-    weight: 33
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_h_resource_availability:
     type: entity_reference_autocomplete
     weight: 12
@@ -350,12 +325,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-    region: content
-  field_h_start_date:
-    weight: 122
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_h_subject:
     weight: 32
@@ -404,7 +373,7 @@ content:
     type: datetime_default
     region: content
   field_h_webinar_link:
-    weight: 121
+    weight: 122
     settings:
       placeholder_url: ''
       placeholder_title: ''

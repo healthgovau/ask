@@ -15,16 +15,13 @@ dependencies:
     - field.field.node.h_webinar.field_h_date_format
     - field.field.node.h_webinar.field_h_date_published
     - field.field.node.h_webinar.field_h_date_reviewed
+    - field.field.node.h_webinar.field_h_date_time_range
     - field.field.node.h_webinar.field_h_date_updated
     - field.field.node.h_webinar.field_h_description
-    - field.field.node.h_webinar.field_h_end_date
     - field.field.node.h_webinar.field_h_image_featured
     - field.field.node.h_webinar.field_h_language
-    - field.field.node.h_webinar.field_h_related_committee_s_and
-    - field.field.node.h_webinar.field_h_related_conditions_and_d
     - field.field.node.h_webinar.field_h_resource_availability
     - field.field.node.h_webinar.field_h_resource_date
-    - field.field.node.h_webinar.field_h_start_date
     - field.field.node.h_webinar.field_h_subject
     - field.field.node.h_webinar.field_h_summary
     - field.field.node.h_webinar.field_h_webinar_link
@@ -63,15 +60,12 @@ hidden:
   field_h_date_format: true
   field_h_date_published: true
   field_h_date_reviewed: true
+  field_h_date_time_range: true
   field_h_date_updated: true
   field_h_description: true
-  field_h_end_date: true
   field_h_language: true
-  field_h_related_committee_s_and: true
-  field_h_related_conditions_and_d: true
   field_h_resource_availability: true
   field_h_resource_date: true
-  field_h_start_date: true
   field_h_subject: true
   field_h_summary: true
   field_h_webinar_link: true
