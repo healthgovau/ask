@@ -24,46 +24,50 @@ dependencies:
     - field.field.node.h_webinar.field_h_subject
     - field.field.node.h_webinar.field_h_summary
     - field.field.node.h_webinar.field_h_webinar_link
+    - image.style.h_thumbnail_max_width
     - node.type.h_webinar
   module:
-    - datetime
+    - datetime_range
     - media
+    - panelizer
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.h_webinar.teaser
 targetEntityType: node
 bundle: h_webinar
 mode: teaser
 content:
+  field_h_date_time_range:
+    type: daterange_custom
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'l, d M Y - g:ia'
+      separator: to
+    third_party_settings: {  }
   field_h_image_featured:
     type: media_thumbnail
     weight: 0
     region: content
     label: hidden
     settings:
-      image_style: h_webinar_16_9_teaser
+      image_style: h_thumbnail_max_width
       image_link: ''
-    third_party_settings: {  }
-  field_h_resource_date:
-    type: datetime_default
-    weight: 2
-    region: content
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: h_day_month_year
     third_party_settings: {  }
   field_h_summary:
     type: basic_string
-    weight: 4
+    weight: 2
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
-    region: content
 hidden:
   field_h_audience: true
   field_h_content_components: true
@@ -76,11 +80,12 @@ hidden:
   field_h_date_format: true
   field_h_date_published: true
   field_h_date_reviewed: true
-  field_h_date_time_range: true
   field_h_date_updated: true
   field_h_language: true
   field_h_resource_availability: true
+  field_h_resource_date: true
   field_h_subject: true
   field_h_webinar_link: true
   langcode: true
+  links: true
   search_api_excerpt: true
