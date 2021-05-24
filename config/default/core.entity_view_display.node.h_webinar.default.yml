@@ -16,7 +16,6 @@ dependencies:
     - field.field.node.h_webinar.field_h_date_reviewed
     - field.field.node.h_webinar.field_h_date_time_range
     - field.field.node.h_webinar.field_h_date_updated
-    - field.field.node.h_webinar.field_h_description
     - field.field.node.h_webinar.field_h_image_featured
     - field.field.node.h_webinar.field_h_language
     - field.field.node.h_webinar.field_h_resource_availability
@@ -138,7 +137,6 @@ hidden:
   field_h_content_readability: true
   field_h_date_published: true
   field_h_date_updated: true
-  field_h_description: true
   field_h_image_featured: true
   field_h_language: true
   field_h_subject: true

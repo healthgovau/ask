@@ -17,7 +17,6 @@ dependencies:
     - field.field.node.h_webinar.field_h_date_reviewed
     - field.field.node.h_webinar.field_h_date_time_range
     - field.field.node.h_webinar.field_h_date_updated
-    - field.field.node.h_webinar.field_h_description
     - field.field.node.h_webinar.field_h_image_featured
     - field.field.node.h_webinar.field_h_language
     - field.field.node.h_webinar.field_h_resource_availability
@@ -27,20 +26,12 @@ dependencies:
     - field.field.node.h_webinar.field_h_webinar_link
     - node.type.h_webinar
   module:
-    - text
     - user
 id: node.h_webinar.search_index
 targetEntityType: node
 bundle: h_webinar
 mode: search_index
 content:
-  field_h_description:
-    type: text_default
-    weight: 1
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   field_h_summary:
     type: basic_string
     weight: 0

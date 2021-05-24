@@ -17,7 +17,6 @@ dependencies:
     - field.field.node.h_webinar.field_h_date_reviewed
     - field.field.node.h_webinar.field_h_date_time_range
     - field.field.node.h_webinar.field_h_date_updated
-    - field.field.node.h_webinar.field_h_description
     - field.field.node.h_webinar.field_h_image_featured
     - field.field.node.h_webinar.field_h_language
     - field.field.node.h_webinar.field_h_resource_availability
@@ -35,7 +34,6 @@ dependencies:
     - link
     - paragraphs
     - path
-    - text
 third_party_settings:
   field_group:
     group_h_tabs:
@@ -257,14 +255,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: content
-  field_h_description:
-    weight: 117
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
     region: content
   field_h_duration:
     weight: 119

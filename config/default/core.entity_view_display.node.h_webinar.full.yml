@@ -17,7 +17,6 @@ dependencies:
     - field.field.node.h_webinar.field_h_date_reviewed
     - field.field.node.h_webinar.field_h_date_time_range
     - field.field.node.h_webinar.field_h_date_updated
-    - field.field.node.h_webinar.field_h_description
     - field.field.node.h_webinar.field_h_image_featured
     - field.field.node.h_webinar.field_h_language
     - field.field.node.h_webinar.field_h_resource_availability
@@ -35,7 +34,6 @@ dependencies:
     - link
     - media
     - panelizer
-    - text
     - user
 third_party_settings:
   panelizer:
@@ -84,13 +82,6 @@ content:
     settings:
       timezone_override: ''
       format_type: h_day_month_year
-    third_party_settings: {  }
-  field_h_description:
-    type: text_default
-    weight: 5
-    region: content
-    label: above
-    settings: {  }
     third_party_settings: {  }
   field_h_image_featured:
     type: media_thumbnail

@@ -12,8 +12,6 @@ source:
       title: The Webinar of Darth Vader
       field_h_summary: |
         This is the webinar about Vader himself
-      field_h_description: |
-        <p>This is the webinar about Vader himself</p>
       field_h_image_featured: image_4
       field_h_content_components:
         -
