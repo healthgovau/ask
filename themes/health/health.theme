@@ -2540,7 +2540,8 @@ function health_preprocess_paragraph__para_h_listing(array &$variables) {
     $view = Views::getView('listing');
 
     if ($view instanceof ViewExecutable) {
-      $view->setDisplay('listing');
+      $display_mode = 'listing';
+      $view->setDisplay($display_mode);
 
       // Argument: Content types.
       $content_type_values = $paragraph->get('field_h_listing_content_types')
@@ -2562,6 +2563,35 @@ function health_preprocess_paragraph__para_h_listing(array &$variables) {
       if ($paragraph->get('field_h_listing_facets')) {
         // There are active facets.
         $view->display_active_facets = TRUE;
+      }
+
+      // Process sort handlers.
+      $sort_handlers = $view->getHandlers('sort');
+
+      // Get default sort option and order.
+      $default_sort_value = explode(':', $paragraph->get('field_h_sort_option_default')->value);
+      // We need to strip the "_value" string from the value. This is because
+      // the 'listing' view does not use the "_value" suffix for sort names.
+      // The code used here is a copy of the same code used by embedded
+      // listings which does use the "_value" suffix. This is a messy solution
+      // but used so that we can use the same field_h_sort_option_default field
+      // for both Embedded Listing and Listing paragraph types.
+      $default_sort_option_machine_name = str_replace('_value', '', $default_sort_value[0]);
+      $default_order = (!empty($default_sort_value[1])) ? strtoupper($default_sort_value[1]) : '';
+      $sort_options[$default_sort_option_machine_name] = $default_order;
+
+      foreach ($sort_handlers as $delta => $handler) {
+        $sort_option_names = array_keys($sort_options);
+        if (in_array($delta, $sort_option_names) === FALSE) {
+          // Remove any sort handlers not used by this embedded listing.
+          $view->removeHandler($display_mode, 'sort', $delta);
+        }
+        else {
+          if (!empty($sort_options[$delta])) {
+            // Set the order on the default sort handler.
+            $view->setHandlerOption($display_mode, 'sort', $delta, 'order', $sort_options[$delta]);
+          }
+        }
       }
 
       // Render view.
