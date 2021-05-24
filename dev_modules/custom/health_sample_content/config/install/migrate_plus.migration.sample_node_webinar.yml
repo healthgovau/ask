@@ -26,8 +26,8 @@ source:
       field_h_date_published: '06-05-2019'
       field_h_date_reviewed: '06-05-2019'
       field_h_date_updated: '06-05-2019'
-      field_h_date_time_range_value: '10-05-2021 01:00:00'
-      field_h_date_time_range_end_value: '10-05-2021 03:00:00'
+      field_h_date_time_range_value: '2021-05-10T00:00:00'
+      field_h_date_time_range_end_value: '2021-05-10T03:00:00'
       field_h_webinar_link: 'https://health.gov.au/'
       status: '1'
   ids:
@@ -103,12 +103,12 @@ process:
     bundle: h_subject
   field_h_date_created:
     plugin: format_date
-    from_format: 'd-m-Y H:i:s'
+    from_format: 'd-m-Y'
     to_format: 'Y-m-d\TH:i:s'
     source: field_h_date_created
   field_h_date_updated:
     plugin: format_date
-    from_format: 'd-m-Y H:i:s'
+    from_format: 'd-m-Y'
     to_format: 'Y-m-d\TH:i:s'
     source: field_h_date_updated
   field_h_date_reviewed:
@@ -121,16 +121,8 @@ process:
     from_format: 'd-m-Y'
     to_format: 'Y-m-d\TH:i:s'
     source: field_h_date_published
-  'field_h_date_time_range/value':
-    plugin: format_date
-    from_format: 'd-m-Y H:i:s'
-    to_format: 'Y-m-d\TH:i:s'
-    source: field_h_date_time_range_value
-  'field_h_date_time_range/end_value':
-    plugin: format_date
-    from_format: 'd-m-Y H:i:s'
-    to_format: 'Y-m-d\TH:i:s'
-    source: field_h_date_time_range_end_value
+  'field_h_date_time_range/value': field_h_date_time_range_value
+  'field_h_date_time_range/end_value': field_h_date_time_range_end_value
   field_h_webinar_link: field_h_webinar_link
   moderation_state:
     plugin: static_map
@@ -144,6 +136,7 @@ destination:
   default_bundle: h_webinar
 migration_dependencies:
   required:
+    - sample_media_image
     - sample_taxonomy_audience
     - sample_taxonomy_colour
     - sample_taxonomy_contact_type
@@ -158,4 +151,3 @@ migration_dependencies:
     - sample_taxonomy_subject_3
     - sample_taxonomy_video_type
     - sample_taxonomy_media_type
-    - sample_media_image
