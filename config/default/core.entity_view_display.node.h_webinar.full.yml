@@ -31,6 +31,7 @@ dependencies:
     - datetime
     - datetime_range
     - ds
+    - entity_reference_revisions
     - link
     - media
     - panelizer
@@ -47,6 +48,15 @@ targetEntityType: node
 bundle: h_webinar
 mode: full
 content:
+  field_h_content_components:
+    type: entity_reference_revisions_entity_view
+    weight: 4
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_h_date_published:
     type: datetime_default
     weight: 0
@@ -68,7 +78,7 @@ content:
     third_party_settings: {  }
   field_h_date_updated:
     type: datetime_default
-    weight: 6
+    weight: 7
     region: content
     label: inline
     settings:
@@ -77,7 +87,7 @@ content:
     third_party_settings: {  }
   field_h_description:
     type: text_default
-    weight: 4
+    weight: 5
     region: content
     label: above
     settings: {  }
@@ -93,16 +103,16 @@ content:
     third_party_settings: {  }
   field_h_resource_date:
     type: datetime_default
-    weight: 5
+    weight: 6
     region: content
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
       format_type: h_day_month_year
     third_party_settings: {  }
   field_h_subject:
     type: entity_reference_label
-    weight: 7
+    weight: 8
     region: content
     label: inline
     settings:
@@ -123,13 +133,12 @@ content:
       target: ''
     third_party_settings: {  }
   links:
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   field_h_audience: true
-  field_h_content_components: true
   field_h_content_grade_level: true
   field_h_content_long_sentences: true
   field_h_content_owner: true

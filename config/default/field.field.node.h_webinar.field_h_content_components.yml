@@ -5,6 +5,9 @@ dependencies:
   config:
     - field.storage.node.field_h_content_components
     - node.type.h_webinar
+    - paragraphs.paragraphs_type.para_h_content_image
+    - paragraphs.paragraphs_type.para_h_content_reference
+    - paragraphs.paragraphs_type.para_h_content_table
     - paragraphs.paragraphs_type.para_h_content_text
   module:
     - entity_reference_revisions
@@ -23,6 +26,9 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
+      para_h_content_image: para_h_content_image
+      para_h_content_reference: para_h_content_reference
+      para_h_content_table: para_h_content_table
       para_h_content_text: para_h_content_text
     target_bundles_drag_drop:
       para_h_address:
@@ -50,14 +56,14 @@ settings:
         weight: 36
         enabled: false
       para_h_content_image:
+        enabled: true
         weight: 37
-        enabled: false
       para_h_content_reference:
+        enabled: true
         weight: 38
-        enabled: false
       para_h_content_table:
+        enabled: true
         weight: 39
-        enabled: false
       para_h_content_text:
         enabled: true
         weight: 40
