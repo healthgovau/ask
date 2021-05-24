@@ -46,7 +46,6 @@ process:
     plugin: default_value
     source: status
     default_value: 1
-  field_h_video_youtubeid: field_h_video_youtubeid
   field_h_duration: field_h_duration
   'field_h_summary/value': field_h_summary
   'field_h_summary/format':
