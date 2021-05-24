@@ -15,6 +15,9 @@ source:
       field_h_description: |
         <p>This is the webinar about Vader himself</p>
       field_h_image_featured: image_4
+      field_h_content_components:
+        -
+          id: para_h_content_text_20
       field_h_resource_availability: Online
       field_h_resource_date: 01-02-2019
       field_h_date_format: monthyear
@@ -60,6 +63,19 @@ process:
     migration: sample_media_image
     source: field_h_image_featured
     no_stub: true
+  'field_h_content_components':
+    plugin: sub_process
+    source: field_h_content_components
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration:
+          - sample_paragraphs_content_image
+          - sample_paragraphs_content_reference
+          - sample_paragraphs_content_text
+          - sample_paragraphs_content_table
+        source: id
+      target_revision_id: '@target_id'
   field_h_resource_availability:
     plugin: entity_lookup
     entity_type: taxonomy_term
@@ -137,6 +153,7 @@ destination:
 migration_dependencies:
   required:
     - sample_media_image
+    - sample_paragraphs_content_text
     - sample_taxonomy_audience
     - sample_taxonomy_colour
     - sample_taxonomy_contact_type

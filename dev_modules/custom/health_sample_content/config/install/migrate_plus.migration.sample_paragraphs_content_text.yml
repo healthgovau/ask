@@ -122,6 +122,10 @@ source:
         <p>Sometime during the reign of the Galactic Empire, the Empire established an outpost on the moon that included a shield generator complex to protect the incomplete second Death Star in orbit of the moon. In order to make way for the complex, an Ewok village was razed by Imperial troops, leading to strained Imperial—Ewok relations.[17] As a result of the repulsorlift field emitted by the SLD-26 planetary shield generator to keep the Death Star in a stationary orbit, Endor was prone to earthquakes, tidal imbalances, and other geological disturbances.</p>
         <h2>Behind the scenes</h2>
         <p>The speeder bike chase was filmed at the Owen R. Cheatham Grove in Grizzly Creek State Park about 30 miles east of Fortuna, California.[23] Most of the other location scenes for Endor were filmed in Stout Grove, part of Jedidah Smith Redwods State Park, 5 miles east of Crescent City, California, near the Tolowa village Hiouchi. Scenes requiring explosions were shot on private logging company land in the vicinity because the trees were scheduled to be logged and the State Park would not allow damage to their trees.</p>
+    -
+      id: para_h_content_text_20
+      body_text: |
+        <p>Ahsoka Tano was a former Jedi Padawan who, after the Clone Wars, helped establish a network of various rebel cells against the Galactic Empire. A Togruta female, Tano was discovered on her homeworld of Shili by Jedi Master Plo Koon, who brought her to the Jedi Temple on Coruscant to receive Jedi training.</p>
   ids:
     id:
       type: string
