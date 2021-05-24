@@ -7,8 +7,8 @@ migration_tags:
 source:
   plugin: embedded_data
   data_rows:
-    - id: 10
-      file: 'https://www2.cs.uic.edu/~i101/SoundFiles/StarWars3.wav'
+    - id: 1
+      file: 'https://soundbible.com/mp3/dixie-horn_daniel-simion.mp3'
   ids:
     id:
       type: integer
@@ -27,7 +27,7 @@ process:
   name: '@pseudo_destination_filename'
   'field_media_audio_file/target_id':
     plugin: migration_lookup
-    migration: sample_file_document
+    migration: sample_file_audio
     source: id
   uid:
     plugin: default_value
@@ -37,5 +37,4 @@ destination:
   default_bundle: audio
 migration_dependencies:
   required:
-    - sample_media_file
-    - sample_file_document
+    - sample_file_audio
