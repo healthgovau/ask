@@ -43,7 +43,7 @@ const tests = (cy) => {
        cy
          .visit(landingPageUri)
          .get("header")
-         .contains("7 results");
+         .contains("8 results");
      });
 
     /**
@@ -59,8 +59,10 @@ const tests = (cy) => {
          .get(facetId)
          .should("be.visible")
          .contains(facetId, "App or tool (1)")
+         .contains(facetId, "Audio (1)")
          .contains(facetId, "Publication (4)")
-         .contains(facetId, "Video (1)");
+         .contains(facetId, "Video (1)")
+         .contains(facetId, "Webinar (1)");
      });
   });
 }

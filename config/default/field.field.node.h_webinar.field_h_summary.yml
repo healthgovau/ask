@@ -1,0 +1,19 @@
+uuid: 5c8cefb9-d688-400c-b845-34c8fdd4c1b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_summary
+    - node.type.h_webinar
+id: node.h_webinar.field_h_summary
+field_name: field_h_summary
+entity_type: node
+bundle: h_webinar
+label: Summary
+description: 'Summarise this information in 300 characters or less.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

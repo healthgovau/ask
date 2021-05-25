@@ -1,0 +1,23 @@
+uuid: 8e829001-bb4c-49cd-aea7-1ffb1253e1c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_content_readability
+    - node.type.h_webinar
+id: node.h_webinar.field_h_content_readability
+field_name: field_h_content_readability
+entity_type: node
+bundle: h_webinar
+label: 'Content readability'
+description: 'Run the description field text through a readability tool. Enter the content readability score out of 100.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 100
+  prefix: ''
+  suffix: /100
+field_type: integer

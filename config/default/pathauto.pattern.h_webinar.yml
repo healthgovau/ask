@@ -1,0 +1,22 @@
+uuid: 83621351-9697-4794-a198-1c1f6ce46181
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: h_webinar
+label: Webinar
+type: 'canonical_entities:node'
+pattern: 'resources/[node:title]'
+selection_criteria:
+  f1afbe80-bbab-44f1-816e-7ae2a88f0155:
+    id: node_type
+    bundles:
+      h_webinar: h_webinar
+    negate: false
+    context_mapping:
+      node: node
+    uuid: f1afbe80-bbab-44f1-816e-7ae2a88f0155
+selection_logic: and
+weight: -5
+relationships: {  }

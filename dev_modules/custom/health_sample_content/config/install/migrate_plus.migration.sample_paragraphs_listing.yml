@@ -18,6 +18,8 @@ source:
           type: h_video
         -
           type: h_audio
+        -
+          type: h_webinar
       field_h_listing_facets:
         -
           facet: h_content_type
