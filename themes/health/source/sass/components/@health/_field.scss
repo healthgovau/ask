@@ -1,3 +1,3 @@
-:not(.health-field--label-hidden) + .health-field--label-hidden {
+.health-field:not(.health-field--label-hidden) + .health-field--label-hidden {
   @include AU-space(margin-top, 1.5unit);
 }
