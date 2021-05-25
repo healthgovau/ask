@@ -1592,7 +1592,12 @@ function health_preprocess_html(array &$variables) {
 function health_preprocess_node(array &$variables) {
   $node = $variables['node'];
   if ($node instanceof NodeInterface) {
-    // Make information on whether Image Featured is present available to node
+    // Set CSS class names based on content type and view mode.
+    $variables['attributes']['class'][] = 'node';
+    $variables['attributes']['class'][] = 'node--' . $node->getType();
+    $variables['attributes']['class'][] = 'node--' . $variables['elements']['#view_mode'];
+
+    // Make available information on whether Image Featured is present to node
     // templates.
     try {
       $image_featured_present = $node->get('field_h_image_featured')
