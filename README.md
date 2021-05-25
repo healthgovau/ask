@@ -552,8 +552,8 @@ Below we offer instructions for the 2 most popular IDEs - VSCode and PHPStorm
               "request": "launch",
               "port": 9000,
               "pathMappings": {
-                "/app": "{/PATH/TO/PROJECT}/app",
-                "/app/web/themes/custom": "{/PATH/TO/PROJECT}/themes"
+                "/app": "${workspaceFolder}/app",
+                "/app/web/themes/custom": "${workspaceFolder}/themes"
               }
             },
             {
@@ -564,8 +564,8 @@ Below we offer instructions for the 2 most popular IDEs - VSCode and PHPStorm
               "cwd": "${fileDirname}",
               "port": 9000,
               "pathMappings": {
-                "/app": "{/PATH/TO/PROJECT}/app",
-                "/app/web/themes/custom": "{/PATH/TO/PROJECT}/themes"
+                "/app": "${workspaceFolder}/app",
+                "/app/web/themes/custom": "${workspaceFolder}/themes"
               }
             }
           ]

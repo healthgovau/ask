@@ -1,0 +1,17 @@
+uuid: 080ca89c-a068-4f79-bfd5-efb553e10e5d
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Webinar
+type: h_webinar
+description: 'Announce and describe an upcoming or recent <em>webinar</em>.'
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

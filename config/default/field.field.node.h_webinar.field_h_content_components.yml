@@ -1,0 +1,118 @@
+uuid: b8e6e86f-c1ae-43ac-b5f6-f17418e9dbed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_content_components
+    - node.type.h_webinar
+    - paragraphs.paragraphs_type.para_h_content_image
+    - paragraphs.paragraphs_type.para_h_content_reference
+    - paragraphs.paragraphs_type.para_h_content_table
+    - paragraphs.paragraphs_type.para_h_content_text
+  module:
+    - entity_reference_revisions
+id: node.h_webinar.field_h_content_components
+field_name: field_h_content_components
+entity_type: node
+bundle: h_webinar
+label: 'Content blocks'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      para_h_content_image: para_h_content_image
+      para_h_content_reference: para_h_content_reference
+      para_h_content_table: para_h_content_table
+      para_h_content_text: para_h_content_text
+    target_bundles_drag_drop:
+      para_h_address:
+        weight: 29
+        enabled: false
+      para_h_app_or_tool:
+        weight: 30
+        enabled: false
+      para_h_band:
+        weight: 31
+        enabled: false
+      para_h_button:
+        weight: 32
+        enabled: false
+      para_h_content_callout:
+        weight: 33
+        enabled: false
+      para_h_content_featured:
+        weight: 34
+        enabled: false
+      para_h_content_html:
+        weight: 35
+        enabled: false
+      para_h_content_iframe:
+        weight: 36
+        enabled: false
+      para_h_content_image:
+        enabled: true
+        weight: 37
+      para_h_content_reference:
+        enabled: true
+        weight: 38
+      para_h_content_table:
+        enabled: true
+        weight: 39
+      para_h_content_text:
+        enabled: true
+        weight: 40
+      para_h_email_addresses:
+        weight: 41
+        enabled: false
+      para_h_fax_numbers:
+        weight: 42
+        enabled: false
+      para_h_form:
+        weight: 43
+        enabled: false
+      para_h_layout_grid:
+        weight: 44
+        enabled: false
+      para_h_layout_three_column:
+        weight: 45
+        enabled: false
+      para_h_layout_two_column:
+        weight: 46
+        enabled: false
+      para_h_link_featured:
+        weight: 47
+        enabled: false
+      para_h_listing:
+        weight: 48
+        enabled: false
+      para_h_listing_curated:
+        weight: 49
+        enabled: false
+      para_h_listing_embedded:
+        weight: 50
+        enabled: false
+      para_h_listing_tile:
+        weight: 51
+        enabled: false
+      para_h_publication_grouping:
+        weight: 52
+        enabled: false
+      para_h_resource_part:
+        weight: 53
+        enabled: false
+      para_h_telephone_numbers:
+        weight: 54
+        enabled: false
+      para_h_tile:
+        weight: 55
+        enabled: false
+      para_h_view:
+        weight: 56
+        enabled: false
+field_type: entity_reference_revisions
