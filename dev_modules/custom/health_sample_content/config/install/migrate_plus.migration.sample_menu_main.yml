@@ -88,7 +88,7 @@ source:
       plid: 0
       link_title: Unpublished Content
       description: null
-      link_path: '/unpublished-content'
+      link_path: '/resources/unpublished-content'
       options: []
       external: 0
       weight: 2
