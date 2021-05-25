@@ -1564,6 +1564,8 @@ function health_preprocess_html(array &$variables) {
       '#gtm_id' => $gtm_id,
     ];
   }
+
+  $variables['attributes']['class'][] = 'node-' . $variables['node_type'];
 }
 
 /**
