@@ -92,6 +92,7 @@ display:
               h_publication: teaser
               h_standard_page: teaser
               h_video: teaser
+              h_webinar: teaser
               search_results: teaser
       fields:
         field_h_summary:

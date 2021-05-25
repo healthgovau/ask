@@ -1,0 +1,23 @@
+uuid: 15c94c4f-f53e-49f0-aa56-64368d0a8aa9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_content_long_sentences
+    - node.type.h_webinar
+id: node.h_webinar.field_h_content_long_sentences
+field_name: field_h_content_long_sentences
+entity_type: node
+bundle: h_webinar
+label: 'Content % long sentences'
+description: 'Run the description field text through a readability tool. Enter the % of long sentences.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 100
+  prefix: ''
+  suffix: '%'
+field_type: decimal

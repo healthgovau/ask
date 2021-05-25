@@ -1,5 +1,6 @@
-id: sample_node_audio
-label: Sample Nodes - Video
+id: sample_node_webinar
+label: Sample Nodes - Webinar
+migration_group: health_sample
 migration_tags:
   - health_sample_content
   - health_sample_node
@@ -7,31 +8,29 @@ source:
   plugin: embedded_data
   data_rows:
     -
-      id: node_h_audio_1
-      title: The theme song
-      field_h_audio_files: 1
-      field_h_duration: '00:03'
+      id: node_h_webinar_1
+      title: The Webinar of Darth Vader
       field_h_summary: |
-        Controversial opinion: The Mandalorian is pretty average.
-      field_h_description: |
-        <p>Controversial opinion: The Mandalorian is pretty average.</p>
+        This is the webinar about Vader himself
       field_h_image_featured: image_4
-      field_h_resource_transcript: |
-        <p>Dam, da, daaaam!</p>
+      field_h_content_components:
+        -
+          id: para_h_content_text_20
       field_h_resource_availability: Online
-      field_h_resource_date: 01-02-2020
+      field_h_resource_date: 01-02-2019
       field_h_date_format: monthyear
-      field_h_audio_type: Presentation
       field_h_language: English
       field_h_audience: Everyone
       field_h_content_owner: Incom
       field_h_subject: Politics
-      field_h_date_created: '01-02-2020'
-      field_h_date_published: '01-02-2020'
-      field_h_date_reviewed: '01-02-2020'
-      field_h_date_updated: '01-02-2020'
+      field_h_date_created: '06-05-2019'
+      field_h_date_published: '06-05-2019'
+      field_h_date_reviewed: '06-05-2019'
+      field_h_date_updated: '06-05-2019'
+      field_h_date_time_range_value: '2021-05-10T00:00:00'
+      field_h_date_time_range_end_value: '2021-05-10T03:00:00'
+      field_h_webinar_link: 'https://health.gov.au/'
       status: '1'
-      path: '/resources/theme-song'
   ids:
     id:
       type: string
@@ -48,15 +47,6 @@ process:
     plugin: default_value
     source: status
     default_value: 1
-  path/pathauto:
-    plugin: default_value
-    default_value: 0 # Disable pathauto.
-  path/alias: path
-  field_h_audio_files/target_id:
-    plugin: migration_lookup
-    migration: sample_media_audio
-    source: field_h_audio_files
-    no_stub: true
   field_h_duration: field_h_duration
   'field_h_summary/value': field_h_summary
   'field_h_summary/format':
@@ -71,10 +61,19 @@ process:
     migration: sample_media_image
     source: field_h_image_featured
     no_stub: true
-  'field_h_resource_transcript/value': field_h_resource_transcript
-  'field_h_resource_transcript/format':
-    plugin: default_value
-    default_value: rich_text
+  'field_h_content_components':
+    plugin: sub_process
+    source: field_h_content_components
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration:
+          - sample_paragraphs_content_image
+          - sample_paragraphs_content_reference
+          - sample_paragraphs_content_text
+          - sample_paragraphs_content_table
+        source: id
+      target_revision_id: '@target_id'
   field_h_resource_availability:
     plugin: entity_lookup
     entity_type: taxonomy_term
@@ -88,13 +87,6 @@ process:
     to_format: 'Y-m-d'
     source: field_h_resource_date
   field_h_date_format: field_h_date_format
-  field_h_audio_type:
-    plugin: entity_lookup
-    entity_type: taxonomy_term
-    value_key: name
-    source: field_h_audio_type
-    bundle_key: vid
-    bundle: h_audio_type
   field_h_language:
     plugin: entity_lookup
     entity_type: taxonomy_term
@@ -143,6 +135,9 @@ process:
     from_format: 'd-m-Y'
     to_format: 'Y-m-d\TH:i:s'
     source: field_h_date_published
+  'field_h_date_time_range/value': field_h_date_time_range_value
+  'field_h_date_time_range/end_value': field_h_date_time_range_end_value
+  field_h_webinar_link: field_h_webinar_link
   moderation_state:
     plugin: static_map
     source: '@status'
@@ -152,9 +147,11 @@ process:
       '1': published
 destination:
   plugin: 'entity:node'
-  default_bundle: h_audio
+  default_bundle: h_webinar
 migration_dependencies:
   required:
+    - sample_media_image
+    - sample_paragraphs_content_text
     - sample_taxonomy_audience
     - sample_taxonomy_colour
     - sample_taxonomy_contact_type
@@ -169,5 +166,3 @@ migration_dependencies:
     - sample_taxonomy_subject_3
     - sample_taxonomy_video_type
     - sample_taxonomy_media_type
-    - sample_media_image
-    - sample_media_audio
