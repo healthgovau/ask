@@ -1,6 +1,3 @@
-// Size of gutter between grid items.
-$grid-gutter-size: 1rem;
-
 .au-body {
 
   .health-grid > * + p {
@@ -12,262 +9,115 @@ $grid-gutter-size: 1rem;
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   > * {
     box-sizing: border-box;
     flex-basis: 100%;
     -ms-flex: auto;
     margin-bottom: $grid-gutter-size;
+    margin-right: $grid-gutter-size;
     padding: 1rem;
   }
 
-  &--1col {
+  > img {
+    padding: 0;
+  }
 
-    &-xs > * {
+  &--1col-xs {
+
+    > * {
       @include AU-media(xs) {
-        @include health-grid-item-width();
+        flex-basis: health-grid-item-width();
         -ms-flex: auto;
       }
     }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width();
-        -ms-flex: auto;
-      }
-    }
-
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width();
-        -ms-flex: auto;
-      }
-    }
-
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width();
-        -ms-flex: auto;
+    > img {
+      @include AU-media(xs) {
+        max-width: health-grid-item-width();
       }
     }
   }
 
-  &--2col {
+  &--1col-sm {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(2, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-sm > * {
+    > * {
       @include AU-media(sm) {
-        @include health-grid-item-width(2, $grid-gutter-size);
+        flex-basis: health-grid-item-width();
         -ms-flex: auto;
       }
     }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(2, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(2, $grid-gutter-size);
-        -ms-flex: auto;
+    > img {
+      @include AU-media(sm) {
+        max-width: health-grid-item-width();
       }
     }
   }
 
-  &--3col {
+  &--1col-md {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(3, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(3, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-md > * {
+    > * {
       @include AU-media(md) {
-        @include health-grid-item-width(3, $grid-gutter-size);
+        flex-basis: health-grid-item-width();
         -ms-flex: auto;
       }
     }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(3, $grid-gutter-size);
-        -ms-flex: auto;
+    > img {
+      @include AU-media(md) {
+        max-width: health-grid-item-width();
       }
     }
   }
 
-  &--4col {
+  &--1col-lg {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(4, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(4, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(4, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-lg > * {
+    > * {
       @include AU-media(lg) {
-        @include health-grid-item-width(4, $grid-gutter-size);
+        flex-basis: health-grid-item-width();
         -ms-flex: auto;
+      }
+    }
+
+    > img {
+      @include AU-media(lg) {
+        max-width: health-grid-item-width();
       }
     }
   }
+}
 
-  &--5col {
+@each $bp in $breakpoint-sizes {
+  @for $i from 2 through 8 {
+    .health-grid--#{$i}col-#{$bp} {
 
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(5, $grid-gutter-size);
-        -ms-flex: auto;
+      > * {
+        @include AU-media($bp) {
+          flex-basis: health-grid-item-width($i, $grid-gutter-size);
+          -ms-flex: auto;
+        }
       }
-    }
 
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(5, $grid-gutter-size);
-        -ms-flex: auto;
+      > *:not(*:nth-child(#{$i}n + #{$i})) {
+        @include AU-media($bp) {
+          margin-right: $grid-gutter-size;
+        }
       }
-    }
 
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(5, $grid-gutter-size);
-        -ms-flex: auto;
+      > *:nth-child(#{$i}n + #{$i}) {
+        @include AU-media($bp) {
+          margin-right: 0rem;
+        }
       }
-    }
 
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(5, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-  }
-
-  &--6col {
-
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(6, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(6, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(6, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(6, $grid-gutter-size);
-        -ms-flex: auto;
+      > img {
+        @include AU-media($bp) {
+          margin-top: 0;
+          max-width: health-grid-item-width($i, $grid-gutter-size);
+        }
       }
     }
   }
-
-  &--7col {
-
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(7, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(7, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(7, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(7, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-  }
-
-  &--8col {
-
-    &-xs > * {
-      @include AU-media(xs) {
-        @include health-grid-item-width(8, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-sm > * {
-      @include AU-media(sm) {
-        @include health-grid-item-width(8, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-md > * {
-      @include AU-media(md) {
-        @include health-grid-item-width(8, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-
-    &-lg > * {
-      @include AU-media(lg) {
-        @include health-grid-item-width(8, $grid-gutter-size);
-        -ms-flex: auto;
-      }
-    }
-  }
-
 }

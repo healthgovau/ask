@@ -1,0 +1,8 @@
+uuid: 4261a5fe-c680-413f-9447-75b7b018c806
+langcode: en
+status: true
+dependencies: {  }
+name: 'Committee or group'
+vid: h_committee_or_group
+description: ''
+weight: 0

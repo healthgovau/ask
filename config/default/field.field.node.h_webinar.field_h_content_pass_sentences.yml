@@ -1,0 +1,23 @@
+uuid: 89a53d64-dbac-48d7-b073-b5a2c0374f92
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_content_pass_sentences
+    - node.type.h_webinar
+id: node.h_webinar.field_h_content_pass_sentences
+field_name: field_h_content_pass_sentences
+entity_type: node
+bundle: h_webinar
+label: 'Content % passive sentences'
+description: 'Run the description field text through a readability tool. Enter the % of passive sentences.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 100
+  prefix: ''
+  suffix: '%'
+field_type: decimal

@@ -1,0 +1,24 @@
+uuid: 0f7153c6-8871-48bc-b657-a3fc3f058936
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_date_reviewed
+    - node.type.h_webinar
+  module:
+    - datetime
+id: node.h_webinar.field_h_date_reviewed
+field_name: field_h_date_reviewed
+entity_type: node
+bundle: h_webinar
+label: 'Date last reviewed'
+description: 'Select the date this information was last reviewed.'
+required: false
+translatable: true
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

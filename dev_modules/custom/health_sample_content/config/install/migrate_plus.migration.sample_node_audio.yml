@@ -9,7 +9,7 @@ source:
     -
       id: node_h_audio_1
       title: The theme song
-      field_h_audio_files: 10
+      field_h_audio_files: 1
       field_h_duration: '00:03'
       field_h_summary: |
         Controversial opinion: The Mandalorian is pretty average.
@@ -170,3 +170,4 @@ migration_dependencies:
     - sample_taxonomy_video_type
     - sample_taxonomy_media_type
     - sample_media_image
+    - sample_media_audio
