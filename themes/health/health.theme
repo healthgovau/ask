@@ -2232,6 +2232,19 @@ function health_preprocess_paragraph__para_h_content_table(array &$variables) {
 /**
  * Implements template_preprocess_HOOK().
  */
+function health_preprocess_paragraph__para_h_content_iframe(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  if ($paragraph instanceof ParagraphInterface) {
+    $variables['iframe_classes'] = $paragraph->get('field_h_iframe_classes')->value;
+    $variables['iframe_title'] = $paragraph->get('field_h_iframe_title')->value;
+    $variables['iframe_source'] = $paragraph->get('field_h_iframe_source')->value;
+    $variables['iframe_geolocation'] = $paragraph->get('field_h_allow_geolocation')->value;
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
 function health_preprocess_paragraph__para_h_layout_grid(array &$variables) {
   _health_process_health_layout_grid($variables);
 }

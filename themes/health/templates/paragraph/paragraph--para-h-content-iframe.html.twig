@@ -1,10 +1,5 @@
 {% extends '@paragraphs/paragraph.html.twig' %}
 
-{% set iframe_classes = content.field_h_iframe_classes|render|striptags|trim|e('html') %}
-{% set iframe_title = content.field_h_iframe_title|render|striptags|trim|e('html') %}
-{% set iframe_source = content.field_h_iframe_source|render|striptags|trim|e('html') %}
-{% set iframe_geolocation = content.field_h_allow_geolocation|render|striptags|trim|e('html') %}
-
 {% block paragraph %}
 
   {% if content.field_h_title %}
