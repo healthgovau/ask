@@ -60,7 +60,9 @@ process:
           - sample_paragraphs_content_text
           - sample_paragraphs_listing
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   field_h_date_created:
     plugin: format_date
     from_format: 'd-m-Y'
