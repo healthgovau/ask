@@ -1,17 +1,11 @@
 <?php
 
-/**
- * @file
- *
- */
-
 namespace Drupal\health_migration_tools\Plugin\migrate\process;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\migrate\MigrateExecutableInterface;
-use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 
@@ -29,7 +23,6 @@ use Drupal\migrate\Row;
  *   plugin: health_migration_tools_paragraph_revision_id_lookup
  *   source: entity_id
  * @endcode
- *
  */
 class ParagraphRevisionIdLookup extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
@@ -62,7 +55,6 @@ class ParagraphRevisionIdLookup extends ProcessPluginBase implements ContainerFa
     return $instance;
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -88,4 +80,5 @@ class ParagraphRevisionIdLookup extends ProcessPluginBase implements ContainerFa
 
     return $paragraph_revision_id;
   }
+
 }
