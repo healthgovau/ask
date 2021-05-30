@@ -9,14 +9,14 @@ const tests = (cy) => {
   const page = "/resources/unpublished-content";
   const refpage = "/reference-paragraphs";
 
-  describe("The unpublished page.", () => {
-    it("Not visible when unauthenticated.", () => {
+  describe("Unpublished pages.", () => {
+    it("Not visible to unauthenticated users.", () => {
       cy.request({url: page, failOnStatusCode: false}).its('status').should('eq', 403)
         .visit('/')
         .get('nav ul li.not-published').should('not.exist');
     });
 
-    it("Visible when logged in", () => {
+    it("Visible to authenticated users", () => {
       const user = new User();
       const percyOptions = {};
       user.login("author", "author");
@@ -27,7 +27,7 @@ const tests = (cy) => {
         .percySnapshot("health_starter_kit_sample_unpublished_page", percyOptions);
     });
 
-    it("Appear in list when logged in", () => {
+    it("Appears in listing when list is viewed by authenticated user.", () => {
       const user = new User();
       const percyOptions = {};
       user.login("author", "author");
