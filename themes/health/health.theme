@@ -2748,7 +2748,7 @@ function health_preprocess_region__content_top(array &$variables) {
   $node = _health_get_current_route_entity_object('node');
   if ($node instanceof NodeInterface) {
     // Check if the content supports display as hero functionality.
-    if ($node->hasField('field_h_display_as_hero')) {
+    if ($node->hasField('field_h_display_as_hero') && $node->get('field_h_display_as_hero')->value === '1') {
       // Process hero background image.
       $image = NULL;
       if ($node->get('field_h_image_featured')->isEmpty() !== TRUE) {
