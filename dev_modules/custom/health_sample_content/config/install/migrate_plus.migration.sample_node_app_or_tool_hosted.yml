@@ -63,7 +63,9 @@ process:
           - sample_paragraphs_content_text
           - sample_paragraphs_app_or_tool
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   field_h_language:
     plugin: entity_lookup
     entity_type: taxonomy_term
