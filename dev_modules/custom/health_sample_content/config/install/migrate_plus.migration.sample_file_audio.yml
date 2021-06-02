@@ -1,0 +1,49 @@
+id: sample_file_audio
+label: Sample Content - Audio
+migration_group: health_sample
+migration_tags:
+  - health_sample_content
+  - health_sample_file
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: 1
+      file: 'https://soundbible.com/mp3/dixie-horn_daniel-simion.mp3'
+  ids:
+    id:
+      type: integer
+  constants:
+    DRUPAL_FILE_DIRECTORY: 'public://file/'
+process:
+  pseudo_destination_filename:
+    -
+      plugin: callback
+      callable: basename
+      source: file
+    -
+      plugin: skip_on_empty
+      method: row
+      message: 'Cannot import empty file filename.'
+  pseudo_destination_path:
+    -
+      plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - '@pseudo_destination_filename'
+  uri:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: file
+    -
+      plugin: file_copy
+      source:
+        - file
+        - '@pseudo_destination_path'
+      file_exists: rename
+      move: false
+
+destination:
+  plugin: 'entity:file'
+migration_dependencies: null

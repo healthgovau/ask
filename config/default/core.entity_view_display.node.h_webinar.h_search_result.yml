@@ -1,0 +1,68 @@
+uuid: 234d9c1f-1c6f-4c51-b451-70a7f47cc131
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.h_search_result
+    - field.field.node.h_webinar.field_h_audience
+    - field.field.node.h_webinar.field_h_content_components
+    - field.field.node.h_webinar.field_h_content_grade_level
+    - field.field.node.h_webinar.field_h_content_long_sentences
+    - field.field.node.h_webinar.field_h_content_owner
+    - field.field.node.h_webinar.field_h_content_pass_sentences
+    - field.field.node.h_webinar.field_h_content_readability
+    - field.field.node.h_webinar.field_h_date_created
+    - field.field.node.h_webinar.field_h_date_format
+    - field.field.node.h_webinar.field_h_date_published
+    - field.field.node.h_webinar.field_h_date_reviewed
+    - field.field.node.h_webinar.field_h_date_time_range
+    - field.field.node.h_webinar.field_h_date_updated
+    - field.field.node.h_webinar.field_h_image_featured
+    - field.field.node.h_webinar.field_h_language
+    - field.field.node.h_webinar.field_h_resource_availability
+    - field.field.node.h_webinar.field_h_resource_date
+    - field.field.node.h_webinar.field_h_subject
+    - field.field.node.h_webinar.field_h_summary
+    - field.field.node.h_webinar.field_h_webinar_link
+    - node.type.h_webinar
+  module:
+    - user
+id: node.h_webinar.h_search_result
+targetEntityType: node
+bundle: h_webinar
+mode: h_search_result
+content:
+  field_h_summary:
+    type: basic_string
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_h_audience: true
+  field_h_content_components: true
+  field_h_content_grade_level: true
+  field_h_content_long_sentences: true
+  field_h_content_owner: true
+  field_h_content_pass_sentences: true
+  field_h_content_readability: true
+  field_h_date_created: true
+  field_h_date_format: true
+  field_h_date_published: true
+  field_h_date_reviewed: true
+  field_h_date_time_range: true
+  field_h_date_updated: true
+  field_h_image_featured: true
+  field_h_language: true
+  field_h_resource_availability: true
+  field_h_resource_date: true
+  field_h_subject: true
+  field_h_webinar_link: true
+  langcode: true
+  search_api_excerpt: true

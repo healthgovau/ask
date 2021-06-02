@@ -504,8 +504,31 @@ function adminimal_medela_form_alter(array &$form, FormStateInterface $form_stat
       if (isset($form['field_h_resource_availability'])) {
         $form['field_h_resource_availability']['widget']['#disabled'] = TRUE;
       }
+
+      if (isset($form['field_h_duration'])) {
+        $form['field_h_duration']['#element_validate'][] = '_adminimal_medela_resource_duration_validator';
+      }
+
       break;
   }
+}
+
+/**
+ * Video duration validator.
+ *
+ * @param array $element
+ *   Element.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ */
+function _adminimal_medela_resource_duration_validator(array $element, FormStateInterface &$form_state) {
+
+  $value = $form_state->getValue('field_h_duration')[0]['value'];
+
+  if (!empty($value) && preg_match('/^([1-9])?[0-9]:([1-5]?[0-9]:)?[0-5][0-9]/', $value) == 0) {
+    $form_state->setErrorByName('field_h_duration', t('Duration must be in the format HH:MM:SS with no leading spaces, for example <strong>2:26</strong> (2 minutes and 26 seconds) or <strong>1:43:59</strong> (one hour, 43 minutes and 59 seconds).'));
+  }
+
 }
 
 /**

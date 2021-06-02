@@ -1,0 +1,11 @@
+uuid: 987acc1e-ec82-49bb-afb7-cb6220d671af
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.h_committee_or_group
+id: taxonomy_term.h_committee_or_group
+target_entity_type_id: taxonomy_term
+target_bundle: h_committee_or_group
+default_langcode: site_default
+language_alterable: false
