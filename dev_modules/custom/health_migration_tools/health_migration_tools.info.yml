@@ -1,0 +1,8 @@
+name: Health Migration Tools
+type: module
+description: Provides tools to use with migrations.
+core_version_requirement: ^8
+package: Health
+dependencies:
+  - migrate:migrate
+  - paragraphs:paragraphs
