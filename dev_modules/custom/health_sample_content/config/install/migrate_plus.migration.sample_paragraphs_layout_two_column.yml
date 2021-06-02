@@ -70,7 +70,9 @@ process:
           - sample_paragraphs_content_text
           - sample_paragraphs_listing_embedded
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   field_h_content_components_col_2:
     plugin: sub_process
     source: field_h_content_components_col_2
@@ -82,7 +84,9 @@ process:
           - sample_paragraphs_content_text
           - sample_paragraphs_listing_embedded
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
 destination:
   plugin: 'entity:paragraph'
   default_bundle: para_h_layout_two_column

@@ -91,7 +91,9 @@ process:
           - sample_paragraphs_link_featured
           - sample_paragraphs_tile
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   field_h_items_per_row: field_h_items_per_row
   field_h_items_per_row_mobile: field_h_items_per_row_mobile
   field_h_items_per_row_tablet: field_h_items_per_row_tablet
