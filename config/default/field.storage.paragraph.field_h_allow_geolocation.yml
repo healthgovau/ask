@@ -1,0 +1,18 @@
+uuid: 0d2254a2-3630-4fc8-86c9-3f0e77122532
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_h_allow_geolocation
+field_name: field_h_allow_geolocation
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
