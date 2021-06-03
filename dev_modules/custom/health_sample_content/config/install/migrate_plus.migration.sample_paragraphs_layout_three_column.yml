@@ -57,7 +57,9 @@ process:
           - sample_paragraphs_content_image
           - sample_paragraphs_content_text
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   field_h_content_components:
     plugin: sub_process
     source: field_h_content_components
@@ -69,7 +71,9 @@ process:
           - sample_paragraphs_content_image
           - sample_paragraphs_content_text
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   field_h_content_components_col_2:
     plugin: sub_process
     source: field_h_content_components_col_2
@@ -81,7 +85,9 @@ process:
           - sample_paragraphs_content_image
           - sample_paragraphs_content_text
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
 
 destination:
   plugin: 'entity:paragraph'

@@ -97,7 +97,9 @@ process:
         migration:
           - sample_paragraphs_content_text
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   'field_h_image_featured/target_id':
     plugin: migration_lookup
     migration: sample_media_image

@@ -31,6 +31,9 @@ source:
     -
       id: para_h_content_reference_8
       field_h_reference: node_h_news_1
+    -
+      id: para_h_content_reference_9
+      field_h_reference: node_h_unpublished_1
   ids:
     id:
       type: string
@@ -48,6 +51,7 @@ process:
       - sample_node_news
       - sample_node_publication
       - sample_node_video
+      - sample_node_unpublished
     source: field_h_reference
 destination:
   plugin: 'entity:paragraph'
@@ -60,3 +64,4 @@ migration_dependencies:
       - sample_node_news
       - sample_node_publication
       - sample_node_video
+      - sample_node_unpublished
