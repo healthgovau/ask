@@ -8,10 +8,14 @@ dependencies:
     - node
     - search_api
   config:
+    - field.storage.node.field_h_date_created
     - field.storage.node.field_h_date_updated
+    - field.storage.node.field_h_resource_date
     - field.storage.node.field_h_summary
     - field.storage.node.field_h_audience
     - search_api.server.lagoon_solr
+    - core.entity_view_mode.node.full
+    - core.entity_view_mode.node.teaser
 third_party_settings:
   search_api_solr:
     finalize: false
@@ -50,14 +54,19 @@ third_party_settings:
       index_prefix: ''
       collection: ''
       timezone: ''
-    term_modifiers:
-      slop: 10000000
-      fuzzy: 2
 id: all
 name: All
 description: ''
 read_only: false
 field_settings:
+  field_h_date_created:
+    label: 'Date created'
+    datasource_id: 'entity:node'
+    property_path: field_h_date_created
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_h_date_created
   field_h_date_updated:
     label: 'Last updated'
     datasource_id: 'entity:node'
@@ -66,6 +75,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_h_date_updated
+  field_h_resource_date:
+    label: 'Resource published'
+    datasource_id: 'entity:node'
+    property_path: field_h_resource_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_h_resource_date
   field_h_summary:
     label: Summary
     datasource_id: 'entity:node'
@@ -84,11 +101,43 @@ field_settings:
         - field.storage.node.field_h_audience
       module:
         - taxonomy
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    boost: 0.8
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          h_app_or_tool: full
+          h_app_or_tool_hosted: full
+          h_audio: full
+          h_collection: full
+          h_contact: full
+          h_foi_request: full
+          h_landing_page: teaser
+          h_listing: teaser
+          h_news_article: full
+          h_publication: full
+          h_standard_page: full
+          h_video: full
+          search_results: ''
   status:
     label: Published
     datasource_id: 'entity:node'
     property_path: status
     type: boolean
+    indexed_locked: true
+    type_locked: true
     dependencies:
       module:
         - node
@@ -97,6 +146,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: title
     type: text
+    boost: !!float 2
     dependencies:
       module:
         - node
@@ -105,6 +155,16 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: type
     type: string
+    dependencies:
+      module:
+        - node
+  uid:
+    label: null
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
     dependencies:
       module:
         - node
@@ -120,9 +180,14 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
   language_with_fallback: {  }
   rendered_item: {  }
-  solr_date_range: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
 tracker_settings:
   default:
     indexing_order: fifo

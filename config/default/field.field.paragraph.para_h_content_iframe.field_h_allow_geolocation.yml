@@ -1,0 +1,23 @@
+uuid: 8bc04ad5-989d-472b-a126-aa5db6418c4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_h_allow_geolocation
+    - paragraphs.paragraphs_type.para_h_content_iframe
+id: paragraph.para_h_content_iframe.field_h_allow_geolocation
+field_name: field_h_allow_geolocation
+entity_type: paragraph
+bundle: para_h_content_iframe
+label: 'Allow geolocation'
+description: 'Is geolocation a feature of the application that is embedded in this iframe?'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: geolocation
+  off_label: 'off '
+field_type: boolean

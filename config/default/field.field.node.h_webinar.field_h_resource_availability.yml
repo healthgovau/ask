@@ -1,0 +1,31 @@
+uuid: 085d141c-6c92-48d3-a045-c9e4ef5d7cfb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_resource_availability
+    - node.type.h_webinar
+    - taxonomy.vocabulary.h_resource_availability
+id: node.h_webinar.field_h_resource_availability
+field_name: field_h_resource_availability
+entity_type: node
+bundle: h_webinar
+label: 'Resource availability'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    target_uuid: 3653c865-4657-4437-b688-bbb1a08f300f
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      h_resource_availability: h_resource_availability
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

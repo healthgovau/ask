@@ -67,7 +67,9 @@ process:
         plugin: migration_lookup
         migration: sample_paragraphs_publication_grouping
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   field_h_publication_type:
     plugin: entity_lookup
     entity_type: taxonomy_term

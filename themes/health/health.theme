@@ -7,6 +7,7 @@
 
 use Drupal\Core\Link;
 use Drupal\Core\Template\Attribute;
+use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\file\FileInterface;
 use Drupal\Core\Form\FormState;
@@ -25,6 +26,7 @@ use Drupal\Component\Serialization\Json;
 use GuzzleHttp\Exception\RequestException;
 use Drupal\media\Entity\Media;
 use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
 
 /**
  * Check if field contains data.
@@ -1225,6 +1227,17 @@ function health_preprocess_block(array &$variables) {
  */
 function health_preprocess_menu(array &$variables) {
 
+  if ($variables['menu_name'] == "main") {
+    foreach ($variables['items'] as $key => $item) {
+      $entity = $item['url']->getRouteParameters();
+      if (isset($entity['node'])) {
+        if (!Node::load($entity['node'])->isPublished()) {
+          $variables['items'][$key]['attributes']->addClass('not-published');
+        }
+      }
+    }
+  }
+
   if (isset($variables['attributes']['data-region'])) {
     $region = $variables['attributes']['data-region'];
 
@@ -1410,6 +1423,28 @@ function health_preprocess_field__field_h_collection_grouping(array &$variables)
 /**
  * Implements template_preprocess_HOOK().
  */
+function health_preprocess_field__field_h_date_time_range(array &$variables) {
+  $field_items = $variables['element']['#items'];
+  $time_format_short = 'g:ia';
+  foreach ($field_items as $index => $item) {
+    if ($item instanceof DateRangeItem) {
+      $date_start = $item->get('start_date')->getValue();
+      $date_end = $item->get('end_date')->getValue();
+      $date_diff = $date_start->diff($date_end);
+      // Check if start and end times are on the same day.
+      if ($date_diff->format('%a') === '0') {
+        // Use short time format for end time.
+        $timezone = $date_end->getTimezone();
+        $date_end->setTimezone($timezone);
+        $variables['items'][$index]['content']['end_date']['#markup'] = $date_end->format($time_format_short);
+      }
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
 function health_preprocess_field__field_h_resource_parts(array &$variables) {
   $variables['health_document_accessibility_link'] = _health_get_accessible_doc_request_form_link();
 }
@@ -1574,7 +1609,19 @@ function health_preprocess_html(array &$variables) {
 function health_preprocess_node(array &$variables) {
   $node = $variables['node'];
   if ($node instanceof NodeInterface) {
+
+    // Check if node is published.
+    if (!$node->isPublished()) {
+      $variables['attributes']['class'][] = 'not-published';
+    }
+
     // Make information on whether Image Featured is present available to node
+    // Set CSS class names based on content type and view mode.
+    $variables['attributes']['class'][] = 'node';
+    $variables['attributes']['class'][] = 'node--' . $node->getType();
+    $variables['attributes']['class'][] = 'node--' . $variables['elements']['#view_mode'];
+
+    // Make available information on whether Image Featured is present to node
     // templates.
     try {
       $image_featured_present = $node->get('field_h_image_featured')
@@ -2091,6 +2138,21 @@ function health_preprocess_file_link(array &$variables) {
 function health_preprocess_paragraph(array &$variables) {
   $paragraph = $variables['paragraph'];
 
+  // Add not-published class to a paragraph that refers to an unpublished node.
+  foreach ($variables['elements'] as $key => $el) {
+    if (substr($key, 0, 1) !== "#") {
+      if (isset($el['#field_type']) && $el['#field_type'] == 'entity_reference') {
+        foreach ($el['#items']->referencedEntities() as $item) {
+          if (method_exists($item, 'isPublished')) {
+            if (!$item->isPublished()) {
+              $variables['content_attributes']['class'][] = 'not-published';
+            }
+          }
+        }
+      }
+    }
+  }
+
   // Make background colour information available to template. Include colour's
   // hexcode and correspondin light/dark theme information.
   try {
@@ -2204,6 +2266,19 @@ function health_preprocess_paragraph__para_h_content_table(array &$variables) {
 
   // Update content to use modified table markup.
   $variables['content']['table'][0]['#markup'] = $table;
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function health_preprocess_paragraph__para_h_content_iframe(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  if ($paragraph instanceof ParagraphInterface) {
+    $variables['iframe_classes'] = $paragraph->get('field_h_iframe_classes')->value;
+    $variables['iframe_title'] = $paragraph->get('field_h_iframe_title')->value;
+    $variables['iframe_source'] = $paragraph->get('field_h_iframe_source')->value;
+    $variables['iframe_geolocation'] = $paragraph->get('field_h_allow_geolocation')->value ? "geolocation 'src'" : "geolocation 'none'";
+  }
 }
 
 /**
@@ -2542,7 +2617,8 @@ function health_preprocess_paragraph__para_h_listing(array &$variables) {
     $view = Views::getView('listing');
 
     if ($view instanceof ViewExecutable) {
-      $view->setDisplay('listing');
+      $display_mode = 'listing';
+      $view->setDisplay($display_mode);
 
       // Argument: Content types.
       $content_type_values = $paragraph->get('field_h_listing_content_types')
@@ -2564,6 +2640,35 @@ function health_preprocess_paragraph__para_h_listing(array &$variables) {
       if ($paragraph->get('field_h_listing_facets')) {
         // There are active facets.
         $view->display_active_facets = TRUE;
+      }
+
+      // Process sort handlers.
+      $sort_handlers = $view->getHandlers('sort');
+
+      // Get default sort option and order.
+      $default_sort_value = explode(':', $paragraph->get('field_h_sort_option_default')->value);
+      // We need to strip the "_value" string from the value. This is because
+      // the 'listing' view does not use the "_value" suffix for sort names.
+      // The code used here is a copy of the same code used by embedded
+      // listings which does use the "_value" suffix. This is a messy solution
+      // but used so that we can use the same field_h_sort_option_default field
+      // for both Embedded Listing and Listing paragraph types.
+      $default_sort_option_machine_name = str_replace('_value', '', $default_sort_value[0]);
+      $default_order = (!empty($default_sort_value[1])) ? strtoupper($default_sort_value[1]) : '';
+      $sort_options[$default_sort_option_machine_name] = $default_order;
+
+      foreach ($sort_handlers as $delta => $handler) {
+        $sort_option_names = array_keys($sort_options);
+        if (in_array($delta, $sort_option_names) === FALSE) {
+          // Remove any sort handlers not used by this embedded listing.
+          $view->removeHandler($display_mode, 'sort', $delta);
+        }
+        else {
+          if (!empty($sort_options[$delta])) {
+            // Set the order on the default sort handler.
+            $view->setHandlerOption($display_mode, 'sort', $delta, 'order', $sort_options[$delta]);
+          }
+        }
       }
 
       // Render view.
@@ -2682,7 +2787,7 @@ function health_preprocess_region__content_top(array &$variables) {
   $node = _health_get_current_route_entity_object('node');
   if ($node instanceof NodeInterface) {
     // Check if the content supports display as hero functionality.
-    if ($node->hasField('field_h_display_as_hero')) {
+    if ($node->hasField('field_h_display_as_hero') && $node->get('field_h_display_as_hero')->value === '1') {
       // Process hero background image.
       $image = NULL;
       if ($node->get('field_h_image_featured')->isEmpty() !== TRUE) {

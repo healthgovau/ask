@@ -79,6 +79,8 @@ source:
           id: para_h_content_reference_7
         -
           id: para_h_content_reference_8
+        -
+          id: para_h_content_reference_9
       generate_toc: 0
       subject: Politics
       content_language: English
@@ -145,7 +147,9 @@ process:
           - sample_paragraphs_listing_embedded
           - sample_paragraphs_view
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   field_h_generate_toc: generate_toc
   field_h_subject:
     plugin: entity_lookup

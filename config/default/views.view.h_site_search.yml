@@ -90,6 +90,7 @@ display:
               h_publication: h_search_result
               h_standard_page: h_search_result
               h_video: h_search_result
+              h_webinar: h_search_result
               search_results: h_search_result
       fields:
         field_h_date_updated:

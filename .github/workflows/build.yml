@@ -9,6 +9,7 @@ on:
       - master
       - develop
       - v1.x
+      - v1.x-percy-build
 jobs:
   coding-standards:
     name: Drupal coding standards

@@ -67,7 +67,7 @@ source:
           id: para_h_band_17
       content_owner: Incom
       field_h_image_featured: image_3
-      field_h_display_as_hero: 1
+      field_h_display_as_hero: 0
       field_h_date_created: '07-05-2019'
       field_h_date_published: '07-05-2019'
       field_h_date_reviewed: '07-05-2019'
@@ -115,7 +115,9 @@ process:
         migration:
           - sample_paragraphs_band
         source: id
-      target_revision_id: '@target_id'
+      target_revision_id:
+        plugin: health_migration_tools_paragraph_revision_id_lookup
+        source: '@target_id'
   'field_h_content_owner/target_id':
     plugin: entity_lookup
     entity_type: taxonomy_term
