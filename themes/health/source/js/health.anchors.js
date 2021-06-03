@@ -5,23 +5,38 @@
   // Create anchors and scroll if needed.
   Drupal.behaviors.healthAnchors = {
     attach: function (context, settings) {
-      // Generate id's for all headings that don't have them so we can deep link.
+      // Generate id's for all headings that don't have them so we can deep
+      // link. Ensure that we're not getting duplicates.
+
+      var ids = {};
+
       $('.region--content', context).find('h2,h3,h4,h5,h6').each(function (index, element) {
         var $element = $(this);
+
         if ($element.attr('id') === undefined) {
           var id = $element.text().replace(/[^\w\s]/gi, '')
             .replace(/\s+/g, '-')
             .toLowerCase();
+
+          if (ids[id] > 0) {
+            ids[id]++;
+            id = id + '-' + ids[id];
+          }
+          else {
+            ids[id] = 1;
+          }
+
           $element.attr('id', id);
         }
         if ($('body.admin-show-anchor-helper').length) {
           $element.once('anchor-helper').on('click', function () {
 
-            $element.append('<span class="anchor-helper">#' + $element.attr('id') + '</span>');
+            $element.append('<span class="anchor-helper">#' + id + '</span>');
           });
         }
       });
-      // Once it has finished adding anchors, check the url anchor fragment and scroll to that heading if needed.
+      // Once it has finished adding anchors, check the url anchor fragment and
+      // scroll to that heading if needed.
       if (window.location.hash) {
         // Find hash target.
         var $a = $(window.location.hash);

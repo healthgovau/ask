@@ -23,6 +23,7 @@ const webinar = require("./modules/webinar");
 const video = require("./modules/video");
 const audio = require("./modules/audio");
 const view = require("./modules/view");
+const unpublished = require("./modules/unpublished");
 
 appOrToolHosted.tests(cy);
 appOrTool.tests(cy);
@@ -43,3 +44,4 @@ webinar.tests(cy);
 search.tests(cy);
 globalNotification.tests(cy);
 view.tests(cy);
+unpublished.tests(cy);

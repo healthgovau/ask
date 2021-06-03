@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.para_h_content_iframe.field_h_allow_geolocation
     - field.field.paragraph.para_h_content_iframe.field_h_iframe_classes
     - field.field.paragraph.para_h_content_iframe.field_h_iframe_source
     - field.field.paragraph.para_h_content_iframe.field_h_iframe_title
@@ -54,4 +55,5 @@ content:
     type: string
     region: content
 hidden:
+  field_h_allow_geolocation: true
   search_api_excerpt: true
