@@ -6,7 +6,7 @@
   Drupal.behaviors.healthAnchors = {
     attach: function (context, settings) {
       // Generate id's for all headings that don't have them so we can deep
-      // link. Ensure that we're not getting duplicates
+      // link. Ensure that we're not getting duplicates.
 
       var ids = {};
 
