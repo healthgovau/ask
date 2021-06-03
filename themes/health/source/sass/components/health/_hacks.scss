@@ -1,3 +1,36 @@
 p.document-accessibility-form {
   @include AU-space(margin-top, 3.5unit);
 }
+
+@mixin draft {
+  background-color: #f8d7da;
+  position: relative;
+  &:before {
+    display: block;
+    content: ' ';
+    background-image: url(../../images/unpub.svg);
+    background-size: 20px 20px;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    filter: invert(15%) sepia(56%) saturate(7500%) hue-rotate(356deg) brightness(106%) contrast(120%);
+  }
+}
+
+
+//Draft status displays
+.not-published {
+  @include draft;
+}
+
+nav,
+nav.au-main-nav.au-main-nav--dark {
+  .not-published,
+  .not-published.active {
+    a {
+      @include draft;
+    }
+  }
+}
