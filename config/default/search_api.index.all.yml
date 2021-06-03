@@ -8,10 +8,11 @@ dependencies:
     - node
     - search_api
   config:
-    - field.storage.node.field_h_audience
+    - field.storage.node.field_h_date_created
     - field.storage.node.field_h_date_updated
     - field.storage.node.field_h_resource_date
     - field.storage.node.field_h_summary
+    - field.storage.node.field_h_audience
     - search_api.server.lagoon_solr
     - core.entity_view_mode.node.full
     - core.entity_view_mode.node.teaser
@@ -100,6 +101,13 @@ field_settings:
         - field.storage.node.field_h_audience
       module:
         - taxonomy
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
   rendered_item:
     label: 'Rendered HTML output'
     property_path: rendered_item
@@ -128,6 +136,8 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: status
     type: boolean
+    indexed_locked: true
+    type_locked: true
     dependencies:
       module:
         - node
@@ -148,6 +158,16 @@ field_settings:
     dependencies:
       module:
         - node
+  uid:
+    label: null
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
 datasource_settings:
   'entity:node':
     bundles:
@@ -160,9 +180,14 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
   language_with_fallback: {  }
   rendered_item: {  }
-  solr_date_range: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
 tracker_settings:
   default:
     indexing_order: fifo
