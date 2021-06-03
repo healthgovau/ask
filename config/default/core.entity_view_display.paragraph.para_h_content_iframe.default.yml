@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.para_h_content_iframe.field_h_allow_geolocation
     - field.field.paragraph.para_h_content_iframe.field_h_iframe_classes
     - field.field.paragraph.para_h_content_iframe.field_h_iframe_source
     - field.field.paragraph.para_h_content_iframe.field_h_iframe_title
@@ -14,6 +15,16 @@ targetEntityType: paragraph
 bundle: para_h_content_iframe
 mode: default
 content:
+  field_h_allow_geolocation:
+    weight: 5
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   field_h_iframe_classes:
     weight: 4
     label: hidden

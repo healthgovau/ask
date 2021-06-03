@@ -26,6 +26,7 @@ use Drupal\Component\Serialization\Json;
 use GuzzleHttp\Exception\RequestException;
 use Drupal\media\Entity\Media;
 use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
 
 /**
  * Check if field contains data.
@@ -1242,6 +1243,17 @@ function health_preprocess_block(array &$variables) {
  */
 function health_preprocess_menu(array &$variables) {
 
+  if ($variables['menu_name'] == "main") {
+    foreach ($variables['items'] as $key => $item) {
+      $entity = $item['url']->getRouteParameters();
+      if (isset($entity['node'])) {
+        if (!Node::load($entity['node'])->isPublished()) {
+          $variables['items'][$key]['attributes']->addClass('not-published');
+        }
+      }
+    }
+  }
+
   if (isset($variables['attributes']['data-region'])) {
     $region = $variables['attributes']['data-region'];
 
@@ -1613,6 +1625,13 @@ function health_preprocess_html(array &$variables) {
 function health_preprocess_node(array &$variables) {
   $node = $variables['node'];
   if ($node instanceof NodeInterface) {
+
+    // Check if node is published.
+    if (!$node->isPublished()) {
+      $variables['attributes']['class'][] = 'not-published';
+    }
+
+    // Make information on whether Image Featured is present available to node
     // Set CSS class names based on content type and view mode.
     $variables['attributes']['class'][] = 'node';
     $variables['attributes']['class'][] = 'node--' . $node->getType();
@@ -2148,6 +2167,21 @@ function health_preprocess_health_document_accessibility_message(array &$variabl
 function health_preprocess_paragraph(array &$variables) {
   $paragraph = $variables['paragraph'];
 
+  // Add not-published class to a paragraph that refers to an unpublished node.
+  foreach ($variables['elements'] as $key => $el) {
+    if (substr($key, 0, 1) !== "#") {
+      if (isset($el['#field_type']) && $el['#field_type'] == 'entity_reference') {
+        foreach ($el['#items']->referencedEntities() as $item) {
+          if (method_exists($item, 'isPublished')) {
+            if (!$item->isPublished()) {
+              $variables['content_attributes']['class'][] = 'not-published';
+            }
+          }
+        }
+      }
+    }
+  }
+
   // Make background colour information available to template. Include colour's
   // hexcode and correspondin light/dark theme information.
   try {
@@ -2261,6 +2295,19 @@ function health_preprocess_paragraph__para_h_content_table(array &$variables) {
 
   // Update content to use modified table markup.
   $variables['content']['table'][0]['#markup'] = $table;
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function health_preprocess_paragraph__para_h_content_iframe(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  if ($paragraph instanceof ParagraphInterface) {
+    $variables['iframe_classes'] = $paragraph->get('field_h_iframe_classes')->value;
+    $variables['iframe_title'] = $paragraph->get('field_h_iframe_title')->value;
+    $variables['iframe_source'] = $paragraph->get('field_h_iframe_source')->value;
+    $variables['iframe_geolocation'] = $paragraph->get('field_h_allow_geolocation')->value ? "geolocation 'src'" : "geolocation 'none'";
+  }
 }
 
 /**

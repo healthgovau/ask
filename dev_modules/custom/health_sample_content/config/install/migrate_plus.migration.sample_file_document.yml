@@ -30,10 +30,10 @@ source:
       file: 'https://www.health.gov.au/sites/default/files/documents/2020/11/how-to-become-a-representative-for-someone-in-my-aged-care.docx'
     -
       id: 8
-      file: 'https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/unicode.svg'
+      file: 'https://www.drupal.org/files/cta_multiple/cta_graphic/noun_circuit_564150_51A7F9_white_bg.svg'
     -
       id: 9
-      file: 'https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/php.svg'
+      file: 'https://www.drupal.org/files/cta_multiple/cta_graphic/icon-industry-healthcare_1.svg'
   ids:
     id:
       type: integer
