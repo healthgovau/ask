@@ -12,9 +12,13 @@ const tests = (cy) => {
 
   describe("Unpublished pages.", () => {
     it("Not visible to unauthenticated users.", () => {
-      cy.request({url: page, failOnStatusCode: false}).its('status').should('eq', 403)
+      cy
+        .request({url: page, failOnStatusCode: false})
+        .its('status')
+        .should('eq', 403)
         .visit('/')
-        .get('nav ul li.not-published').should('not.exist');
+        .get('nav ul li.not-published')
+        .should('not.exist');
     });
 
     it("Visible to authenticated users", () => {
@@ -22,7 +26,10 @@ const tests = (cy) => {
       const percyOptions = {};
       user.login("author", "author");
 
-      cy.request({url: page, failOnStatusCode: false}).its('status').should('eq', 200)
+      cy
+        .request({url: page, failOnStatusCode: false})
+        .its('status')
+        .should('eq', 200)
         .visit(page)
         .get('nav ul li.not-published').should('exist')
         .percySnapshot("health_starter_kit_sample_unpublished_page", percyOptions);
@@ -32,7 +39,8 @@ const tests = (cy) => {
       const percyOptions = {};
 
       cy.visit(refpage)
-        .get('nav ul li.not-published').should('not.exist')
+        .get('nav ul li.not-published')
+        .should('not.exist')
         .percySnapshot("health_starter_kit_sample_unpublished_list", percyOptions);
     });
 
@@ -42,8 +50,10 @@ const tests = (cy) => {
       const percyOptions = {};
       user.login("author", "author");
 
-      cy.visit(refpage)
-        .get('nav ul li.not-published').should('exist')
+      cy
+        .visit(refpage)
+        .get('nav ul li.not-published')
+        .should('exist')
         .percySnapshot("health_starter_kit_sample_unpublished_list", percyOptions);
     });
 
@@ -51,13 +61,15 @@ const tests = (cy) => {
       const user = new User();
       const percyOptions = {};
 
-      cy.visit(resources)
-        .get('nav ul li.not-published').should('not.exist')
+      cy
+        .visit(resources)
+        .get('nav ul li.not-published')
+        .should('not.exist')
         .percySnapshot("health_starter_kit_sample_unpublished_resources_unauthenticated", percyOptions);
     });
 
 
-    //Currently not working. Leaving the test here for the future
+    // Currently not working. Leaving the test here possible use in the future.
     // it("Appears in resources when list is viewed by authenticated user.", () => {
     //   const user = new User();
     //   const percyOptions = {};
