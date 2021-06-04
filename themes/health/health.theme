@@ -56,9 +56,9 @@ function _health_check_field_contains_data(EntityInterface $entity, $field_name)
  * @return array
  *   Drupal render array for the message on document accessibility.
  */
-function _health_get_document_accessiblity_message() {
+function _health_get_document_accessibility_statement() {
   $output = [
-    '#theme' => 'health_document_accessibility_message',
+    '#theme' => 'health_document_accessibility_statement',
   ];
 
   return $output;
@@ -1032,8 +1032,8 @@ function health_form_system_theme_settings_alter(array &$form, FormStateInterfac
     '#type' => 'fieldset',
     '#title' => t('Accessibility'),
   ];
-  $default_value = theme_get_setting('health_request_accessible_documents');
-  $form['health_accessibility']['health_request_accessible_documents'] = [
+  $default_value = theme_get_setting('health_document_accessibility_statement');
+  $form['health_accessibility']['health_document_accessibility_statement'] = [
     '#type' => 'text_format',
     '#title' => t('Request accessible documents message'),
     '#format' => 'h_simple',
@@ -1433,7 +1433,7 @@ function health_preprocess_field__field_h_resource_date(array &$variables) {
  * Implements template_preprocess_HOOK().
  */
 function health_preprocess_field__field_h_collection_grouping(array &$variables) {
-  $variables['health_document_accessibility_message'] = _health_get_document_accessiblity_message();
+  $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
 }
 
 /**
@@ -1462,14 +1462,14 @@ function health_preprocess_field__field_h_date_time_range(array &$variables) {
  * Implements template_preprocess_HOOK().
  */
 function health_preprocess_field__field_h_resource_parts(array &$variables) {
-  $variables['health_document_accessibility_message'] = _health_get_document_accessiblity_message();
+  $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
 }
 
 /**
  * Implements template_preprocess_HOOK().
  */
 function health_preprocess_field__node__field_h_resource_parts__h_foi_request(array &$variables) {
-  $variables['health_document_accessibility_message'] = _health_get_document_accessiblity_message();
+  $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
 }
 
 /**
@@ -1507,7 +1507,7 @@ function health_preprocess_field__field_h_files(array &$variables) {
       }
     }
     // Add accessibility statement to file list.
-    $variables['health_document_accessibility_message'] = _health_get_document_accessiblity_message();
+    $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
   }
 }
 
@@ -2146,8 +2146,8 @@ function health_preprocess_file_link(array &$variables) {
 /**
  * Implements template_preprocess_HOOK().
  */
-function health_preprocess_health_document_accessibility_message(array &$variables) {
-  $content = theme_get_setting('health_request_accessible_documents') ?: '';
+function health_preprocess_health_document_accessibility_statement(array &$variables) {
+  $content = theme_get_setting('health_document_accessibility_statement') ?: '';
   $current_path = \Drupal::service('path.current')->getPath();
   $current_page_uri = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
   $variables['content'] = [
@@ -2602,6 +2602,13 @@ function health_preprocess_paragraph__para_h_content_image(array &$variables) {
 /**
  * Implements template_preprocess_HOOK().
  */
+function health_preprocess_paragraph__para_h_publication_grouping(array &$variables) {
+  $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
 function health_preprocess_paragraph__para_h_tile(array &$variables) {
   $paragraph = $variables['paragraph'];
   if ($paragraph instanceof ParagraphInterface) {
@@ -2907,7 +2914,7 @@ function health_preprocess_views_view_list__h_global_notifications(array &$varia
  */
 function health_theme(array $existing, $type, $theme, $path) {
   return [
-    'health_document_accessibility_message' => [
+    'health_document_accessibility_statement' => [
       'variables' => [
         'content' => NULL,
       ],

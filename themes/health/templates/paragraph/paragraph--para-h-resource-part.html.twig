@@ -41,15 +41,5 @@
 {% extends "@paragraphs/paragraph.html.twig" %}
 
 {% block paragraph %}
-  {%
-    set classes = [
-      'paragraph',
-      'paragraph--type--' ~ paragraph.bundle|clean_class,
-      view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-      not paragraph.isPublished() ? 'paragraph--unpublished'
-    ]
-  %}
-
-  <h3>{{ content.field_h_resource_file_title }}</h3>
-  {{ content|without('field_h_resource_file_title') }}
+  {{ content }}
 {% endblock paragraph %}

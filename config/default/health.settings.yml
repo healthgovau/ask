@@ -34,7 +34,7 @@ health_funnelback_collection: health-meta
 health_funnelback_profile: _default
 health_funnelback_results_url: /search/results
 health_funnelback_view_mode: search_result
-health_request_accessible_documents: 'We aim to provide documents in an accessible format. If you''re having problems using a document with your accessibility tools, <a href="/request-accessible-format?destination=@CURRENT_PAGE_URL">please contact us for help</a>.'
+health_document_accessibility_statement: 'We aim to provide documents in an accessible format. If you''re having problems using a document with your accessibility tools, <a href="/request-accessible-format?destination=@CURRENT_PAGE_URL">please contact us for help</a>.'
 health_mobile_breadcrumb: parent
 health_toolbar_item:
   print: print
