@@ -24,6 +24,7 @@ use Drupal\views\ViewExecutable;
 use Drupal\Core\Render\Markup;
 use Drupal\Component\Serialization\Json;
 use GuzzleHttp\Exception\RequestException;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\media\Entity\Media;
 use Drupal\file\Entity\File;
 
@@ -1583,6 +1584,15 @@ function health_preprocess_html(array &$variables) {
       '#theme' => 'health_gtm_script',
       '#gtm_id' => $gtm_id,
     ];
+  }
+
+  // Minisites functionality.
+  $current_route_match = Drupal::service('current_route_match');
+  if ($current_route_match instanceof RouteMatchInterface && $current_route_match->getRouteName() === 'entity.node.canonical') {
+    $node = $current_route_match->getParameter('node');
+    if ($node instanceof NodeInterface && $node->getType() === 'h_minisite_landing_page') {
+      $variables['minisite_id'] = $node->get('field_h_minisite')->entity->getName();
+    }
   }
 }
 
