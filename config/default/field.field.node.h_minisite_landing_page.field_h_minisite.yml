@@ -1,0 +1,29 @@
+uuid: 3b31579a-a112-44e9-835e-6c2cec6f699d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_minisite
+    - node.type.h_minisite_landing_page
+    - taxonomy.vocabulary.h_minisite
+id: node.h_minisite_landing_page.field_h_minisite
+field_name: field_h_minisite
+entity_type: node
+bundle: h_minisite_landing_page
+label: Minisite
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      h_minisite: h_minisite
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

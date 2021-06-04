@@ -1,0 +1,11 @@
+uuid: 0f5eee19-483a-4c55-92b9-ddd70c84a64f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.h_minisite_landing_page
+id: node.h_minisite_landing_page
+target_entity_type_id: node
+target_bundle: h_minisite_landing_page
+default_langcode: site_default
+language_alterable: false

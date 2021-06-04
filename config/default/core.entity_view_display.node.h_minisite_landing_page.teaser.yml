@@ -1,0 +1,26 @@
+uuid: ab65d367-df85-4097-b9a9-01ecd5316649
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.h_minisite_landing_page.field_h_content_components
+    - field.field.node.h_minisite_landing_page.field_h_minisite
+    - node.type.h_minisite_landing_page
+  module:
+    - user
+id: node.h_minisite_landing_page.teaser
+targetEntityType: node
+bundle: h_minisite_landing_page
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_h_content_components: true
+  field_h_minisite: true
+  langcode: true
+  search_api_excerpt: true

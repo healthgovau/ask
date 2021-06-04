@@ -1,0 +1,11 @@
+uuid: d075b098-4a50-4539-bcce-55aa7a192da1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.h_minisite
+id: taxonomy_term.h_minisite
+target_entity_type_id: taxonomy_term
+target_bundle: h_minisite
+default_langcode: site_default
+language_alterable: false

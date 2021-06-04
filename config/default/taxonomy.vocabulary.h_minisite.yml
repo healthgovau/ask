@@ -1,0 +1,8 @@
+uuid: 4415c093-0453-4e9a-933b-8b11fb486eae
+langcode: en
+status: true
+dependencies: {  }
+name: Minisite
+vid: h_minisite
+description: ''
+weight: 0
