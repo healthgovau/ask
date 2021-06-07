@@ -8,5 +8,6 @@ ignored_config_entities:
   12: 'views.view.h_sample_custom_view.*'
   14: 'migrate_plus.migration_group.default.*'
   16: 'migrate_plus.migration_group.health_sample.*'
+  18: views.view.h_sample_custom_view
 _core:
   default_config_hash: wkcuoFmlPvO6vAZlHjmW0x_dpmKg1XZWLWckYA5GPhw

@@ -1,0 +1,27 @@
+id: sample_paragraphs_form
+label: Sample Paragraphs - Form
+migration_group: health_sample
+migration_tags:
+  - health_sample_content
+  - health_sample_paragraphs
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: para_h_form_1
+  ids:
+    id:
+      type: string
+process:
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "en"
+  field_h_form:
+    plugin: default_value
+    source: language
+    default_value: report_issues_with_document_usab
+destination:
+  plugin: 'entity:paragraph'
+  default_bundle: para_h_form
+migration_dependencies: null
