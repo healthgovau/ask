@@ -4,11 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.para_h_resource_part.field_h_files
-    - field.field.paragraph.para_h_resource_part.field_h_resource_file_summary
-    - field.field.paragraph.para_h_resource_part.field_h_resource_file_title
     - paragraphs.paragraphs_type.para_h_resource_part
-  module:
-    - text
 id: paragraph.para_h_resource_part.default
 targetEntityType: paragraph
 bundle: para_h_resource_part
@@ -22,21 +18,6 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    region: content
-  field_h_resource_file_summary:
-    weight: 1
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
-  field_h_resource_file_title:
-    weight: 2
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
     region: content
 hidden:
   search_api_excerpt: true
