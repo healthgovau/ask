@@ -1,0 +1,50 @@
+id: sample_paragraphs_listing_curated
+label: Sample Paragraphs - Curated Listing
+migration_group: health_sample
+migration_tags:
+  - health_sample_content
+  - health_sample_paragraphs
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: para_h_listing_curated_1
+      field_h_title: Curated content
+      field_h_heading_hide: 0
+      field_h_summary: |
+        Curated summary
+      field_h_listing_item:
+        -
+          node_h_video_1
+  ids:
+    id:
+      type: string
+process:
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "en"
+  field_h_title: field_h_title
+  field_h_summary: field_h_summary
+  field_h_heading_hide: field_h_heading_hide
+  field_h_listing_item:
+      plugin: migration_lookup
+      migration:
+        - sample_node_app_or_tool
+        - sample_node_collection
+        - sample_node_news
+        - sample_node_publication
+        - sample_node_video
+      source: field_h_listing_item
+destination:
+  plugin: 'entity:paragraph'
+  default_bundle: para_h_listing_curated
+migration_dependencies:
+  required:
+    - sample_node_collection
+    - sample_node_contact
+    - sample_node_foi_request
+    - sample_node_news
+    - sample_node_publication
+    - sample_node_video
+    - sample_node_unpublished

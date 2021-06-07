@@ -6,3 +6,15 @@ commands:
     usage: Re-build project.
     cmd: |
       docker-compose up -d --build "$@" && docker-compose exec -T test dockerize -wait tcp://mariadb:3306 -timeout 2m
+  site-install:
+    usage: |
+      Provides a fresh install of ASK project provisioned with sample content.
+    cmd: |
+      ahoy stop
+      docker container rm ask_solr_1
+      docker image rm ask_solr
+      ahoy up
+      ahoy drush si --existing-config -y
+      ahoy drush en health_sample_content -y
+      ahoy drush cr
+      ahoy drush mim --all

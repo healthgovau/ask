@@ -1785,6 +1785,8 @@ function health_preprocess_node__h_global_notification(array &$variables) {
             $file = File::load($fid);
             $url = $file->url();
             $variables['health_notification_icon_url'] = $url;
+            $variables['health_notification_icon_label'] = $notification->name->value;
+            $variables['health_notification_icon_label'] = $notification->name->value;
           }
         }
       }
