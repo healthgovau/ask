@@ -1,0 +1,21 @@
+uuid: 721ea0fc-4a4b-4da3-8e47-6f18b5aac7c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_h_html_content
+    - node.type.h_publication
+  module:
+    - text
+id: node.h_publication.field_h_html_content
+field_name: field_h_html_content
+entity_type: node
+bundle: h_publication
+label: 'HTML Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

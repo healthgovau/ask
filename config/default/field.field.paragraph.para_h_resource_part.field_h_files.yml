@@ -12,7 +12,7 @@ entity_type: paragraph
 bundle: para_h_resource_part
 label: 'Downloadable files'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
