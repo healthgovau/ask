@@ -15,7 +15,6 @@ const tests = (cy) => {
         .visit(curatedPageUri)
         .get(".health-listing .row .au-display-lg a")
         .contains('The Rise of Darth Vader')
-
         .then(() => {
           cy.percySnapshot("health_starter_kit_sample_curated_listing", percyOptions);
         });

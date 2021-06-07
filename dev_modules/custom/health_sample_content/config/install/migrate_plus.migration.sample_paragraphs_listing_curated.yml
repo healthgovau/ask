@@ -14,8 +14,8 @@ source:
       field_h_summary: |
         Curated summary
       field_h_listing_item:
-          -
-            node_h_video_1
+        -
+          node_h_video_1
   ids:
     id:
       type: string
@@ -36,7 +36,6 @@ process:
         - sample_node_publication
         - sample_node_video
       source: field_h_listing_item
-#
 destination:
   plugin: 'entity:paragraph'
   default_bundle: para_h_listing_curated
