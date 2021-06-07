@@ -51,6 +51,10 @@ source:
           id: para_h_link_featured_9
         -
           id: para_h_layout_grid_4
+        -
+          id: para_h_form_1
+        -
+          id: para_h_listing_curated_1
       generate_toc: 1
       subject: Politics
       content_language: English
@@ -146,6 +150,8 @@ process:
           - sample_paragraphs_link_featured
           - sample_paragraphs_listing_embedded
           - sample_paragraphs_view
+          - sample_paragraphs_form
+          - sample_paragraphs_listing_curated
         source: id
       target_revision_id:
         plugin: health_migration_tools_paragraph_revision_id_lookup
@@ -234,3 +240,5 @@ migration_dependencies:
     - sample_paragraphs_layout_grid
     - sample_paragraphs_listing_embedded
     - sample_paragraphs_view
+    - sample_paragraphs_form
+    - sample_paragraphs_listing_curated

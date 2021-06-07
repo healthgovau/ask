@@ -3,20 +3,18 @@
  * Contains end-to-end tests for curated listing on ASK site.
  */
 
-const tests = (cy) => {
-  const curatedPageUri = "/curated-listing";
+// const tests = (cy) => {
+  const curatedPageUri = "/star-wars";
 
   describe("The sample curated listing page", () => {
-    it("successfully loads", () => {
-      cy.visit(curatedPageUri);
-    });
 
-    it("renders correctly", () => {
+    it("Contains a curated paragraph", () => {
       // Take a snapshot for visual diffing.
       const percyOptions = {};
       cy
         .visit(curatedPageUri)
-        .get(".health-listing .row .au-display-lg")
+        .get(".health-listing .row .au-display-lg a")
+        .contains('The Rise of Darth Vader')
 
         .then(() => {
           cy.percySnapshot("health_starter_kit_sample_curated_listing", percyOptions);
@@ -24,6 +22,6 @@ const tests = (cy) => {
     });
   });
 
-};
-
-exports.tests = tests;
+// };
+//
+// exports.tests = tests;
