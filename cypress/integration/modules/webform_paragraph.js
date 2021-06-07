@@ -3,7 +3,7 @@
  * Contains end-to-end tests for embedded webform on the ASK site.
  */
 
-// const tests = (cy) => {
+const tests = (cy) => {
   const page = "/star-wars";
 
   describe("Test embedded webform", () => {
@@ -21,6 +21,6 @@
         .should('include', "request-accessible-format/confirmation")
     });
   });
-// }
-//
-// exports.tests = tests;
+}
+
+exports.tests = tests;

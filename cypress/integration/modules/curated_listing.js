@@ -3,7 +3,7 @@
  * Contains end-to-end tests for curated listing on ASK site.
  */
 
-// const tests = (cy) => {
+const tests = (cy) => {
   const curatedPageUri = "/star-wars";
 
   describe("The sample curated listing page", () => {
@@ -22,6 +22,6 @@
     });
   });
 
-// };
-//
-// exports.tests = tests;
+};
+
+exports.tests = tests;

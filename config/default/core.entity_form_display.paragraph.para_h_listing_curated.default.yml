@@ -8,8 +8,6 @@ dependencies:
     - field.field.paragraph.para_h_listing_curated.field_h_summary
     - field.field.paragraph.para_h_listing_curated.field_h_title
     - paragraphs.paragraphs_type.para_h_listing_curated
-  module:
-    - dynamic_entity_reference
 id: paragraph.para_h_listing_curated.default
 targetEntityType: paragraph
 bundle: para_h_listing_curated
@@ -27,10 +25,10 @@ content:
     settings:
       match_operator: CONTAINS
       match_limit: 10
-      size: 40
+      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: dynamic_entity_reference_default
+    type: entity_reference_autocomplete
     region: content
   field_h_summary:
     weight: 2
