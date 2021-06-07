@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.h_publication.field_h_date_reviewed
     - field.field.node.h_publication.field_h_date_updated
     - field.field.node.h_publication.field_h_description
+    - field.field.node.h_publication.field_h_html_content
     - field.field.node.h_publication.field_h_image_featured
     - field.field.node.h_publication.field_h_language
     - field.field.node.h_publication.field_h_link_external
@@ -68,6 +69,13 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  field_h_html_content:
+    type: text_default
+    weight: 3
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   field_h_image_featured:
     weight: 1
     label: hidden
@@ -134,7 +142,7 @@ content:
     type: entity_reference_revisions_entity_view
     weight: 2
     region: content
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''

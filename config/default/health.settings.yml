@@ -11,17 +11,20 @@ favicon:
   mimetype: image/vnd.microsoft.icon
 health_full_width_layout:
   h_landing_page: h_landing_page
-  search_results: 0
+  h_publication: 0
   h_app_or_tool: 0
   h_app_or_tool_hosted: 0
+  h_audio: 0
+  h_collection: 0
   h_contact: 0
-  h_decision: 0
-  h_departmental_media: 0
+  h_foi_request: 0
+  h_global_notification: 0
   h_listing: 0
   h_news_article: 0
-  h_publication: 0
   h_standard_page: 0
   h_video: 0
+  h_webinar: 0
+  search_results: 0
 health_google_maps_client: ''
 health_gtm_id: ''
 health_old_health_website_url: 'https://www1.health.gov.au'
@@ -31,3 +34,11 @@ health_funnelback_collection: health-meta
 health_funnelback_profile: _default
 health_funnelback_results_url: /search/results
 health_funnelback_view_mode: search_result
+health_document_accessibility_statement: 'We aim to provide documents in an accessible format. If you''re having problems using a document with your accessibility tools, <a href="/request-accessible-format?destination=@CURRENT_PAGE_URL">please contact us for help</a>.'
+health_mobile_breadcrumb: parent
+health_toolbar_item:
+  print: print
+  share: share
+  listen: 0
+health_readspeaker_custid: ''
+health_readspeaker_stattype: ''
