@@ -2,7 +2,7 @@
  * @file
  * Contains end-to-end tests for Publication content on HSK site.
  */
-const { User } = require("./includes/User");
+const {User} = require("./includes/User");
 
 const tests = (cy) => {
   const page = "/resources/death-star-plans";
@@ -56,12 +56,20 @@ const tests = (cy) => {
             })
             .then(() => {
               cy
-              .get(selectorOrderId)
-              .should("not.be.visible")
-              .get(selectorOrderText)
-              .should("not.be.visible");
+                .get(selectorOrderId)
+                .should("not.be.visible")
+                .get(selectorOrderText)
+                .should("not.be.visible");
             })
         });
+    });
+
+    it("Check so its displayed in collection.", () => {
+
+      cy
+        .visit(page)
+        .get(".referring-collections a")
+        .contains("Technical Specifications")
     });
   });
 }
