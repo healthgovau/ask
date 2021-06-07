@@ -52,3 +52,11 @@ publication-rules:
     - core/drupal
     - core/jquery
     - core/drupalSettings
+publication-description:
+  version: 1.0.0
+  js:
+    build/js/publication-description.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupalSettings

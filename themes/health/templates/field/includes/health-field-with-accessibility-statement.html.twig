@@ -44,4 +44,8 @@
   {{ item.content }}
 {% endfor %}
 
-{{ health_document_accessibility_link }}
+{% if health_document_accessibility_statement %}
+  <div class="au-callout">
+    {{ health_document_accessibility_statement }}
+  </div>
+{% endif %}
