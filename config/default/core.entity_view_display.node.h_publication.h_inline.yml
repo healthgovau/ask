@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.h_publication.field_h_link_external
     - field.field.node.h_publication.field_h_order_id
     - field.field.node.h_publication.field_h_order_text
+    - field.field.node.h_publication.field_h_publication_nmm_id
     - field.field.node.h_publication.field_h_publication_type
     - field.field.node.h_publication.field_h_resource_availability
     - field.field.node.h_publication.field_h_resource_date
@@ -88,6 +89,7 @@ hidden:
   field_h_link_external: true
   field_h_order_id: true
   field_h_order_text: true
+  field_h_publication_nmm_id: true
   field_h_resource_availability: true
   field_h_resource_date: true
   field_h_resource_parts: true

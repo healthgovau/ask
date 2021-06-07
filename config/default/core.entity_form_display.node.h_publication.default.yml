@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.h_publication.field_h_link_external
     - field.field.node.h_publication.field_h_order_id
     - field.field.node.h_publication.field_h_order_text
+    - field.field.node.h_publication.field_h_publication_nmm_id
     - field.field.node.h_publication.field_h_publication_type
     - field.field.node.h_publication.field_h_resource_availability
     - field.field.node.h_publication.field_h_resource_date
@@ -69,6 +70,7 @@ third_party_settings:
         - field_h_link_external
         - field_h_image_featured
         - field_h_resource_availability
+        - field_h_publication_nmm_id
         - field_h_order_id
         - field_h_order_text
       parent_name: group_h_tabs
@@ -308,7 +310,7 @@ content:
     type: link_default
     region: content
   field_h_order_id:
-    weight: 17
+    weight: 18
     settings:
       size: 60
       placeholder: ''
@@ -316,12 +318,20 @@ content:
     type: string_textfield
     region: content
   field_h_order_text:
-    weight: 18
+    weight: 19
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_h_publication_nmm_id:
+    weight: 17
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_h_publication_type:
     weight: 26
