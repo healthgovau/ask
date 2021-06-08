@@ -49,19 +49,16 @@ function _health_check_field_contains_data(EntityInterface $entity, $field_name)
 }
 
 /**
- * Get request accessible document form link.
+ * Get document accessibility message.
+ *
+ * Document accessibility message is set on the Health theme's settings page.
  *
  * @return array
- *   Drupal render array for the descriptive text including embedded link to
- *   the request accessible document form.
+ *   Drupal render array for the message on document accessibility.
  */
-function _health_get_accessible_doc_request_form_link() {
-  // Add link to accessible document request form.
-  $current_path = \Drupal::service('path.current')->getPath();
-  $uri = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+function _health_get_document_accessibility_statement() {
   $output = [
-    '#theme' => 'health_document_accessibility_link',
-    '#current_page' => $uri,
+    '#theme' => 'health_document_accessibility_statement',
   ];
 
   return $output;
@@ -1030,6 +1027,25 @@ function health_form_system_theme_settings_alter(array &$form, FormStateInterfac
     return;
   }
 
+  // Accessibility options.
+  $form['health_accessibility'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Accessibility'),
+  ];
+  $default_value = theme_get_setting('health_document_accessibility_statement');
+  $form['health_accessibility']['health_document_accessibility_statement'] = [
+    '#type' => 'text_format',
+    '#title' => t('Request accessible documents message'),
+    '#format' => 'h_simple',
+    '#allowed_formats' => [
+      'h_simple',
+      'plain_text',
+    ],
+    '#description' => t('Enter the text to inform users on how to obtain accessible documents. Available tokens: @CURRENT_PAGE_URL = URL to current page.'),
+    '#default_value' => $default_value ?: NULL,
+  ];
+
+  // Layout options.
   $form['health_layout'] = [
     '#type' => 'fieldset',
     '#title' => t('Layout'),
@@ -1417,7 +1433,7 @@ function health_preprocess_field__field_h_resource_date(array &$variables) {
  * Implements template_preprocess_HOOK().
  */
 function health_preprocess_field__field_h_collection_grouping(array &$variables) {
-  $variables['health_document_accessibility_link'] = _health_get_accessible_doc_request_form_link();
+  $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
 }
 
 /**
@@ -1446,14 +1462,14 @@ function health_preprocess_field__field_h_date_time_range(array &$variables) {
  * Implements template_preprocess_HOOK().
  */
 function health_preprocess_field__field_h_resource_parts(array &$variables) {
-  $variables['health_document_accessibility_link'] = _health_get_accessible_doc_request_form_link();
+  $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
 }
 
 /**
  * Implements template_preprocess_HOOK().
  */
 function health_preprocess_field__node__field_h_resource_parts__h_foi_request(array &$variables) {
-  $variables['health_document_accessibility_link'] = _health_get_accessible_doc_request_form_link();
+  $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
 }
 
 /**
@@ -1467,7 +1483,6 @@ function health_preprocess_field__field_h_files(array &$variables) {
     if ($paragraph->hasField('field_h_resource_file_title')) {
       $resource_file_title = $paragraph->get('field_h_resource_file_title')->value;
     }
-
     foreach ($variables['items'] as $index => $item) {
       $media = $variables['items'][$index]['content']['#media'];
       if ($media->hasField('field_media_file')) {
@@ -1492,6 +1507,8 @@ function health_preprocess_field__field_h_files(array &$variables) {
         }
       }
     }
+    // Add accessibility statement to file list.
+    $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
   }
 }
 
@@ -1646,6 +1663,37 @@ function health_preprocess_node(array &$variables) {
           $variables['content']['field_h_date_updated']['#access'] = FALSE;
         }
       }
+
+      // Check if node is part of a collection.
+      $query = \Drupal::entityQuery('paragraph')
+        ->condition('field_h_reference_publication', $node->id())
+        ->condition('type', "para_h_publication_grouping");
+      $collection_paragraphs = $query->execute();
+
+      $collection_ids = [];
+
+      foreach ($collection_paragraphs as $cp) {
+        $query = \Drupal::entityQuery('node')
+          ->condition('field_h_collection_grouping', $cp)
+          ->condition('type', "h_collection");
+        $nids = $query->execute();
+        $collection_ids = array_merge($collection_ids, $nids);
+      }
+
+      $entity_type_manager = Drupal::service('entity_type.manager');
+      $referring_collections = $entity_type_manager->getStorage('node')
+        ->loadMultiple($collection_ids);
+
+      $variables['referring_collections'] = [];
+
+      foreach ($referring_collections as $key => $rc) {
+        $variables['referring_collections'][$key] = [
+          'link' => \Drupal::service('path_alias.manager')
+            ->getAliasByPath('/node/' . $rc->id()),
+          'title' => $rc->getTitle(),
+        ];
+      }
+
     }
   }
 }
@@ -1667,12 +1715,19 @@ function health_preprocess_node__h_publication(array &$variables) {
       $field_h_order_text = $variables['content']['field_h_order_text'];
       unset($variables['content']['field_h_order_text']);
     }
+    if (isset($variables['content']['field_h_publication_nmm_id'])) {
+      $field_h_publication_nmm_id = $variables['content']['field_h_publication_nmm_id'];
+      unset($variables['content']['field_h_publication_nmm_id']);
+    }
 
     $availability = $node->field_h_resource_availability->referencedEntities();
     foreach ($availability as $a) {
       if ($a->getName() == 'Orderable') {
         if (isset($field_h_order_id)) {
           $variables['content']['field_h_order_id'] = $field_h_order_id;
+        }
+        if (isset($field_h_publication_nmm_id)) {
+          $variables['content']['field_h_publication_nmm_id'] = $field_h_publication_nmm_id;
         }
         if (isset($field_h_order_text)) {
           $variables['content']['field_h_order_text'] = $field_h_order_text;
@@ -1769,6 +1824,8 @@ function health_preprocess_node__h_global_notification(array &$variables) {
             $file = File::load($fid);
             $url = $file->url();
             $variables['health_notification_icon_url'] = $url;
+            $variables['health_notification_icon_label'] = $notification->name->value;
+            $variables['health_notification_icon_label'] = $notification->name->value;
           }
         }
       }
@@ -2125,6 +2182,20 @@ function health_preprocess_file_link(array &$variables) {
     }
     $variables['icon'] = $icon;
   }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function health_preprocess_health_document_accessibility_statement(array &$variables) {
+  $content = theme_get_setting('health_document_accessibility_statement') ?: '';
+  $current_path = \Drupal::service('path.current')->getPath();
+  $current_page_uri = \Drupal::service('path.alias_manager')
+    ->getAliasByPath($current_path);
+  $variables['content'] = [
+    '#type' => 'markup',
+    '#markup' => str_replace('@CURRENT_PAGE_URL', $current_page_uri, $content),
+  ];
 }
 
 /**
@@ -2573,6 +2644,13 @@ function health_preprocess_paragraph__para_h_content_image(array &$variables) {
 /**
  * Implements template_preprocess_HOOK().
  */
+function health_preprocess_paragraph__para_h_publication_grouping(array &$variables) {
+  $variables['health_document_accessibility_statement'] = _health_get_document_accessibility_statement();
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
 function health_preprocess_paragraph__para_h_tile(array &$variables) {
   $paragraph = $variables['paragraph'];
   if ($paragraph instanceof ParagraphInterface) {
@@ -2878,9 +2956,9 @@ function health_preprocess_views_view_list__h_global_notifications(array &$varia
  */
 function health_theme(array $existing, $type, $theme, $path) {
   return [
-    'health_document_accessibility_link' => [
+    'health_document_accessibility_statement' => [
       'variables' => [
-        'current_page' => NULL,
+        'content' => NULL,
       ],
       'template' => 'custom/health-document-accessibility-link',
     ],

@@ -1,12 +1,12 @@
-uuid: 73263156-55b4-4f7b-8fa1-3ee1ec3f711e
+uuid: 619162d4-cc1a-41ec-aaea-383128dfcf91
 langcode: en
 status: true
 dependencies:
   module:
-    - paragraphs
-id: paragraph.field_h_resource_file_title
-field_name: field_h_resource_file_title
-entity_type: paragraph
+    - node
+id: node.field_h_publication_nmm_id
+field_name: field_h_publication_nmm_id
+entity_type: node
 type: string
 settings:
   max_length: 255

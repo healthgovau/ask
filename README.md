@@ -253,6 +253,12 @@ composer require healthgovau/out-of-pocket
 
 The following sections describe various workflows used when developing for the HSK.
 
+### Development site installation
+
+When creating a new branch or switching between branches on Git (e.g. performing code review) you should perform a fresh install of the site and install the sample content. This ensures a consistant environment between developers.
+
+        ahoy -f local.ahoy.yml site-install
+
 ### Adding modules
 
 One can add Drupal modules for use in the local development environment. Depending on the type of module they will be added to the `dev_modules/contrib/` or `dev_modules/custom/` directories accordingly.

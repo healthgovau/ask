@@ -16,11 +16,13 @@ dependencies:
     - field.field.node.h_publication.field_h_date_reviewed
     - field.field.node.h_publication.field_h_date_updated
     - field.field.node.h_publication.field_h_description
+    - field.field.node.h_publication.field_h_html_content
     - field.field.node.h_publication.field_h_image_featured
     - field.field.node.h_publication.field_h_language
     - field.field.node.h_publication.field_h_link_external
     - field.field.node.h_publication.field_h_order_id
     - field.field.node.h_publication.field_h_order_text
+    - field.field.node.h_publication.field_h_publication_nmm_id
     - field.field.node.h_publication.field_h_publication_type
     - field.field.node.h_publication.field_h_resource_availability
     - field.field.node.h_publication.field_h_resource_date
@@ -88,11 +90,13 @@ hidden:
   field_h_date_reviewed: true
   field_h_date_updated: true
   field_h_description: true
+  field_h_html_content: true
   field_h_image_featured: true
   field_h_language: true
   field_h_link_external: true
   field_h_order_id: true
   field_h_order_text: true
+  field_h_publication_nmm_id: true
   field_h_publication_type: true
   field_h_resource_availability: true
   field_h_resource_date: true
