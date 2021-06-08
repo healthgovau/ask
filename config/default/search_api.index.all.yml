@@ -8,14 +8,13 @@ dependencies:
     - node
     - search_api
   config:
+    - field.storage.node.field_h_audience
     - field.storage.node.field_h_date_created
     - field.storage.node.field_h_date_updated
     - field.storage.node.field_h_resource_date
     - field.storage.node.field_h_summary
-    - field.storage.node.field_h_audience
     - search_api.server.lagoon_solr
     - core.entity_view_mode.node.full
-    - core.entity_view_mode.node.teaser
 third_party_settings:
   search_api_solr:
     finalize: false
@@ -124,12 +123,13 @@ field_settings:
           h_collection: full
           h_contact: full
           h_foi_request: full
-          h_landing_page: teaser
-          h_listing: teaser
+          h_landing_page: full
+          h_listing: full
           h_news_article: full
           h_publication: full
           h_standard_page: full
           h_video: full
+          h_webinar: full
           search_results: ''
   status:
     label: Published
@@ -159,7 +159,7 @@ field_settings:
       module:
         - node
   uid:
-    label: null
+    label: uid
     datasource_id: 'entity:node'
     property_path: uid
     type: integer

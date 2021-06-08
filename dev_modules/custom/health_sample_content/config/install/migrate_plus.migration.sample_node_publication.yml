@@ -121,6 +121,7 @@ source:
       field_h_date_published: '09-01-2020'
       field_h_date_reviewed: '09-01-2020'
       field_h_date_updated: '09-01-2020'
+      field_h_publication_nmm_id: '12345-67890-12345'
       status: '1'
   ids:
     id:
@@ -149,6 +150,7 @@ process:
     migration: sample_media_image
     source: field_h_image_featured
     no_stub: true
+  field_h_publication_nmm_id: field_h_publication_nmm_id
   field_h_resource_availability:
     plugin: entity_lookup
     entity_type: taxonomy_term

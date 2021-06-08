@@ -99,6 +99,9 @@ process:
     plugin: migration_lookup
     migration: sample_file_image
     source: id
+  'field_media_image/alt':
+    plugin: default_value
+    default_value: 'Alt text'
   uid:
     plugin: default_value
     default_value: 1
