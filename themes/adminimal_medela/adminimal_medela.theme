@@ -190,7 +190,7 @@ function _adminimal_medela_file_rename($fid, $title, NodeInterface $node, MediaI
       // Get the directory specified by the field.
       $file_system = Drupal::service('file_system');
       $file_uri = $file->getFileUri();
-      $path_info = pathinfo(file_uri_target($file_uri));
+      $path_info = pathinfo(getTarget($file_uri));
       $dir = $file_system->uriScheme($file_uri) . '://';
       if ($path_info['dirname'] != '.') {
         $dir .= $path_info['dirname'];
