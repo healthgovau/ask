@@ -388,6 +388,10 @@ function adminimal_medela_form_node_form_alter(array &$form, FormStateInterface 
     $form['#attached']['library'][] = 'adminimal_medela/publication-rules';
   }
 
+  if ($form_id == 'node_h_publication_edit_form') {
+    $form['#attached']['library'][] = 'adminimal_medela/publication-description';
+  }
+
   // Non-migration user.
   if (!_adminimal_medela_has_role(ROLE_MIGRATION)) {
     // Hide system dates.

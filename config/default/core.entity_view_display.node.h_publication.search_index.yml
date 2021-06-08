@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.h_publication.field_h_date_reviewed
     - field.field.node.h_publication.field_h_date_updated
     - field.field.node.h_publication.field_h_description
+    - field.field.node.h_publication.field_h_html_content
     - field.field.node.h_publication.field_h_image_featured
     - field.field.node.h_publication.field_h_language
     - field.field.node.h_publication.field_h_link_external
@@ -81,6 +82,7 @@ hidden:
   field_h_date_published: true
   field_h_date_reviewed: true
   field_h_date_updated: true
+  field_h_html_content: true
   field_h_image_featured: true
   field_h_language: true
   field_h_link_external: true

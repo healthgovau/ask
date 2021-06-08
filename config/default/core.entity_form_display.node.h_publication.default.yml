@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.h_publication.field_h_date_reviewed
     - field.field.node.h_publication.field_h_date_updated
     - field.field.node.h_publication.field_h_description
+    - field.field.node.h_publication.field_h_html_content
     - field.field.node.h_publication.field_h_image_featured
     - field.field.node.h_publication.field_h_language
     - field.field.node.h_publication.field_h_link_external
@@ -73,6 +74,7 @@ third_party_settings:
         - field_h_publication_nmm_id
         - field_h_order_id
         - field_h_order_text
+        - field_h_html_content
       parent_name: group_h_tabs
       weight: 20
       format_type: tab
@@ -275,6 +277,14 @@ content:
     region: content
   field_h_description:
     weight: 13
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_h_html_content:
+    weight: 19
     settings:
       rows: 5
       placeholder: ''
