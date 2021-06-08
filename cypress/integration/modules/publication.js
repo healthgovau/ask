@@ -68,6 +68,14 @@ const tests = (cy) => {
             })
         });
     });
+
+    it("Check so its displayed in collection.", () => {
+
+      cy
+        .visit(page)
+        .get(".referring-collections a")
+        .contains("Technical Specifications")
+    });
   });
 }
 
