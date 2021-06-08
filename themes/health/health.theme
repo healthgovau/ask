@@ -1662,6 +1662,37 @@ function health_preprocess_node(array &$variables) {
           $variables['content']['field_h_date_updated']['#access'] = FALSE;
         }
       }
+
+      // Check if node is part of a collection.
+      $query = \Drupal::entityQuery('paragraph')
+        ->condition('field_h_reference_publication', $node->id())
+        ->condition('type', "para_h_publication_grouping");
+      $collection_paragraphs = $query->execute();
+
+      $collection_ids = [];
+
+      foreach ($collection_paragraphs as $cp) {
+        $query = \Drupal::entityQuery('node')
+          ->condition('field_h_collection_grouping', $cp)
+          ->condition('type', "h_collection");
+        $nids = $query->execute();
+        $collection_ids = array_merge($collection_ids, $nids);
+      }
+
+      $entity_type_manager = Drupal::service('entity_type.manager');
+      $referring_collections = $entity_type_manager->getStorage('node')
+        ->loadMultiple($collection_ids);
+
+      $variables['referring_collections'] = [];
+
+      foreach ($referring_collections as $key => $rc) {
+        $variables['referring_collections'][$key] = [
+          'link' => \Drupal::service('path_alias.manager')
+            ->getAliasByPath('/node/' . $rc->id()),
+          'title' => $rc->getTitle(),
+        ];
+      }
+
     }
   }
 }
@@ -2151,7 +2182,8 @@ function health_preprocess_file_link(array &$variables) {
 function health_preprocess_health_document_accessibility_statement(array &$variables) {
   $content = theme_get_setting('health_document_accessibility_statement') ?: '';
   $current_path = \Drupal::service('path.current')->getPath();
-  $current_page_uri = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  $current_page_uri = \Drupal::service('path.alias_manager')
+    ->getAliasByPath($current_path);
   $variables['content'] = [
     '#type' => 'markup',
     '#markup' => str_replace('@CURRENT_PAGE_URL', $current_page_uri, $content),
