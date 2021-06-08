@@ -1667,19 +1667,21 @@ function health_preprocess_node(array &$variables) {
       $query = \Drupal::entityQuery('paragraph')
         ->condition('field_h_reference_publication', $node->id())
         ->condition('type', "para_h_publication_grouping");
-      $ps = $query->execute();
+      $collection_paragraphs = $query->execute();
 
       $collection_ids = [];
 
-      foreach ($ps as $p) {
+      foreach ($collection_paragraphs as $cp) {
         $query = \Drupal::entityQuery('node')
-          ->condition('field_h_collection_grouping', $p)
+          ->condition('field_h_collection_grouping', $cp)
           ->condition('type', "h_collection");
         $nids = $query->execute();
         $collection_ids = array_merge($collection_ids, $nids);
       }
 
-      $referring_collections = Node::loadMultiple($collection_ids);
+      $entity_type_manager = Drupal::service('entity_type.manager');
+      $referring_collections = $entity_type_manager->getStorage('node')
+        ->loadMultiple($collection_ids);
 
       $variables['referring_collections'] = [];
 
