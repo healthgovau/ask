@@ -1,14 +1,34 @@
 {% extends "@health/content/node.html.twig" %}
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-      {{ content.field_h_image_featured }}
-    </div>
-    <div class="col-sm-9 standard-gap--mobile-only">
-      {{ content|without('field_h_image_featured', 'field_h_date_updated', 'field_h_subject') }}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        {{ content.field_h_image_featured }}
+      </div>
+      <div class="col-sm-9 standard-gap--mobile-only">
+        {{ content|without('field_h_image_featured', 'field_h_date_updated', 'field_h_subject') }}
+
+        {% if(referring_collections) %}
+          <div class="health-field">
+            <div class="referring-collections">
+              <div class="health-field__label">
+                {% if referring_collections|length == 1 %}
+                  Part of a collection:
+                {% else %}
+                  Part of referring_collections|length collections
+                {% endif %}
+              </div>
+              <div class="health-field__item">
+                {% for rc in referring_collections %}
+                  <a href="{{ rc.link }}">{{ rc.title }}</a>
+                {% endfor %}
+              </div>
+            </div>
+
+          </div>
+        {% endif %}
+      </div>
     </div>
   </div>
-</div>
 {% endblock %}
