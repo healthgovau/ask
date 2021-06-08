@@ -1714,12 +1714,19 @@ function health_preprocess_node__h_publication(array &$variables) {
       $field_h_order_text = $variables['content']['field_h_order_text'];
       unset($variables['content']['field_h_order_text']);
     }
+    if (isset($variables['content']['field_h_publication_nmm_id'])) {
+      $field_h_publication_nmm_id = $variables['content']['field_h_publication_nmm_id'];
+      unset($variables['content']['field_h_publication_nmm_id']);
+    }
 
     $availability = $node->field_h_resource_availability->referencedEntities();
     foreach ($availability as $a) {
       if ($a->getName() == 'Orderable') {
         if (isset($field_h_order_id)) {
           $variables['content']['field_h_order_id'] = $field_h_order_id;
+        }
+        if (isset($field_h_publication_nmm_id)) {
+          $variables['content']['field_h_publication_nmm_id'] = $field_h_publication_nmm_id;
         }
         if (isset($field_h_order_text)) {
           $variables['content']['field_h_order_text'] = $field_h_order_text;

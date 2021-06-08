@@ -29,9 +29,10 @@ const tests = (cy) => {
         });
     });
 
-    it("Order ID and Order text fields are visible based on orderable status of publication.", () => {
+    it("Order ID, Publication NMM ID and Order text fields are visible based on orderable status of publication.", () => {
       const user = new User();
       const selectorOrderId = "#edit-field-h-order-id-0-value";
+      const selectorNmm = "#edit-field-h-order-id-0-value";
       const selectorOrderText = "#edit-field-h-order-text-wrapper";
 
       user.login("author", "author");
@@ -46,6 +47,8 @@ const tests = (cy) => {
           cy
             .get(selectorOrderId)
             .should("be.visible")
+            .get(selectorNmm)
+            .should("be.visible")
             .get(selectorOrderText)
             .should("be.visible")
             .get("label").contains("Orderable")
@@ -57,6 +60,8 @@ const tests = (cy) => {
             .then(() => {
               cy
                 .get(selectorOrderId)
+                .should("not.be.visible")
+                .get(selectorNmm)
                 .should("not.be.visible")
                 .get(selectorOrderText)
                 .should("not.be.visible");

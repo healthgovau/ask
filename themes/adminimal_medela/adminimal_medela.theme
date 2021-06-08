@@ -488,6 +488,16 @@ function adminimal_medela_form_alter(array &$form, FormStateInterface $form_stat
             ];
           }
 
+          if (isset($form['field_h_publication_nmm_id'])) {
+            $form['field_h_publication_nmm_id']['#states'] = [
+              'visible' => [
+                $selector => [
+                  'checked' => TRUE,
+                ],
+              ],
+            ];
+          }
+
           if (isset($form['field_h_order_text'])) {
             $form['field_h_order_text']['#states'] = [
               'visible' => [
