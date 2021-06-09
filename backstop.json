@@ -23,9 +23,27 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold" : 0.1,
+      "requireSameDimensions": true,
+      "scrollToSelector": "footer"
+    },
+    {
+      "label": "Sample Audio content page",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://ask.docker.amazee.io/resources/theme-song/",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 4000,
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
@@ -45,9 +63,7 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
@@ -67,9 +83,7 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
@@ -89,9 +103,7 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
@@ -111,9 +123,7 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
@@ -133,9 +143,7 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
@@ -155,9 +163,7 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
@@ -177,9 +183,7 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
@@ -199,9 +203,7 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
@@ -221,9 +223,27 @@
       "readyEvent": "",
       "readySelector": "",
       "delay": 4000,
-      "hideSelectors": [
-        "time"
-      ],
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold" : 0.1,
+      "requireSameDimensions": true,
+      "scrollToSelector": "footer"
+    },
+    {
+      "label": "Sample Webinar content page",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://ask.docker.amazee.io/resources/webinar-darth-vader",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 4000,
+      "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
       "clickSelector": "",
