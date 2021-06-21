@@ -18,7 +18,12 @@
     "cypress:browser:edge": "npx cypress run --no-exit --browser edge",
     "cypress:browser:firefox": "npx cypress run --no-exit --browser firefox",
     "cypress:open": "npx cypress run",
-    "cypress:run": "percy exec -t 10000 -- cypress run"
+    "cypress:run": "percy exec -t 10000 -- cypress run",
+    "lint:scss:check": "npx stylelint",
+    "lint:scss:fix": "npx stylelint --fix",
+    "lint:js:check": "node ./node_modules/eslint/bin/eslint.js --quiet --config=.eslintrc.json 'themes/health/source/js/.'",
+    "lint:js:fix": "node ./node_modules/eslint/bin/eslint.js --quiet --config=.eslintrc.json --fix 'themes/health/source/js/.'",
+    "npx": "which npx"
   },
   "repository": {
     "type": "git",
@@ -28,8 +33,24 @@
   "license": "MIT",
   "devDependencies": {
     "@percy/cypress": "^2.3.1",
-    "backstopjs": "^5.0.4",
-    "cypress": "^4.10.0"
+    "backstopjs": "^5.3.2",
+    "cypress": "^4.10.0",
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.23.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^1.19.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-config-standard": "^21.0.0"
   },
   "dependencies": {}
 }

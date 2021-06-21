@@ -8,7 +8,7 @@ PHPCBF_BIN="./vendor/bin/phpcbf"
 
 drupalfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep -E '\.php$|\.module$|\.inc$|\.install$|\.test$|\.profile$|\.theme$|\.css$|\.info$|\.txt$|\.md$|\.yml$|\.theme$')
 
-if [ $drupalfiles != "" ]
+if [[ "$drupalfiles" != "" ]]
 then
     drupalfailed=0
     echo "Running Code Sniffer..."
@@ -35,5 +35,59 @@ then
 fi
 
 #### End of Code Sniffer
+
+### SCSS linting
+scssfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep 'source/sass'  | grep -E '\.scss$')
+if [[ $scssfiles != "" ]]
+then
+    scssfailed=0
+    echo "Running SCSS Sniffer..."
+
+    npm run lint:scss:check $scssfiles -s  >/dev/null
+    if [ $? != 0 ]
+    then
+        npm run lint:scss:fix $scssfiles -s >/dev/null
+        git add $scssfiles
+        npm run lint:scss:check $scssfiles -s >/dev/null
+        if [ $? != 0 ]
+        then
+            npm run lint:scss:check $scssfiles -s
+            scssfailed=1
+        fi
+    fi
+    if [ $scssfailed != 0 ]
+    then
+        echo "SCSS linting failed, errors found not fixable automatically, git commit denied!"
+        exit 1
+    fi
+fi
+## End scss linting
+
+## JS linting
+jsfiles=$(git diff --cached --name-only  --diff-filter=ACM HEAD | grep 'source/js' |grep -E '\.js$')
+if [[ $jsfiles != "" ]]
+then
+    jsfailed=0
+    echo "Running JS Sniffer..."
+
+    npm run lint:js:check $jsfiles -s  >/dev/null
+    if [ $? != 0 ]
+    then
+        npm run lint:js:fix $jsfiles -s >/dev/null
+        git add $scssfiles
+        npm run lint:js:check $jsfiles -s >/dev/null
+        if [ $? != 0 ]
+        then
+            npm run lint:js:check $jsfiles -s
+            jsfailed=1
+        fi
+    fi
+    if [ $jsfailed != 0 ]
+    then
+        echo "JS linting failed, errors found not fixable automatically, git commit denied!"
+        exit 1
+    fi
+fi
+## End JS linting
 
 exit 0
