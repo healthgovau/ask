@@ -2,7 +2,7 @@ name: Health Base Theme
 type: theme
 description: 'Base theme for Health project sites'
 core: 8.x
-core_version_requirement: ^8
+core_version_requirement: ^8 || ^9
 base theme: stable
 logo: logo.png
 libraries:
